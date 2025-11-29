@@ -4,7 +4,7 @@ class_name Player
 # Character controller 3D simple, sans saut ni caméra, avec gestion d'id pour l'InputMap
 @export var speed: float = 5.0
 @export var id: int = 1 # Utilisé pour différencier les inputs (ex: 1, 2, 3...)
-var player_device_id: int = -1
+@export var player_device_id: int = -1
 var player_deadzone: float = 0.1
 
 var is_listening_action_action: bool = true

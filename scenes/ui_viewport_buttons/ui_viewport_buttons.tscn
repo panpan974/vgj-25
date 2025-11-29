@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3caqbbuauovy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mdchq"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1l7jj"]
+
+[node name="Node3D" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_mdchq")
+mesh = SubResource("PlaneMesh_1l7jj")

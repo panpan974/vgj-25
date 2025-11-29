@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnx21p5adfplc"]
+
+[ext_resource type="Script" uid="uid://bof3bqdrodigf" path="res://scenes/player_spawner/player_spawner.gd" id="1_0puml"]
+[ext_resource type="PackedScene" uid="uid://dr3ymollfb7g0" path="res://scenes/interactable/interactable.tscn" id="2_0puml"]
+[ext_resource type="PackedScene" uid="uid://cocx4styfesnu" path="res://scenes/player_spawner/player_spawner.tscn" id="3_ii21u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5re4o"]
+albedo_color = Color(3.465414e-06, 0.7540032, 0.26797724, 1)
+
+[node name="test_interaction_player" type="Node3D"]
+script = ExtResource("1_0puml")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.0061486135, -0.18905546, 0.9819472, 0, 0.9819657, 0.18905905, -0.9999811, -0.001162451, 0.006037728, 6.576887, 2.387258, -2.958059)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8781016, 0)
+light_energy = 4.453
+light_indirect_energy = 2.151
+light_volumetric_fog_energy = 3.08
+light_angular_distance = 34.32
+light_specular = 1.045
+
+[node name="ground" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4995, 4)
+size = Vector3(33, 0.001, 25)
+material = SubResource("StandardMaterial3D_5re4o")
+
+[node name="Interactable" parent="." instance=ExtResource("2_0puml")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="player_spawner" parent="." instance=ExtResource("3_ii21u")]
