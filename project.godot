@@ -29,7 +29,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SodaAudioManager/plugin.cfg", "res://addons/audio_manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/SodaAudioManager/plugin.cfg")
 
 [physics]
 

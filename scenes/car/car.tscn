@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://o5yjnavsmw2y"]
+[gd_scene load_steps=43 format=4 uid="uid://o5yjnavsmw2y"]
 
 [ext_resource type="Script" uid="uid://dluos0mpkxtsg" path="res://scenes/car/car.gd" id="1_yr3gr"]
 [ext_resource type="Material" uid="uid://d3nmwq28t052x" path="res://scenes/car/materials/Sol.tres" id="3_tcn38"]
@@ -9,8 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bke7lmv57wto1" path="res://src/component/interactable/interactable.tscn" id="7_u0012"]
 [ext_resource type="Resource" uid="uid://b0k835kx0eubt" path="res://src/ui/interaction_ui/data/Brake.tres" id="7_xs4xl"]
 [ext_resource type="Resource" uid="uid://bs1gvb0a5qi3b" path="res://src/ui/interaction_ui/data/FuelTank.tres" id="8_xs4xl"]
-[ext_resource type="PackedScene" uid="uid://dr3ymollfb7g0" path="res://scenes/interactable/interactable.tscn" id="6_b3ski"]
-[ext_resource type="PackedScene" uid="uid://bw4qlac47w5pv" path="res://scenes/music_radio/music_radio.tscn" id="7_u0012"]
+[ext_resource type="PackedScene" uid="uid://bw4qlac47w5pv" path="res://scenes/music_radio/music_radio.tscn" id="10_dmhln"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gb6us"]
 
@@ -496,4 +495,4 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.7
 shape = SubResource("BoxShape3D_xs4xl")
 debug_color = Color(0.60562444, 0.92013264, 1.2283505, 1)
 
-[node name="music_radio" parent="." instance=ExtResource("7_u0012")]
+[node name="music_radio" parent="." instance=ExtResource("10_dmhln")]
