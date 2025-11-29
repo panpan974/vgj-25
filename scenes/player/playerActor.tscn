@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0k1qanc30wcv"]
+
+[ext_resource type="Script" uid="uid://dsfst2auv5xcf" path="res://scenes/player/playerActor.gd" id="1_iay5c"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iay5c"]
+
+[node name="PlayerActor" type="CharacterBody3D"]
+axis_lock_linear_y = true
+script = ExtResource("1_iay5c")
+
+[node name="Pivot" type="Marker3D" parent="."]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Pivot"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4568482, 0.18046665, 0.13815284)
+radius = 0.36279297
+height = 0.065216064
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_iay5c")

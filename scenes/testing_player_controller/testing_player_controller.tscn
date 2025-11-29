@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceoo8r7s12w0s"]
+
+[ext_resource type="PackedScene" uid="uid://d0k1qanc30wcv" path="res://scenes/player/playerActor.tscn" id="1_qdaic"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_evld0"]
+size = Vector3(9, 1, 7)
+
+[node name="TestingPlayerController" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -1)
+shape = SubResource("BoxShape3D_evld0")
+debug_color = Color(0.60562444, 0.92013264, 1.2283505, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -1)
+size = Vector3(10, 1, 7)
+
+[node name="PlayerActor" parent="." instance=ExtResource("1_qdaic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 3.945, 5.449, -1.011)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8781016, 0)
+light_energy = 4.453
+light_indirect_energy = 2.151
+light_volumetric_fog_energy = 3.08
+light_angular_distance = 34.32
+light_specular = 1.045
