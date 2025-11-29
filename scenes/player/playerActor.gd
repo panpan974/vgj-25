@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Player
 
+@onready var sprite: AnimatedSprite3D = %character_sprite
+
 # Character controller 3D simple, sans saut ni caméra, avec gestion d'id pour l'InputMap
 @export var speed: float = 5.0
 @export var id: int = 1 # Utilisé pour différencier les inputs (ex: 1, 2, 3...)
@@ -20,11 +22,21 @@ signal on_cancel_pressed()
 signal on_button_pressed(action: String)
 signal on_button_released(action: String)
 
+var available_skins := ["green", "nain", "rose", "yellow"]
+var current_skin := "yellow"
+
 func _ready():
 	add_to_group("players")
 	on_movement_vector.connect(_on_movement_vector)
 	on_button_pressed.connect(player_input_pressed)
 	on_button_released.connect(player_input_released)
+	# Choix aléatoire du skin
+	current_skin = available_skins[randi() % available_skins.size()]
+	play_animation(current_skin + "_walk")
+
+func play_animation(anim_name: String) -> void:
+	if sprite.animation != anim_name:
+		sprite.play(anim_name)
 
 func player_input_pressed(action: String) -> void:
 	# Example handling of input actions
@@ -53,6 +65,7 @@ func player_input_released(action: String) -> void:
 func _on_movement_vector(movement: Vector2) -> void:
 	input_vector = movement
 
+
 func _physics_process(delta):
 	# Appliquer la direction dans le repère global (contrôles non affectés par la rotation du parent)
 	if input_vector.length() > 0:
@@ -64,6 +77,8 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed * delta * 10)
 		velocity.z = move_toward(velocity.z, 0, speed * delta * 10)
+
+
 
 	# Pas de gestion de la gravité ni du saut
 	move_and_slide()
@@ -77,6 +92,20 @@ func _process(delta: float) -> void:
 		emit_signal("on_movement_vector", movement)
 	else:
 		emit_signal("on_movement_vector", Vector2.ZERO)
+	
+	# # Flip le sprite selon la direction du mouvement (gauche/droite)
+	if movement.y != 0 or movement.x != 0:
+		print_debug("Movement length: ", movement)
+		print_debug("Velocity", velocity)
+		sprite.flip_h = movement.x < 0	
+
+
+
+	# Animation idle si le joueur ne bouge pas
+	if velocity.length() < 0.05:
+		play_animation(current_skin + "_idle")
+	else:
+		play_animation(current_skin + "_walk")
 	
 func _input(event: InputEvent) -> void:
 	if event.device != player_device_id:

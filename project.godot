@@ -21,10 +21,15 @@ GameRecuperator="*res://scenes/Game_recuperator/game_recuperator.tscn"
 InputMapper="*res://src/autoloads/input/input_mapper.gd"
 PlayerManager="*res://src/autoloads/players/player_manager.gd"
 GlobalEvents="*res://src/autoloads/globals/global_events.gd"
+SodaAudioManager="*res://addons/SodaAudioManager/Scenes/soda_audio_manager.scn"
 
 [display]
 
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SodaAudioManager/plugin.cfg", "res://addons/audio_manager/plugin.cfg")
 
 [physics]
 

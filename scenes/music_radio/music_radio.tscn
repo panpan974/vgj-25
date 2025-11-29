@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw4qlac47w5pv"]
+
+[ext_resource type="Script" uid="uid://c0wcvexrjnnae" path="res://scenes/music_radio/music_radio.gd" id="1_q5a25"]
+[ext_resource type="AudioStream" uid="uid://can8s3lt0xqre" path="res://scenes/music_radio/bg_loop.mp3" id="2_rmeyj"]
+
+[node name="music_radio" type="Node"]
+script = ExtResource("1_q5a25")
+bg_music = ExtResource("2_rmeyj")
