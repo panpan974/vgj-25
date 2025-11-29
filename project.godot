@@ -15,6 +15,10 @@ run/main_scene="uid://ceoo8r7s12w0s"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameRecuperator="*res://scenes/Game_recuperator/game_recuperator.tscn"
+
 [input]
 
 move_forward_1={

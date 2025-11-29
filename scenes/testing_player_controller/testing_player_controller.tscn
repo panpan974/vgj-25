@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ceoo8r7s12w0s"]
+[gd_scene load_steps=5 format=3 uid="uid://ceoo8r7s12w0s"]
 
 [ext_resource type="PackedScene" uid="uid://dqvfo3fhaekdc" path="res://scenes/world/world.tscn" id="1_eilo5"]
 [ext_resource type="PackedScene" uid="uid://d0k1qanc30wcv" path="res://scenes/player/playerActor.tscn" id="1_qdaic"]
 [ext_resource type="PackedScene" uid="uid://o5yjnavsmw2y" path="res://scenes/car/car.tscn" id="3_lmu1h"]
+[ext_resource type="PackedScene" uid="uid://ctf642gw4qdne" path="res://scenes/Game_recuperator/game_recuperator.tscn" id="4_rmt7e"]
 
 [node name="TestingPlayerController" type="Node3D"]
 
@@ -21,3 +22,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, -1, -1)
 
 [node name="PlayerActor" parent="Car" instance=ExtResource("1_qdaic")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="GameRecuperator" parent="." instance=ExtResource("4_rmt7e")]
