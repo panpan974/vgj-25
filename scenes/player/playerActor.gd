@@ -37,9 +37,9 @@ func _physics_process(delta):
 	if input_vector.length() > 0:
 		input_vector = input_vector.normalized()
 		# Utilise la base globale pour que le parent n'influence pas la direction
-		# var direction = (global_transform.basis * input_vector).normalized()
-		velocity.x = input_vector.x * speed
-		velocity.z = input_vector.y * speed
+		var direction = (global_transform.basis * Vector3(input_vector.x, 0, input_vector.y)).normalized()
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed * delta * 10)
 		velocity.z = move_toward(velocity.z, 0, speed * delta * 10)

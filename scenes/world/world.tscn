@@ -32,6 +32,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 1, -7)
 [node name="Ground" type="CSGBox3D" parent="."]
 material_override = SubResource("StandardMaterial3D_lmu1h")
 use_collision = true
-size = Vector3(104.015625, 1, 99.59766)
+size = Vector3(1000, 1, 1000)
 
 [editable path="EndingArea"]

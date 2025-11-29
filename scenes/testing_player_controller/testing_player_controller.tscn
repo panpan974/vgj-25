@@ -30,10 +30,11 @@ light_specular = 1.045
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.501816, 0)
 move_speed = 4.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Car" node_paths=PackedStringArray("car_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -14)
 material_override = SubResource("StandardMaterial3D_sy4cq")
 mesh = SubResource("PlaneMesh_sy4cq")
 script = ExtResource("6_sy4cq")
+car_node = NodePath("..")
 
 [node name="GameRecuperator" parent="." instance=ExtResource("4_rmt7e")]
