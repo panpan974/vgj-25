@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bavtm5ovgfla5"]
+
+[ext_resource type="PackedScene" uid="uid://d0k1qanc30wcv" path="res://scenes/player/playerActor.tscn" id="1_jkdv1"]
+[ext_resource type="PackedScene" uid="uid://tnp18527yq6c" path="res://scenes/EndingArea/ending_area.tscn" id="2_qbtax"]
+
+[node name="Test_Target_Ending" type="Node3D"]
+
+[node name="PlayerActor" parent="." instance=ExtResource("1_jkdv1")]
+
+[node name="Camera3D" type="Camera3D" parent="PlayerActor"]
+transform = Transform3D(0.99999666, -0.001504281, 0.0020974525, 0, 0.8126141, 0.5828022, -0.0025811177, -0.5828002, 0.81261134, 0.039104603, 10.86568, 15.150208)
+
+[node name="EndingArea" parent="." node_paths=PackedStringArray("target_3d", "camera") instance=ExtResource("2_qbtax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.917145, 0, 0.00021457672)
+target_3d = NodePath("../PlayerActor")
+camera = NodePath("../PlayerActor/Camera3D")
+margin_screen = 200.0

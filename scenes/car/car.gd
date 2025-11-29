@@ -9,6 +9,9 @@ class_name Car extends CharacterBody3D
 
 @onready var buttonDir_top: ButtonDirection = %ButtonDirection_RotTop
 @onready var buttonDir_bottom: ButtonDirection = %ButtonDirection2_RotBottom
+@onready var top_car : Marker3D = %top_car
+@onready var direction_sprite: Sprite3D = %direction_sprite
+
 
 
 # Node à faire tourner (exporté)
@@ -18,12 +21,14 @@ class_name Car extends CharacterBody3D
 var rotating_forward := false
 var rotating_backward := false
 var _rotation_node: Node3D = null
+var ending_node: Node = null
 
 
 
 func _ready():
 	#Register this in GameRecuperator (autoload)
 	GameRecuperator.register_car(self)
+	GameRecuperator.all_systems_ready.connect(_on_all_systems_ready)
 	
 
 	# Connexion des signaux des boutons directionnels
@@ -38,7 +43,19 @@ func _ready():
 	else:
 		_rotation_node = self
 
+func _on_all_systems_ready():
+	ending_node = GameRecuperator.get_ending_node()
+	# Tout est prêt, on peut démarrer les comportements dépendants si besoin
+
+func _process(delta: float) -> void:
+	if not ending_node:
+		return
+	var ending_pos = ending_node.global_transform.origin
+	direction_sprite.look_at(ending_pos, Vector3.UP)
+
 func _physics_process(delta):
+	pass
+	#disable just for testing
 	# Mouvement constant dans la direction de la rotation (avant local)
 	var forward_dir = -transform.basis.z.normalized()
 	velocity = forward_dir * move_speed
@@ -75,3 +92,6 @@ func _on_rotate_forward_changed(state: bool):
 
 func _on_rotate_backward_changed(state: bool):
 	rotating_backward = state
+
+func get_top_car() -> Marker3D:
+	return top_car

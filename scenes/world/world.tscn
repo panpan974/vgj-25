@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqvfo3fhaekdc"]
+[gd_scene load_steps=6 format=3 uid="uid://dqvfo3fhaekdc"]
 
 [ext_resource type="PackedScene" uid="uid://1iv30qlai01d" path="res://scenes/Tree_obstacle/treeObstacle.tscn" id="2_1fp7r"]
 [ext_resource type="PackedScene" uid="uid://tnp18527yq6c" path="res://scenes/EndingArea/ending_area.tscn" id="3_1fp7r"]
@@ -23,9 +23,10 @@ material_override = SubResource("StandardMaterial3D_lmu1h")
 size = Vector3(104.015625, 1, 99.59766)
 
 [node name="TreeObstacle" parent="world" instance=ExtResource("2_1fp7r")]
-process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1, -7)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 1, -7)
+
+[node name="TreeObstacle" parent="world/TreeObstacle" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5, 1, 16)
 
 [node name="EndingArea" parent="." instance=ExtResource("3_1fp7r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -23)

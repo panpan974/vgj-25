@@ -1,21 +1,24 @@
-extends Node
+extends Node3D
 
 @onready var ui_ending: Control = %UI_Ending
-@onready var target: TextureRect = %Target 
-@onready var ending_area_3d: Node3D = get_parent()
-var camera_3d: Camera3D
-var car: Car
+@onready var target_texture: TextureRect = %Target 
+@onready var ending_pointer: Marker3D = %ending_pointer
+@onready var ending_area_3d: Node3D #Where it ends
+@export var target_3d: Node3D #Where it begins
+@export var camera: Camera3D
+
 
 func _ready():
+	ending_area_3d = self
 	ui_ending.visible = false
 	#get camera_3d from main camera
-	camera_3d = get_viewport().get_camera_3d()
 	GameRecuperator.register_ending_node(self)
 	GameRecuperator.all_systems_ready.connect(_on_all_systems_ready)
 
 func _on_all_systems_ready():
 	#Let's get the camera
-	car = GameRecuperator.get_car()
+	target_3d = GameRecuperator.get_car()
+	camera = GameRecuperator.get_camera()
 
 
 func switch_ending_ui(state:bool):
@@ -23,26 +26,22 @@ func switch_ending_ui(state:bool):
 
 
 func _process(delta):
-	if not ending_area_3d or not car:
+	if not ending_area_3d or not target_3d:
 		return
 
-	var ending_pos = ending_area_3d.global_transform.origin
-	var car_pos = car.global_transform.origin
+	var ending_pos = ending_pointer.global_transform.origin
+	var car_pos = target_3d.global_transform.origin
 
-	# Direction de la voiture vers la zone de fin (Y ignoré)
-	var dir = ending_pos - car_pos
-	dir.y = 0
-	if dir.length() > 0:
-		dir = dir.normalized()
+	var direction_to_target = (ending_pos - car_pos).normalized()
+	var angle_y = atan2(-direction_to_target.x, direction_to_target.z)
 
-	# Avant de la voiture (Y ignoré)
-	var car_forward = -car.global_transform.basis.z
-	car_forward.y = 0
-	if car_forward.length() > 0:
-		car_forward = car_forward.normalized()
+	target_texture.rotation_degrees = rad_to_deg(angle_y)
 
-	# Angle entre l'avant de la voiture et la direction objectif (sur le plan XZ)
-	var angle = atan2(dir.x, dir.z) - atan2(car_forward.x, car_forward.z)
 
-	# Appliquer la rotation à l'icône (en radians)
-	target.rotation = angle
+
+	
+
+
+
+
+	# print_debug("Distance to car: ", to_car_distance, "dir: ", to_car_dir)
