@@ -25,6 +25,7 @@ shape = SubResource("BoxShape3D_5re4o")
 [node name="viewport_quad" parent="." instance=ExtResource("4_lif6p")]
 unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 1.7017652, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_lif6p")
 
 [node name="ui_viewport_buttons" type="SubViewport" parent="."]

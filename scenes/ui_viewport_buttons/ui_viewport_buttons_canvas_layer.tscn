@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4wyxx3naxo1p"]
+[gd_scene load_steps=4 format=3 uid="uid://b4wyxx3naxo1p"]
 
 [ext_resource type="Script" uid="uid://dx51nvigyry73" path="res://scenes/ui_viewport_buttons/ui_viewport_buttons_canvas_layer.gd" id="1_0prm3"]
 [ext_resource type="Texture2D" uid="uid://cx25fe465a840" path="res://sprites/ui/Positional_Prompts_Down.png" id="1_4xe7m"]
+[ext_resource type="Texture2D" uid="uid://drf7toihqetxl" path="res://sprites/ui/Positional_Prompts_Left.png" id="2_ob4bx"]
 
 [node name="ui_viewport_buttonsCanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_0prm3")
@@ -17,7 +18,9 @@ offset_right = -305.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="VBoxContainer" parent="main_control"]
+[node name="instruction_container" type="VBoxContainer" parent="main_control"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -29,19 +32,52 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="icon" type="TextureRect" parent="main_control/Panel"]
+[node name="icon" type="TextureRect" parent="main_control/instruction_container"]
 unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_ob4bx")
+stretch_mode = 3
+
+[node name="text" type="Label" parent="main_control/instruction_container"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 46
+text = "Appuye longtemps !"
+horizontal_alignment = 1
+
+[node name="slider" type="HSlider" parent="main_control/instruction_container"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="repaired_container" type="ColorRect" parent="main_control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15330616, 0.4903316, 2.2140146e-06, 1)
+
+[node name="c" type="VBoxContainer" parent="main_control/repaired_container"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -203.5
+offset_right = 203.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="icon" type="TextureRect" parent="main_control/repaired_container/c"]
 layout_mode = 2
 texture = ExtResource("1_4xe7m")
 stretch_mode = 3
 
-[node name="text" type="Label" parent="main_control/Panel"]
-unique_name_in_owner = true
+[node name="text" type="Label" parent="main_control/repaired_container/c"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 46
-text = "Smash ce bouton !"
+text = "Bravo c'est réparé !"
 horizontal_alignment = 1
-
-[node name="slider" type="HSlider" parent="main_control/Panel"]
-unique_name_in_owner = true
-layout_mode = 2

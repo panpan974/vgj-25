@@ -11,6 +11,9 @@ var is_listening_action_action: bool = true
 var is_listening_input: bool = true
 var input_vector: Vector2 = Vector2.ZERO
 
+#For interaction
+var current_interactable: Interactable = null
+
 signal on_movement_vector(movement: Vector2)
 signal on_validate_pressed()
 signal on_cancel_pressed()
@@ -21,13 +24,31 @@ func _ready():
 	add_to_group("players")
 	on_movement_vector.connect(_on_movement_vector)
 	on_button_pressed.connect(player_input_pressed)
+	on_button_released.connect(player_input_released)
 
 func player_input_pressed(action: String) -> void:
 	# Example handling of input actions
 	if action == InputMapper.X_ACTION:
-		print_debug("Player ", id, " pressed X action")
+		if(current_interactable != null):
+			current_interactable._press_x_action(self)
+		else:
+			# print_debug("Player ", id, " pressed X action")
+			pass
 	elif action == InputMapper.Y_ACTION:
-		print_debug("Player ", id, " pressed Y action")
+		# print_debug("Player ", id, " pressed Y action")
+		pass
+
+func player_input_released(action: String) -> void:
+	# Example handling of input release actions
+	if action == InputMapper.X_ACTION:
+		# print_debug("Player ", id, " released X action")
+		if(current_interactable != null):
+			current_interactable._release_x_action(self)
+
+	elif action == InputMapper.Y_ACTION:
+		# print_debug("Player ", id, " released Y action")
+		if(current_interactable != null):
+			current_interactable._release_y_action(self)
 
 func _on_movement_vector(movement: Vector2) -> void:
 	input_vector = movement
@@ -71,3 +92,10 @@ func _input(event: InputEvent) -> void:
 				on_cancel_pressed.emit()
 		else:
 			on_button_released.emit(InputMapper.get_action_from_button(event.button_index, event.device))
+
+
+#Interactions functions
+func add_interactable_to_player(interactable: Interactable) -> void:
+	current_interactable = interactable
+func remove_interactable_from_player(interactable: Interactable) -> void:
+	current_interactable = null
