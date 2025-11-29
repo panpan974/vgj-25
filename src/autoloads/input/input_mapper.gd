@@ -10,6 +10,8 @@ const MOVE_UP_ACTION: String = "move_up"
 const MOVE_DOWN_ACTION: String = "move_down"
 const ACTION_ACTION: String = "action"
 const CANCEL_ACTION: String = "cancel"
+const X_ACTION: String = "x"
+const Y_ACTION: String = "y"
 const UP_BUTTON_ACTION: String = "up"
 const DOWN_BUTTON_ACTION: String = "down"
 const LEFT_BUTTON_ACTION: String = "left"
@@ -23,6 +25,8 @@ const ACTION_MAP_DEFAULT: Dictionary[String, Dictionary] = {
 	MOVE_DOWN_ACTION: {"axis": JOY_AXIS_LEFT_Y, "type": "axis", "value": 1.0},
 	ACTION_ACTION: {"button": JOY_BUTTON_A, "type": "button"},
 	CANCEL_ACTION: {"button": JOY_BUTTON_B, "type": "button"},
+	X_ACTION: {"button": JOY_BUTTON_X, "type": "button"},
+	Y_ACTION: {"button": JOY_BUTTON_Y, "type": "button"},
 	UP_BUTTON_ACTION: {"button": JOY_BUTTON_DPAD_UP, "type": "button"},
 	DOWN_BUTTON_ACTION: {"button": JOY_BUTTON_DPAD_DOWN, "type": "button"},
 	LEFT_BUTTON_ACTION: {"button": JOY_BUTTON_DPAD_LEFT, "type": "button"},
