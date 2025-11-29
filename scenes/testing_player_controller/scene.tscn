@@ -1,8 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdt3ttgum5uqm"]
+[gd_scene load_steps=4 format=3 uid="uid://cdt3ttgum5uqm"]
 
+[ext_resource type="Script" uid="uid://d1r6asuknqghw" path="res://scenes/Managers/game.gd" id="1_q0uyr"]
 [ext_resource type="Script" uid="uid://q34pl7d02d1r" path="res://scripts/gamescene.gd" id="1_vpu20"]
+[ext_resource type="PackedScene" uid="uid://d0k1qanc30wcv" path="res://scenes/player/playerActor.tscn" id="2_w8qml"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node"]
+script = ExtResource("1_q0uyr")
+playerActor = ExtResource("2_w8qml")
 
-[node name="GameScene" type="Node2D" parent="."]
+[node name="GameScene" type="Node3D" parent="."]
 script = ExtResource("1_vpu20")
+
+[node name="PlayerActor" parent="GameScene" instance=ExtResource("2_w8qml")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 3.945, 5.449, -1.011)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8781016, 0)
+light_energy = 4.453
+light_indirect_energy = 2.151
+light_volumetric_fog_energy = 3.08
+light_angular_distance = 34.32
+light_specular = 1.045

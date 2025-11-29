@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxkx67y5wad5u"]
+
+[ext_resource type="Script" uid="uid://06k4klhnga1u" path="res://scenes/Button_direction/button_direction.gd" id="1_erlsu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rytg7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7uf8"]
+albedo_color = Color(4.042983e-06, 0.54045224, 0.35608745, 1)
+
+[node name="ButtonDirection" type="Area3D"]
+script = ExtResource("1_erlsu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_rytg7")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.041992188, 0)
+material_override = SubResource("StandardMaterial3D_x7uf8")
+size = Vector3(1, 1.0839844, 1)

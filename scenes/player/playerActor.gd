@@ -14,13 +14,13 @@ func _physics_process(delta):
 
 	# Récupérer la direction de déplacement
 	var input_vector = Vector3.ZERO
-	if Input.is_action_pressed(forward):
-		input_vector.z -= 1
-	if Input.is_action_pressed(backward):
-		input_vector.z += 1
-	if Input.is_action_pressed(left):
-		input_vector.x -= 1
 	if Input.is_action_pressed(right):
+		input_vector.z -= 1
+	if Input.is_action_pressed(left):
+		input_vector.z += 1
+	if Input.is_action_pressed(forward):
+		input_vector.x -= 1
+	if Input.is_action_pressed(backward):
 		input_vector.x += 1
 
 	# Appliquer la direction selon l'orientation du personnage
@@ -35,5 +35,3 @@ func _physics_process(delta):
 
 	# Pas de gestion de la gravité ni du saut
 	move_and_slide()
-
-
