@@ -5,6 +5,9 @@ extends CharacterBody3D
 @export var speed: float = 5.0
 @export var id: int = 1 # Utilisé pour différencier les inputs (ex: 1, 2, 3...)
 
+func _ready():
+	add_to_group("players")
+
 func _physics_process(delta):
 	# Construction dynamique des noms d'actions selon l'id
 	var forward = "move_forward_%d" % id
@@ -23,10 +26,11 @@ func _physics_process(delta):
 	if Input.is_action_pressed(backward):
 		input_vector.x += 1
 
-	# Appliquer la direction selon l'orientation du personnage
+	# Appliquer la direction dans le repère global (contrôles non affectés par la rotation du parent)
 	if input_vector.length() > 0:
 		input_vector = input_vector.normalized()
-		var direction = (transform.basis * input_vector).normalized()
+		# Utilise la base globale pour que le parent n'influence pas la direction
+		var direction = (global_transform.basis * input_vector).normalized()
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 	else:

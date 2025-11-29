@@ -1,8 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0k1qanc30wcv"]
+[gd_scene load_steps=5 format=3 uid="uid://d0k1qanc30wcv"]
 
 [ext_resource type="Script" uid="uid://dsfst2auv5xcf" path="res://scenes/player/playerActor.gd" id="1_iay5c"]
+[ext_resource type="Texture2D" uid="uid://ds8pc40accitg" path="res://sprites/character.png" id="2_7ikxx"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_iay5c"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7ikxx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8r5e3"]
+albedo_texture = ExtResource("2_7ikxx")
+billboard_mode = 1
 
 [node name="PlayerActor" type="CharacterBody3D"]
 axis_lock_linear_y = true
@@ -18,4 +23,8 @@ radius = 0.36279297
 height = 0.065216064
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_iay5c")
+shape = SubResource("CylinderShape3D_7ikxx")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+material_override = SubResource("StandardMaterial3D_8r5e3")
+texture = ExtResource("2_7ikxx")
