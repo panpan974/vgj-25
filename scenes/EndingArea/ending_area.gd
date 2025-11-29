@@ -1,4 +1,4 @@
-extends Node3D
+extends Area3D
 
 @onready var ui_ending: Control = %UI_Ending
 @onready var target_texture: TextureRect = %Target 
@@ -9,11 +9,17 @@ extends Node3D
 
 
 func _ready():
+	body_entered.connect(_on_body_entered)
 	ending_area_3d = self
 	ui_ending.visible = false
 	#get camera_3d from main camera
 	GameRecuperator.register_ending_node(self)
 	GameRecuperator.all_systems_ready.connect(_on_all_systems_ready)
+
+func _on_body_entered(body: Node3D):
+	if body.is_in_group("players"):
+		print("Le joueur est entré dans la zone de fin !")
+		switch_ending_ui(true)
 
 func _on_all_systems_ready():
 	#Let's get the camera

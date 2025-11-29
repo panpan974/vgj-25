@@ -4,22 +4,24 @@
 [ext_resource type="Texture2D" uid="uid://dakporhdg1nja" path="res://sprites/UI_Direction.png" id="2_2tkvj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e6ftq"]
-size = Vector3(5, 1, 7)
+size = Vector3(5, 4, 7)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o71pr"]
 albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2tkvj"]
 
-[node name="EndingArea" type="StaticBody3D"]
+[node name="EndingArea" type="Area3D"]
 script = ExtResource("1_o71pr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_e6ftq")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8323609, 0)
 material_override = SubResource("StandardMaterial3D_o71pr")
-size = Vector3(5, 1, 7)
+size = Vector3(5, 0.5352783, 7)
 
 [node name="UI" type="CanvasLayer" parent="."]
 

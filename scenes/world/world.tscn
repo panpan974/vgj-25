@@ -21,7 +21,7 @@ albedo_texture = SubResource("NoiseTexture2D_sl2e5")
 script = ExtResource("1_1fp7r")
 
 [node name="EndingArea" parent="." instance=ExtResource("3_1fp7r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -23)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.4, -23)
 
 [node name="TreeObstacle2" parent="." instance=ExtResource("2_1fp7r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 2, 9)
