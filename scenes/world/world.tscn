@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqvfo3fhaekdc"]
+[gd_scene load_steps=7 format=3 uid="uid://dqvfo3fhaekdc"]
 
+[ext_resource type="Script" uid="uid://dp8ul8rja7e64" path="res://scenes/world/world.gd" id="1_1fp7r"]
 [ext_resource type="PackedScene" uid="uid://1iv30qlai01d" path="res://scenes/Tree_obstacle/treeObstacle.tscn" id="2_1fp7r"]
 [ext_resource type="PackedScene" uid="uid://tnp18527yq6c" path="res://scenes/EndingArea/ending_area.tscn" id="3_1fp7r"]
 
@@ -16,19 +17,21 @@ noise = SubResource("FastNoiseLite_dphjl")
 albedo_color = Color(0.24423781, 0.4084502, 0, 1)
 albedo_texture = SubResource("NoiseTexture2D_sl2e5")
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
-
-[node name="world" type="CSGBox3D" parent="."]
-material_override = SubResource("StandardMaterial3D_lmu1h")
-size = Vector3(104.015625, 1, 99.59766)
-
-[node name="TreeObstacle" parent="world" instance=ExtResource("2_1fp7r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 1, -7)
-
-[node name="TreeObstacle" parent="world/TreeObstacle" instance=ExtResource("2_1fp7r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5, 1, 16)
+[node name="World" type="Node3D"]
+script = ExtResource("1_1fp7r")
 
 [node name="EndingArea" parent="." instance=ExtResource("3_1fp7r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -23)
+
+[node name="TreeObstacle2" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 2, 9)
+
+[node name="TreeObstacle" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 1, -7)
+
+[node name="Ground" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_lmu1h")
+use_collision = true
+size = Vector3(104.015625, 1, 99.59766)
 
 [editable path="EndingArea"]

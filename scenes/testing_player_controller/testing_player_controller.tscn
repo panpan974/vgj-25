@@ -1,9 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceoo8r7s12w0s"]
+[gd_scene load_steps=9 format=3 uid="uid://ceoo8r7s12w0s"]
 
 [ext_resource type="PackedScene" uid="uid://dqvfo3fhaekdc" path="res://scenes/world/world.tscn" id="1_eilo5"]
 [ext_resource type="PackedScene" uid="uid://d0k1qanc30wcv" path="res://scenes/player/playerActor.tscn" id="1_qdaic"]
 [ext_resource type="PackedScene" uid="uid://o5yjnavsmw2y" path="res://scenes/car/car.tscn" id="3_lmu1h"]
 [ext_resource type="PackedScene" uid="uid://ctf642gw4qdne" path="res://scenes/Game_recuperator/game_recuperator.tscn" id="4_rmt7e"]
+[ext_resource type="Texture2D" uid="uid://dakporhdg1nja" path="res://sprites/UI_Direction.png" id="5_buxfd"]
+[ext_resource type="Script" uid="uid://dxton6na1mahi" path="res://scenes/testing_player_controller/direction_sprite.gd" id="6_sy4cq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sy4cq"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("5_buxfd")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sy4cq"]
+size = Vector2(10, 10)
 
 [node name="TestingPlayerController" type="Node3D"]
 
@@ -16,12 +26,18 @@ light_angular_distance = 34.32
 light_specular = 1.045
 
 [node name="world" parent="." instance=ExtResource("1_eilo5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, -1, -1)
 
 [node name="Car" parent="." instance=ExtResource("3_lmu1h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5018158, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.501816, 0)
+move_speed = 4.0
 
 [node name="PlayerActor" parent="Car" instance=ExtResource("1_qdaic")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14)
+material_override = SubResource("StandardMaterial3D_sy4cq")
+mesh = SubResource("PlaneMesh_sy4cq")
+script = ExtResource("6_sy4cq")
 
 [node name="GameRecuperator" parent="." instance=ExtResource("4_rmt7e")]

@@ -3,8 +3,10 @@ extends Node
 signal all_systems_ready()
 signal game_ready_to_start()
 
+signal on_rotate(direction: String)
+
 var ending_node: Node = null
-var car: Car = null 
+var car: Car = null
 var camera: Camera3D = null
 
 var _systems_ready: Dictionary = {
@@ -16,7 +18,6 @@ var _systems_ready: Dictionary = {
 func _mark_system_ready(system_name: String):
 	_systems_ready[system_name] = true
 	_check_all_systems_ready()
-
 
 
 # 🆕 Vérifier si tous les systèmes sont prêts
