@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cfbt7iiu1cx3f"
-path="res://.godot/imported/Tuture.fbx-659c9ce7e7787e3a909d01b047898471.scn"
+uid="uid://cjpfwnon5gwqx"
+path="res://.godot/imported/Tuture.fbx-94260aaf434094d35ae17510efd6da70.scn"
 
 [deps]
 
-source_file="res://models/Tuture.fbx"
-dest_files=["res://.godot/imported/Tuture.fbx-659c9ce7e7787e3a909d01b047898471.scn"]
+source_file="res://scenes/car/Tuture.fbx"
+dest_files=["res://.godot/imported/Tuture.fbx-94260aaf434094d35ae17510efd6da70.scn"]
 
 [params]
 

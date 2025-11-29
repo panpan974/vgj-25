@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://o5yjnavsmw2y"]
 
 [ext_resource type="Script" uid="uid://dluos0mpkxtsg" path="res://scenes/car/car.gd" id="1_yr3gr"]
+[ext_resource type="PackedScene" uid="uid://cjpfwnon5gwqx" path="res://scenes/car/Tuture.fbx" id="2_tcn38"]
 [ext_resource type="Texture2D" uid="uid://bf4jtqfwq4wuv" path="res://sprites/fond_car.png" id="2_yhfra"]
 [ext_resource type="Texture2D" uid="uid://f0h12yvpj03t" path="res://sprites/left_car.png" id="3_rytg7"]
 [ext_resource type="PackedScene" uid="uid://dxkx67y5wad5u" path="res://scenes/Button_direction/button_direction.tscn" id="4_x7uf8"]
-[ext_resource type="PackedScene" uid="uid://cfbt7iiu1cx3f" path="res://models/Tuture.fbx" id="5_tcn38"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_evld0"]
 size = Vector3(9, 1, 7)
@@ -27,6 +27,7 @@ debug_color = Color(0.60562444, 0.92013264, 1.2283505, 1)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Node3D"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.75, 0, -1.3170471)
+visible = false
 size = Vector3(10.43988, 1, 7)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Node3D/CSGBox3D"]
@@ -63,5 +64,5 @@ currentCarAction = 1
 transform = Transform3D(-0.004374057, -0.6940775, 0.719887, 0, 0.71989393, 0.69408417, -0.99999046, 0.0030359635, -0.003148857, 14.96941, 15.577738, -2.1199627)
 fov = 56.1
 
-[node name="Tuture" parent="Node3D" instance=ExtResource("5_tcn38")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1925073, -0.45013428, -2)
+[node name="Tuture" parent="Node3D" instance=ExtResource("2_tcn38")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1107168, -0.46354628, 0)
