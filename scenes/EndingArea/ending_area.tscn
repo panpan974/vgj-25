@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://tnp18527yq6c"]
+
+[ext_resource type="Script" uid="uid://b8klc20mamv8q" path="res://scenes/EndingArea/ending_area.gd" id="1_o71pr"]
+[ext_resource type="Texture2D" uid="uid://dakporhdg1nja" path="res://sprites/UI_Direction.png" id="2_2tkvj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e6ftq"]
+size = Vector3(5, 1, 7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o71pr"]
+albedo_color = Color(0, 1, 0, 1)
+
+[node name="EndingArea" type="StaticBody3D"]
+script = ExtResource("1_o71pr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_e6ftq")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CollisionShape3D"]
+material_override = SubResource("StandardMaterial3D_o71pr")
+size = Vector3(5, 1, 7)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="UI_Ending" type="Control" parent="UI"]
+unique_name_in_owner = true
+process_mode = 4
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/UI_Ending"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/UI_Ending/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tutut
+T'as gagné
+...
+FILS DE PUTE!"
+
+[node name="Panel" type="Panel" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Target" type="TextureRect" parent="UI/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 72.0
+pivot_offset = Vector2(36, 32)
+texture = ExtResource("2_2tkvj")
+expand_mode = 1
+stretch_mode = 4
