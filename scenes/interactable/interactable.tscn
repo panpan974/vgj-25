@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://dr3ymollfb7g0"]
+
+[ext_resource type="Script" uid="uid://ch5xondmb28q" path="res://scenes/interactable/interactable.gd" id="1_g88tj"]
+[ext_resource type="PackedScene" uid="uid://b4wyxx3naxo1p" path="res://scenes/ui_viewport_buttons/ui_viewport_buttons_canvas_layer.tscn" id="3_45588"]
+[ext_resource type="PackedScene" uid="uid://b3caqbbuauovy" path="res://scenes/ui_viewport_buttons/ui_viewport_buttons.tscn" id="4_lif6p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5re4o"]
+size = Vector3(3, 1, 3)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_45588"]
+viewport_path = NodePath("ui_viewport_buttons")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lif6p"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_45588")
+
+[node name="Interactable" type="Area3D"]
+script = ExtResource("1_g88tj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_5re4o")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+
+[node name="viewport_quad" parent="." instance=ExtResource("4_lif6p")]
+unique_name_in_owner = true
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 1.7017652, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_lif6p")
+
+[node name="ui_viewport_buttons" type="SubViewport" parent="."]
+unique_name_in_owner = true
+render_target_update_mode = 4
+
+[node name="ui_viewport_buttonsCanvasLayer" parent="ui_viewport_buttons" instance=ExtResource("3_45588")]
+unique_name_in_owner = true
