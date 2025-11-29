@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://tnp18527yq6c"]
+[gd_scene load_steps=6 format=3 uid="uid://tnp18527yq6c"]
 
 [ext_resource type="Script" uid="uid://b8klc20mamv8q" path="res://scenes/EndingArea/ending_area.gd" id="1_o71pr"]
 [ext_resource type="Texture2D" uid="uid://dakporhdg1nja" path="res://sprites/UI_Direction.png" id="2_2tkvj"]
@@ -8,6 +8,8 @@ size = Vector3(5, 1, 7)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o71pr"]
 albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2tkvj"]
 
 [node name="EndingArea" type="StaticBody3D"]
 script = ExtResource("1_o71pr")
@@ -64,6 +66,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2tkvj")
 
 [node name="Target" type="TextureRect" parent="UI/Panel"]
 unique_name_in_owner = true
@@ -74,3 +77,4 @@ pivot_offset = Vector2(36, 32)
 texture = ExtResource("2_2tkvj")
 expand_mode = 1
 stretch_mode = 4
+flip_v = true

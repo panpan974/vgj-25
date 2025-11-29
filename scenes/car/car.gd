@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Car extends CharacterBody3D
 
 
 # Mouvement constant sur X (vitesse variable) et rotation avec move_forward/move_backward
@@ -22,6 +22,10 @@ var _rotation_node: Node3D = null
 
 
 func _ready():
+	#Register this in GameRecuperator (autoload)
+	GameRecuperator.register_car(self)
+	
+
 	# Connexion des signaux des boutons directionnels
 	buttonDir_top.on_rotate_forward_changed.connect(_on_rotate_forward_changed)
 	buttonDir_top.on_rotate_backward_changed.connect(_on_rotate_backward_changed)
