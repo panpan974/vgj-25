@@ -4,7 +4,7 @@ class_name Interactable extends Area3D
 @onready var ui_viewport_buttons: SubViewport = %ui_viewport_buttons
 @onready var ui_viewport_buttonsCanvasLayer: UIViewportButtons = %ui_viewport_buttonsCanvasLayer
 @onready var viewport_quad : MeshInstance3D = %viewport_quad
-@onready var tween := create_tween()
+var tween : Tween
 
 # Durée d'appui requise (en secondes)
 @export var hold_duration: float = 3.0
@@ -22,12 +22,13 @@ var player_hold_times := {}
 var player_holding := {}
 
 func _ready() -> void:
+	add_to_group("interactables")
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	ui_viewport_buttons.set_clear_mode(SubViewport.CLEAR_MODE_ALWAYS)
 	viewport_quad.material_override.albedo_texture = ui_viewport_buttons.get_texture()
 	viewport_quad.visible = false
-	ui_viewport_buttonsCanvasLayer.desactive_ui()
+
 	
 
 #Player detection
@@ -39,7 +40,6 @@ func _on_body_entered(body: Node3D) -> void:
 			ui_viewport_buttonsCanvasLayer.change_ui_state(ui_viewport_buttonsCanvasLayer.uiStates.Instructions)
 			# Apparition élégante
 			viewport_quad.scale = Vector3(0.1, 0.1, 0.1)
-			tween.kill() # Stoppe tout tween précédent
 			tween = create_tween()
 			tween.tween_property(viewport_quad, "scale", Vector3.ONE, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		else:
@@ -52,7 +52,6 @@ func _on_body_exited(body: Node3D) -> void:
 	if body.is_in_group("players"):
 		print_debug("player exited")
 		# Disparition élégante
-		tween.kill()
 		tween = create_tween()
 		tween.tween_property(viewport_quad, "scale", Vector3(0.0, 0.0, 0.0), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 		tween.tween_callback(Callable(viewport_quad, "hide_ui"))
