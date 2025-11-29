@@ -18,6 +18,13 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameRecuperator="*res://scenes/Game_recuperator/game_recuperator.tscn"
+InputMapper="*res://src/autoloads/input/input_mapper.gd"
+PlayerManager="*res://src/autoloads/players/player_manager.gd"
+GlobalEvents="*res://src/autoloads/globals/global_events.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [input]
 

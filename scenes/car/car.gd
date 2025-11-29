@@ -33,6 +33,7 @@ func _ready():
 	buttonDir_top.on_rotate_backward_changed.connect(_on_rotate_backward_changed)
 	buttonDir_bottom.on_rotate_forward_changed.connect(_on_rotate_forward_changed)
 	buttonDir_bottom.on_rotate_backward_changed.connect(_on_rotate_backward_changed)
+	PlayerManager.on_player_added.connect(spawn_player)
 
 	# # Récupérer le node à faire tourner
 	# if rotation_target != NodePath(""):
@@ -95,3 +96,6 @@ func _on_rotate_backward_changed(state: bool):
 
 func get_top_car() -> Marker3D:
 	return top_car
+
+func spawn_player(new_player: Player) -> void:
+	add_child(new_player)
