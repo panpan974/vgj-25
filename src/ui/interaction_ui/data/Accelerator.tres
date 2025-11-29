@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="InteractionUIData" load_steps=2 format=3 uid="uid://buws81381hcuq"]
+
+[ext_resource type="Script" uid="uid://byw3ex4ah22wn" path="res://src/ui/interaction_ui/interaction_ui_data.gd" id="1_sj441"]
+
+[resource]
+script = ExtResource("1_sj441")
+metadata/_custom_type_script = "uid://byw3ex4ah22wn"

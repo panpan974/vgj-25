@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://54lrjilh5q88"]
+
+[ext_resource type="Script" uid="uid://brcpctup3r4nd" path="res://src/car/long_button_press.gd" id="1_w18ul"]
+
+[node name="LongButtonPress" type="Node"]
+script = ExtResource("1_w18ul")

@@ -7,11 +7,13 @@ class_name Car
 @export var id: int = 1 # Pour l'InputMap
 
 
-@onready var buttonDir_top: ButtonDirection = %ButtonDirection_RotTop
-@onready var buttonDir_bottom: ButtonDirection = %ButtonDirection2_RotBottom
-@onready var button_accelerate: ButtonDirection = %ButtonAccelerate
-@onready var button_brake: ButtonDirection = %ButtonBrake
+@onready var buttonDir_top: Interactable = %TopRotationInteractable
+@onready var buttonDir_bottom: Interactable = %BottomRotationInteractable
+@onready var button_accelerate: Interactable = %AccelerateInteractable
+@onready var button_brake: Interactable = %BrakeInteractable
 @onready var top_car: Marker3D = %top_car
+
+@onready var fuel_tank: Interactable = %FuelTank
 # @onready var direction_sprite: Sprite3D = %direction_sprite
 
 
@@ -31,13 +33,16 @@ func _ready():
 	GameRecuperator.all_systems_ready.connect(_on_all_systems_ready)
 
 	# Connexion des signaux des boutons directionnels
-	buttonDir_top.on_button_activated.connect(start_rotate_forward)
-	buttonDir_top.on_button_deactivated.connect(stop_rotate_forward)
-	buttonDir_bottom.on_button_activated.connect(start_rotate_backward)
-	buttonDir_bottom.on_button_deactivated.connect(stop_rotate_backward)
+	buttonDir_top.on_activated.connect(start_rotate_forward)
+	buttonDir_top.on_deactivated.connect(stop_rotate_forward)
+	buttonDir_bottom.on_activated.connect(start_rotate_backward)
+	buttonDir_bottom.on_deactivated.connect(stop_rotate_backward)
 	button_accelerate.on_is_active.connect(add_engine_force)
 	button_brake.on_is_active.connect(slow_engine_force)
+	button_accelerate.set_interaction_ui_state.emit(InteractionUI.UIStates.Info)
+	button_brake.set_interaction_ui_state.emit(InteractionUI.UIStates.Info)
 	PlayerManager.on_player_added.connect(spawn_player)
+	# fuel_tank.on_action_realised.connect(_on_fuel_tank_repaired)
 
 	# # Récupérer le node à faire tourner
 	# if rotation_target != NodePath(""):
@@ -104,9 +109,11 @@ func stop_rotate_backward():
 
 func add_engine_force(delta: float) -> void:
 	engine_force -= 100 * delta
+	button_accelerate.ui_data.info_text = "Accelerating...\nForce: " + str(round(-engine_force))
 
 func slow_engine_force(delta: float) -> void:
 	engine_force += 100 * delta
+	button_brake.ui_data.info_text = "Braking...\nForce: " + str(round(-engine_force))
 
 func get_top_car() -> Marker3D:
 	return top_car
