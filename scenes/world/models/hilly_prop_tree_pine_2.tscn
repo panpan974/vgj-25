@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://chb2lcr3gesf4"]
+
+[ext_resource type="ArrayMesh" uid="uid://dmr44vus808df" path="res://scenes/world/models/Hilly_Prop_Tree_Pine_2.obj" id="1_082ct"]
+
+[node name="Hilly_Prop_Tree_Pine_2" type="MeshInstance3D"]
+mesh = ExtResource("1_082ct")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dai2gc7fgo03o"]
+
+[ext_resource type="ArrayMesh" uid="uid://cn2u4324w3kns" path="res://scenes/world/models/Hilly_Prop_Grass_Clump_4.obj" id="1_dmyfc"]
+
+[node name="Hilly_Prop_Grass_Clump_4" type="MeshInstance3D"]
+mesh = ExtResource("1_dmyfc")

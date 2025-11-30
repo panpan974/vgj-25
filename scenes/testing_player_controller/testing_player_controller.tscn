@@ -28,7 +28,7 @@ light_specular = 1.045
 [node name="world" parent="." instance=ExtResource("1_eilo5")]
 
 [node name="Car" parent="." instance=ExtResource("3_lmu1h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.501816, 359)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 393, 4.501816, -370)
 move_speed = 4.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Car" node_paths=PackedStringArray("car_node")]

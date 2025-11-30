@@ -1,9 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://dqvfo3fhaekdc"]
+[gd_scene load_steps=54 format=3 uid="uid://dqvfo3fhaekdc"]
 
 [ext_resource type="Script" uid="uid://dp8ul8rja7e64" path="res://scenes/world/world.gd" id="1_1fp7r"]
 [ext_resource type="PackedScene" uid="uid://1iv30qlai01d" path="res://scenes/Tree_obstacle/treeObstacle.tscn" id="2_1fp7r"]
 [ext_resource type="PackedScene" uid="uid://tnp18527yq6c" path="res://scenes/EndingArea/ending_area.tscn" id="3_1fp7r"]
-[ext_resource type="PackedScene" uid="uid://o5yjnavsmw2y" path="res://scenes/car/car.tscn" id="4_6m72w"]
 [ext_resource type="ArrayMesh" uid="uid://bu0eqkujxs711" path="res://scenes/world/models/Mountain_1.obj" id="4_t5ptc"]
 [ext_resource type="Texture2D" uid="uid://d22or2jpwickm" path="res://scenes/world/grass.png" id="4_v5dby"]
 [ext_resource type="ArrayMesh" uid="uid://cpoq838crsmca" path="res://scenes/world/models/Mountain_2.obj" id="7_gb53w"]
@@ -21,15 +20,115 @@
 [ext_resource type="ArrayMesh" uid="uid://ckdmv47v0h276" path="res://scenes/world/models/Hilly_Prop_Rock_1.obj" id="19_xq18t"]
 [ext_resource type="ArrayMesh" uid="uid://c08vo744prdvu" path="res://scenes/world/models/Hilly_Prop_Mushroom_2.obj" id="20_x0nq1"]
 [ext_resource type="ArrayMesh" uid="uid://bgcn5ttihdskw" path="res://scenes/world/models/Hilly_Prop_Hollow_Trunk.obj" id="21_ues17"]
-[ext_resource type="ArrayMesh" uid="uid://brttmb6m5sqch" path="res://scenes/world/models/Hilly_Prop_Fence_Gate_2.obj" id="22_xq18t"]
 [ext_resource type="ArrayMesh" uid="uid://dn8ci0q860060" path="res://scenes/world/models/Hilly_Prop_Bush_4.obj" id="23_x0nq1"]
 [ext_resource type="ArrayMesh" uid="uid://dbh6mmfr6gs26" path="res://scenes/world/models/Hilly_Prop_Bush_3.obj" id="24_rwifv"]
 [ext_resource type="ArrayMesh" uid="uid://eqrlahrkutgl" path="res://scenes/world/models/Hilly_Prop_Bush_2.obj" id="25_ckok1"]
+[ext_resource type="Script" uid="uid://c8uxu3e4fyap3" path="res://addons/proton_scatter/src/scatter.gd" id="25_fymcc"]
 [ext_resource type="ArrayMesh" uid="uid://deq1asv205pds" path="res://scenes/world/models/Hilly_Prop_Bush_1.obj" id="26_2x71e"]
+[ext_resource type="Script" uid="uid://c883djdxgsu8h" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="26_lbnhc"]
+[ext_resource type="Script" uid="uid://cn6b03d46qi5r" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="27_sygq6"]
+[ext_resource type="Script" uid="uid://bc7jvjdid7xuo" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="28_0wrxw"]
+[ext_resource type="Script" uid="uid://bdkehvl0ns6wy" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="29_cmg7y"]
+[ext_resource type="Script" uid="uid://bqrlemosvej7g" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="30_nqe8x"]
+[ext_resource type="Script" uid="uid://bix0hads5nj4" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="31_sh7a8"]
+[ext_resource type="Script" uid="uid://0k3aorv8fvw2" path="res://addons/proton_scatter/src/scatter_item.gd" id="32_7mx70"]
+[ext_resource type="Script" uid="uid://b3ujej72lx7jb" path="res://addons/proton_scatter/src/scatter_shape.gd" id="33_1cxds"]
+[ext_resource type="Script" uid="uid://bm7xpy7relxg0" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="34_fymcc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmu1h"]
 albedo_color = Color(0.40636393, 0.6612435, 5.7756904e-07, 1)
 albedo_texture = ExtResource("4_v5dby")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fymcc"]
+albedo_color = Color(0.206763, 0.35092437, 4.813075e-08, 1)
+albedo_texture = ExtResource("4_v5dby")
+
+[sub_resource type="Resource" id="Resource_sygq6"]
+script = ExtResource("28_0wrxw")
+amount = 88
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_0wrxw"]
+script = ExtResource("29_cmg7y")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(20, 360, 20)
+scale = Vector3(0.1, 0.1, 0.1)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_cmg7y"]
+script = ExtResource("30_nqe8x")
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+restrict_height = true
+
+[sub_resource type="Resource" id="Resource_nqe8x"]
+script = ExtResource("31_sh7a8")
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+
+[sub_resource type="Resource" id="Resource_sh7a8"]
+script = ExtResource("26_lbnhc")
+stack = Array[ExtResource("27_sygq6")]([SubResource("Resource_sygq6"), SubResource("Resource_0wrxw"), SubResource("Resource_cmg7y"), SubResource("Resource_nqe8x")])
+
+[sub_resource type="Resource" id="Resource_lbnhc"]
+script = ExtResource("34_fymcc")
+size = Vector3(85.389, 1, 81.109)
+metadata/_custom_type_script = "uid://bm7xpy7relxg0"
+
+[sub_resource type="Resource" id="Resource_7mx70"]
+script = ExtResource("28_0wrxw")
+amount = 100
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_1cxds"]
+script = ExtResource("29_cmg7y")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(5, 120, 10)
+scale = Vector3(0.1, 0.1, 0.1)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_2m0ga"]
+script = ExtResource("30_nqe8x")
+iterations = 5
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+restrict_height = true
+
+[sub_resource type="Resource" id="Resource_ovomx"]
+script = ExtResource("31_sh7a8")
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+
+[sub_resource type="Resource" id="Resource_kx0xk"]
+script = ExtResource("26_lbnhc")
+stack = Array[ExtResource("27_sygq6")]([SubResource("Resource_7mx70"), SubResource("Resource_1cxds"), SubResource("Resource_2m0ga"), SubResource("Resource_ovomx")])
+
+[sub_resource type="Resource" id="Resource_fymcc"]
+script = ExtResource("34_fymcc")
+size = Vector3(115.2793, 1, 991.066)
+metadata/_custom_type_script = "uid://bm7xpy7relxg0"
+
+[sub_resource type="Resource" id="Resource_5fxch"]
+script = ExtResource("34_fymcc")
+size = Vector3(115.2793, 1, 991.066)
+
+[sub_resource type="Resource" id="Resource_4v0p3"]
+script = ExtResource("34_fymcc")
+size = Vector3(1082.6063, 1, 116.5979)
+
+[sub_resource type="Resource" id="Resource_fqf7g"]
+script = ExtResource("34_fymcc")
+size = Vector3(1082.6063, 1, 116.5979)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fymcc"]
+size = Vector3(34.39258, 78.88623, 994)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lbnhc"]
+size = Vector3(1179, 78.88623, 128)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_1fp7r")
@@ -45,27 +144,30 @@ material_override = SubResource("StandardMaterial3D_lmu1h")
 use_collision = true
 size = Vector3(1000, 1, 1000)
 
-[node name="Car" parent="." instance=ExtResource("4_6m72w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 427, 3.8, 0)
+[node name="GroundOutLimits" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.262695, -11, 29)
+material_override = SubResource("StandardMaterial3D_fymcc")
+use_collision = true
+size = Vector3(1395.4746, 1, 1358)
 
 [node name="Obstacles_Terrain" type="Node3D" parent="."]
 
 [node name="RockObstacle" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -470.5, 1, -67)
+transform = Transform3D(-0.6136791, 0, 0.7895556, 0, 1, 0, -0.7895556, 0, -0.6136791, -419.5, 1, 407)
 
 [node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle"]
 transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
 mesh = ExtResource("4_t5ptc")
 
 [node name="RockObstacle2" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -470.5, 1, -144)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -451.5, 1, 330)
 
 [node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle2"]
 transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
 mesh = ExtResource("7_gb53w")
 
 [node name="RockObstacle3" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -470.5, 1, -222)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -451.5, 1, 252)
 
 [node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle3"]
 transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
@@ -73,7 +175,7 @@ mesh = ExtResource("8_5qq27")
 skeleton = NodePath("../../RockObstacle3")
 
 [node name="RockObstacle4" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -470.5, 1, -302)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -451.5, 1, 172)
 
 [node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle4"]
 transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
@@ -81,7 +183,7 @@ mesh = ExtResource("9_dlabj")
 skeleton = NodePath("../../RockObstacle3")
 
 [node name="TreeObstacle" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -445.5, -1, -383)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -426.5, -1, 91)
 
 [node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/TreeObstacle"]
 transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
@@ -184,15 +286,115 @@ transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
 mesh = ExtResource("21_ues17")
 skeleton = NodePath("../../RockObstacle3")
 
+[node name="RockObstacle9" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -332.5, 1, 433)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle9"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("9_dlabj")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="TreeObstacle8" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -153.54756, -1, 156.53122)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/TreeObstacle8"]
+transform = Transform3D(60.165, 0, 0, 0, 60.165, 0, 0, 0, 60.165, 1.5258789e-05, 0, -25)
+mesh = ExtResource("14_mxkvs")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="RockObstacle11" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 272.5, 1, 147)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle11"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 144.00002, 0, -288)
+mesh = ExtResource("9_dlabj")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="RockObstacle12" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.6111126, 0, 0.7915436, 0, 1, 0, -0.7915436, 0, 0.6111126, 418.5, 1, -193)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle12"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("9_dlabj")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="RockObstacle13" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-0.3111907, 0, 0.9503475, 0, 1, 0, -0.9503475, 0, -0.3111907, 367.5, 1, -154)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle13"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("9_dlabj")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="TreeObstacle10" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 408.58228, -1, 20.200012)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/TreeObstacle10"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("11_dlabj")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="TreeObstacle9" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -68.54756, -1, 156.53122)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/TreeObstacle9"]
+transform = Transform3D(60.165, 0, 0, 0, 60.165, 0, 0, 0, 60.165, 1.5258789e-05, 0, -25)
+mesh = ExtResource("14_mxkvs")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="TreeObstacle11" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.452438, -1, 156.53122)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/TreeObstacle11"]
+transform = Transform3D(60.165, 0, 0, 0, 60.165, 0, 0, 0, 60.165, 1.5258789e-05, 0, -25)
+mesh = ExtResource("14_mxkvs")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="RockObstacle14" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.6111126, 0, 0.7915436, 0, 1, 0, -0.7915436, 0, 0.6111126, -9.084503, 1, 84.49951)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle14"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("9_dlabj")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="RockObstacle15" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.6111126, 0, 0.7915436, 0, 1, 0, -0.7915436, 0, 0.6111126, 392.9155, 1, 84.49951)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle15"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("9_dlabj")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="RockObstacle17" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 53.5, 1, -163)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle17"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("9_dlabj")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="RockObstacle18" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -23.5, 1, -163)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle18"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("9_dlabj")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="RockObstacle19" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.5, 1, -92.70187)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle19"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("9_dlabj")
+skeleton = NodePath("../../RockObstacle3")
+
 [node name="Decoration" type="Node3D" parent="."]
 
 [node name="Mushroom" type="MeshInstance3D" parent="Decoration"]
 transform = Transform3D(4.35, 0, 0, 0, 4.35, 0, 0, 0, 4.35, 0, 0.7, -15)
 mesh = ExtResource("20_x0nq1")
-
-[node name="Mushroom2" type="MeshInstance3D" parent="Decoration"]
-transform = Transform3D(4.35, 0, 0, 0, 4.35, 0, 0, 0, 4.35, 0, 0.7, -20)
-mesh = ExtResource("22_xq18t")
 
 [node name="Mushroom3" type="MeshInstance3D" parent="Decoration"]
 transform = Transform3D(4.35, 0, 0, 0, 4.35, 0, 0, 0, 4.35, 0, 0.7, -26)
@@ -209,5 +411,111 @@ mesh = ExtResource("25_ckok1")
 [node name="Mushroom6" type="MeshInstance3D" parent="Decoration"]
 transform = Transform3D(4.35, 0, 0, 0, 4.35, 0, 0, 0, 4.35, 6, 0.7, -42)
 mesh = ExtResource("26_2x71e")
+
+[node name="ProtonScatter_fx" type="Node3D" parent="."]
+transform = Transform3D(-5.020253e-07, 0, 11.485, 0, 11.485, 0, -11.485, 0, -5.020253e-07, -402.23343, 1, -67)
+script = ExtResource("25_fymcc")
+modifier_stack = SubResource("Resource_sh7a8")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+metadata/_custom_type_script = "uid://c8uxu3e4fyap3"
+
+[node name="ScatterItem" type="Node3D" parent="ProtonScatter_fx"]
+script = ExtResource("32_7mx70")
+source_scale_multiplier = 0.8
+path = "uid://dt5in2cocj6tc"
+
+[node name="ScatterShape" type="Node3D" parent="ProtonScatter_fx"]
+transform = Transform3D(1, 0, -2.9802308e-08, 0, 1, 0, 2.9802308e-08, 0, 1, -6.8832793, 0, 33.067806)
+script = ExtResource("33_1cxds")
+shape = SubResource("Resource_lbnhc")
+
+[node name="ScatterItem2" type="Node3D" parent="ProtonScatter_fx"]
+script = ExtResource("32_7mx70")
+source_scale_multiplier = 0.8
+path = "uid://dai2gc7fgo03o"
+
+[node name="TreeObstacle4" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 120.5, -1, -490.8)
+
+[node name="ProtonScatter" type="Node3D" parent="."]
+script = ExtResource("25_fymcc")
+modifier_stack = SubResource("Resource_kx0xk")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+metadata/_custom_type_script = "uid://c8uxu3e4fyap3"
+
+[node name="ScatterShape" type="Node3D" parent="ProtonScatter"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -563, -9.238901, 0)
+script = ExtResource("33_1cxds")
+shape = SubResource("Resource_fymcc")
+
+[node name="ScatterShape2" type="Node3D" parent="ProtonScatter"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 569, -9.238901, 0)
+script = ExtResource("33_1cxds")
+shape = SubResource("Resource_5fxch")
+
+[node name="ScatterShape3" type="Node3D" parent="ProtonScatter"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -1.6605835, -9.238901, 576.56055)
+script = ExtResource("33_1cxds")
+shape = SubResource("Resource_4v0p3")
+
+[node name="ScatterShape4" type="Node3D" parent="ProtonScatter"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -1.6605835, -9.238901, -585.43945)
+script = ExtResource("33_1cxds")
+shape = SubResource("Resource_fqf7g")
+
+[node name="ScatterItem" type="Node3D" parent="ProtonScatter"]
+script = ExtResource("32_7mx70")
+proportion = 40
+source_scale_multiplier = 20.0
+lod_merge_angle = 0.0
+lod_split_angle = 0.0
+path = "uid://c0ugg1reurjb2"
+
+[node name="ScatterItem3" type="Node3D" parent="ProtonScatter"]
+script = ExtResource("32_7mx70")
+proportion = 30
+source_scale_multiplier = 20.0
+lod_merge_angle = 0.0
+lod_split_angle = 0.0
+path = "uid://bsm206e0pokgx"
+
+[node name="ScatterItem2" type="Node3D" parent="ProtonScatter"]
+script = ExtResource("32_7mx70")
+proportion = 30
+source_scale_multiplier = 20.0
+lod_merge_angle = 0.0
+lod_split_angle = 0.0
+path = "uid://chb2lcr3gesf4"
+
+[node name="Border" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Border"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 518.3037, 38.943115, -1.9360352)
+shape = SubResource("BoxShape3D_fymcc")
+
+[node name="Border2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1032, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Border2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 518.3037, 38.943115, -1.9360352)
+shape = SubResource("BoxShape3D_fymcc")
+
+[node name="Border3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1032, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Border3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1050.6074, 38.943115, 566.06396)
+shape = SubResource("BoxShape3D_lbnhc")
+
+[node name="Border4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -212, 0, -560)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Border4"]
+shape = SubResource("BoxShape3D_lbnhc")
+
+[node name="Tree" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 319.791, 0, -438.011)
 
 [editable path="EndingArea"]
