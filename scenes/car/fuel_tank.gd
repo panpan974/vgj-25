@@ -8,7 +8,8 @@ class_name FuelTank
 @onready var interactable: Interactable = %Interactable
 @export var low_fuel_material: Material
 @export var normal_fuel_material: Material
-@onready var fuel_tank_mesh: MeshInstance3D = $Mesh
+@export var fuel_gradient: Gradient
+# @onready var fuel_tank_mesh: MeshInstance3D = $Mesh
 
 signal on_fuel_tank_broken()
 signal on_fuel_tank_repaired()
@@ -29,8 +30,14 @@ func _process(delta: float) -> void:
     fuel_value = clamp(fuel_value, 0.0, max_fuel_value)
     if fuel_value <= 0.0 and not interactable.is_broken:
         fuel_tank_broken()
-        fuel_tank_mesh.material_override = low_fuel_material
+        # fuel_tank_mesh.material_override = low_fuel_material
     interactable.ui_data.info_value = (fuel_value / max_fuel_value) * 100.0
+    fuel_gradient.set_offset(1, 1 - (fuel_value / max_fuel_value) + 0.01)
+    fuel_gradient.set_offset(0, 1 - (fuel_value / max_fuel_value) - 0.01)
+    fuel_gradient.set_color(0, Color.WHITE)
+    fuel_gradient.set_color(1, Color.YELLOW)
+    fuel_gradient.set_color(2, Color.YELLOW)
+    # fuel_gradient.set_offset(0, (fuel_value / max_fuel_value))
 
 func fuel_tank_broken() -> void:
     interactable.set_broken(true)
@@ -40,5 +47,5 @@ func fuel_tank_broken() -> void:
 func _on_fuel_tank_repaired(action: String, player: Player) -> void:
     interactable.set_broken(false)
     fuel_value = max_fuel_value
-    fuel_tank_mesh.material_override = normal_fuel_material
+    # fuel_tank_mesh.material_override = normal_fuel_material
     on_fuel_tank_repaired.emit()

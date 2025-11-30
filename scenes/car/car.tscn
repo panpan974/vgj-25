@@ -9,10 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://c6tr3os6w4rra" path="res://src/car/fuel_tank.tscn" id="7_ton6r"]
 [ext_resource type="PackedScene" uid="uid://bke7lmv57wto1" path="res://src/component/interactable/interactable.tscn" id="7_u0012"]
 [ext_resource type="AudioStream" uid="uid://d1amh3t65e6qr" path="res://sounds/alarm and events/alarm_fuel.mp3" id="8_3dj75"]
+[ext_resource type="Gradient" uid="uid://32qf6vdsyn2w" path="res://scenes/car/materials/FuelGradient.tres" id="9_jl66a"]
 [ext_resource type="PackedScene" uid="uid://bw4qlac47w5pv" path="res://scenes/music_radio/music_radio.tscn" id="10_dmhln"]
 [ext_resource type="PackedScene" uid="uid://b5heevmv432r" path="res://scenes/car/Tuture.glb" id="10_duf8q"]
 [ext_resource type="PackedScene" path="res://scenes/car/volant.tscn" id="11_fe2oh"]
-[ext_resource type="Material" uid="uid://ducnskonhj415" path="res://scenes/car/materials/FuelLow.tres" id="11_uk2oh"]
 [ext_resource type="AudioStream" uid="uid://c7a4cn8o536x7" path="res://sounds/Radio/radio_fuel_1.mp3" id="13_6fym5"]
 [ext_resource type="AudioStream" uid="uid://ccfnun64c5sku" path="res://sounds/Radio/radio_fuel_2.mp3" id="14_jl66a"]
 [ext_resource type="AudioStream" uid="uid://c2oic1stwbuxb" path="res://sounds/Radio/radio_fuel_3.mp3" id="15_fe2oh"]
@@ -270,8 +270,7 @@ material_override = SubResource("StandardMaterial3D_tcn38")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1124697, 2, 0)
 sfx_fuel_problem = ExtResource("8_3dj75")
-low_fuel_material = ExtResource("11_uk2oh")
-normal_fuel_material = ExtResource("11_fe2oh")
+fuel_gradient = ExtResource("9_jl66a")
 
 [node name="Volant" parent="Inside/All_Interactables" instance=ExtResource("11_fe2oh")]
 unique_name_in_owner = true

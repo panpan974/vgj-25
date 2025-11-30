@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://c6tr3os6w4rra"]
+[gd_scene load_steps=15 format=4 uid="uid://c6tr3os6w4rra"]
 
 [ext_resource type="Script" uid="uid://bsfjhjo4lltd4" path="res://scenes/car/fuel_tank.gd" id="1_xpdru"]
 [ext_resource type="Material" uid="uid://de4cqtdybxith" path="res://scenes/car/materials/FuelFull.tres" id="2_ckgy8"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://54lrjilh5q88" path="res://src/car/LongButtonPress.tscn" id="5_hl2i5"]
 [ext_resource type="PackedScene" uid="uid://bop78ynmwoxle" path="res://scenes/interactable/smoke_fx/black_smoke.tscn" id="6_5ns5o"]
 [ext_resource type="Script" uid="uid://c53j2bk8kquwj" path="res://scenes/interactable/smoke_fx/black_smoke.gd" id="7_lmx0h"]
+[ext_resource type="Gradient" uid="uid://32qf6vdsyn2w" path="res://scenes/car/materials/FuelGradient.tres" id="8_ckgy8"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_skmvs"]
 _surfaces = [{
@@ -43,6 +44,17 @@ shadow_mesh = SubResource("ArrayMesh_skmvs")
 [sub_resource type="BoxShape3D" id="BoxShape3D_dmhln"]
 size = Vector3(1.7636871, 1.9428711, 1.7861938)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_xpdru"]
+size = Vector2(4, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fu6yd"]
+gradient = ExtResource("8_ckgy8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ojhce"]
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture1D_fu6yd")
+
 [node name="FuelTank" type="Node3D"]
 script = ExtResource("1_xpdru")
 action_name = "x"
@@ -72,3 +84,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3579073, 1.9376078, 0)
 visible = false
 amount = 50
 script = ExtResource("7_lmx0h")
+
+[node name="FuelValue" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 1.0060558, 1, 0.0035409927)
+layers = 3
+mesh = SubResource("PlaneMesh_xpdru")
+surface_material_override/0 = SubResource("StandardMaterial3D_ojhce")
