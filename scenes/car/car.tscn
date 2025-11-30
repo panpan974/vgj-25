@@ -1,7 +1,10 @@
-[gd_scene load_steps=47 format=4 uid="uid://o5yjnavsmw2y"]
+[gd_scene load_steps=50 format=4 uid="uid://o5yjnavsmw2y"]
 
 [ext_resource type="Script" uid="uid://dluos0mpkxtsg" path="res://scenes/car/car.gd" id="1_yr3gr"]
+[ext_resource type="AudioStream" uid="uid://durquaemwi4tw" path="res://sounds/alarm and events/alarm_volant.mp3" id="2_5co7x"]
 [ext_resource type="Material" uid="uid://dq4woh5mb74db" path="res://scenes/car/materials/Pneu.tres" id="2_krfcv"]
+[ext_resource type="AudioStream" uid="uid://dlvw3ulfmdetl" path="res://sounds/misc/repaired.mp3" id="3_mauu4"]
+[ext_resource type="AudioStream" uid="uid://c6y8bu2wce1jx" path="res://sounds/misc/working.mp3" id="4_tqd3c"]
 [ext_resource type="Shader" uid="uid://cu4tvtdwbg6ky" path="res://src/shader/rain.gdshader" id="4_ysjjl"]
 [ext_resource type="PackedScene" uid="uid://cgkexx5wptg6o" path="res://scenes/main_camera/main_camera.tscn" id="5_b3ski"]
 [ext_resource type="Texture2D" uid="uid://citfpp7iaud6x" path="res://src/car/buttons/Arrow_Turn.png" id="6_duf8q"]
@@ -145,6 +148,9 @@ material = SubResource("StandardMaterial3D_lbnhc")
 script = ExtResource("1_yr3gr")
 engine_accel_curve = SubResource("Curve_krfcv")
 engine_max_force_curve = SubResource("Curve_ysjjl")
+sfx_volant_problem = ExtResource("2_5co7x")
+sfx_repaired = ExtResource("3_mauu4")
+sfx_repair_in_progress = ExtResource("4_tqd3c")
 
 [node name="VehicleWheel3D" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.217377, -1.8714639, -5.1791515)

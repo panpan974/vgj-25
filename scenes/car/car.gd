@@ -14,12 +14,21 @@ class_name Car
 
 @onready var buttonDir_top: Interactable = %TopRotationInteractable
 @onready var buttonDir_bottom: Interactable = %BottomRotationInteractable
+
+
 @onready var button_accelerate: Interactable = %AccelerateInteractable
 @onready var button_brake: Interactable = %BrakeInteractable
 @onready var top_car: Marker3D = %top_car
 
 @onready var fuel_tank: FuelTank = %FuelTank
 @onready var volant: Interactable = %Volant
+
+
+# Positions initiales des boutons 
+var buttonDir_top_initial_pos: Vector3
+var buttonDir_bottom_initial_pos: Vector3
+var button_accelerate_initial_pos: Vector3
+var button_brake_initial_pos: Vector3
 # @onready var direction_sprite: Sprite3D = %direction_sprite
 
 # Node à faire tourner (exporté)
@@ -34,10 +43,19 @@ var problem_timer: Timer = Timer.new()
 
 var time_engine_accel_held: float = 0.0
 
+var is_direction_random:bool = false
+
+
 signal on_volant_broken()
 signal on_volant_repaired_car()
 
 func _ready():
+	# Enregistrer les positions initiales des boutons directionnels
+	buttonDir_top_initial_pos = buttonDir_top.position
+	buttonDir_bottom_initial_pos = buttonDir_bottom.position
+	button_accelerate_initial_pos = button_accelerate.position
+	button_brake_initial_pos = button_brake.position
+
 	#Register this in GameRecuperator (autoload)
 	GameRecuperator.register_car(self)
 	GameRecuperator.all_systems_ready.connect(_on_all_systems_ready)
@@ -60,6 +78,14 @@ func _ready():
 	volant.set_broken(true) # FOR DEBUGING
 	volant._on_player_button_pressed.connect(_on_player_button_pressed)
 
+	#ITS CASSE SO WE NEED TO FUCK THE DIRECTIONS AND THE SPRITES DIRECTIONS.
+	volant.set_broken(true)
+	SodaAudioManager.play_sfx(sfx_volant_problem.resource_path, true)
+	on_volant_broken.emit()
+	randomize_buttonDir_positions()
+	#end test
+
+
 	problem_timer.wait_time = 30.0
 	problem_timer.one_shot = false
 	add_child(problem_timer)
@@ -67,9 +93,28 @@ func _ready():
 	problem_timer.timeout.connect(_on_problem_timer_timeout)
 	# # Récupérer le node à faire tourner
 	# if rotation_target != NodePath(""):
-	# 	_rotation_node = get_node(rotation_target)
+	#     _rotation_node = get_node(rotation_target)
 	# else:
-	# 	_rotation_node = self
+	#     _rotation_node = self
+
+
+# Fonction pour randomiser la position des boutons directionnels
+func randomize_buttonDir_positions():
+	var positions = [buttonDir_top_initial_pos, buttonDir_bottom_initial_pos, button_accelerate_initial_pos, button_brake_initial_pos]
+	positions.shuffle()
+	buttonDir_top.position = positions[0]
+	buttonDir_bottom.position = positions[1]
+	button_accelerate.position = positions[2]
+	button_brake.position = positions[3]
+	print_debug("Positions randomisées : top=", positions[0], ", bottom=", positions[1], ", accelerate=", positions[2], ", brake=", positions[3])
+
+# Fonction pour remettre les boutons à leur position initiale
+func reset_buttonDir_positions():
+	buttonDir_top.position = buttonDir_top_initial_pos
+	buttonDir_bottom.position = buttonDir_bottom_initial_pos
+	button_accelerate.position = button_accelerate_initial_pos
+	button_brake.position = button_brake_initial_pos
+	print_debug("Positions remises à l'initiale.")
 
 func _on_player_button_pressed(action: String, player: Player) -> void:
 	SodaAudioManager.play_sfx(sfx_repair_in_progress.resource_path, true)
@@ -195,6 +240,7 @@ func _on_volant_repaired(action: String, player: Player) -> void:
 	print_debug("Volant repaired by player ", player.id)
 	SodaAudioManager.play_sfx(sfx_repaired.resource_path, false)
 	on_volant_repaired_car.emit()
+	reset_buttonDir_positions()
 
 func _on_problem_timer_timeout() -> void:
 	problem_timer.wait_time = randf_range(25.0, 45.0)
@@ -208,3 +254,8 @@ func _on_problem_timer_timeout() -> void:
 			volant.set_broken(true)
 			SodaAudioManager.play_sfx(sfx_volant_problem.resource_path, true)
 			on_volant_broken.emit()
+			#ITS CASSE SO WE NEED TO FUCK THE DIRECTIONS AND THE SPRITES DIRECTIONS.
+			randomize_buttonDir_positions()
+	
+
+
