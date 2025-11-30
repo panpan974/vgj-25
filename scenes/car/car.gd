@@ -44,7 +44,7 @@ func _ready():
 	PlayerManager.on_player_added.connect(spawn_player)
 	fuel_tank.on_action_realised.connect(_on_fuel_tank_repaired)
 	fuel_tank.set_broken(false)
-	problem_timer.wait_time = 5.0
+	problem_timer.wait_time = 30.0
 	problem_timer.one_shot = false
 	add_child(problem_timer)
 	problem_timer.start()
@@ -64,11 +64,10 @@ func _process(delta: float) -> void:
 		return
 	if fuel_tank.is_broken:
 		# Reduce speed if fuel tank is broken
-		engine_force *= 0.98
-	# Rotate the y of the direction sprite to always face the ending node
-	# var to_ending = (ending_node.global_transform.origin - global_transform.origin).normalized()
-	# var target_rotation = atan2(to_ending.x, to_ending.z)
-	# direction_sprite.global_rotation.y = - target_rotation
+		engine_force *= 0.999
+
+var previous_velocities := []
+var crashed := false
 
 func _physics_process(delta):
 	#disable just for testing
@@ -81,6 +80,26 @@ func _physics_process(delta):
 	# move_and_slide()
 	# print_debug("Car position: ", global_transform.origin)
 	engine_clamp()
+	# Detect big velocity changes (crash)
+	previous_velocities.append(linear_velocity.length())
+	if previous_velocities.size() > 5:
+		previous_velocities.remove_at(0)
+	if previous_velocities.size() == 5:
+		var avg_velocity = 0.0
+		for v in previous_velocities:
+			avg_velocity += v
+		avg_velocity /= previous_velocities.size()
+		if avg_velocity - linear_velocity.length() > 20.0:
+			if not crashed:
+				_crash_car()
+
+func _crash_car() -> void:
+	# Handle car crash (e.g., play effects, reduce speed, etc.)
+	crashed = true
+	engine_force = 0
+	await get_tree().create_timer(2.0).timeout
+	crashed = false
+
 
 func steering_clamp() -> void:
 	# Clamp steering to reasonable values
@@ -140,7 +159,8 @@ func _on_fuel_tank_repaired(action: String, player: Player) -> void:
 	fuel_tank.set_broken(false)
 
 func _on_problem_timer_timeout() -> void:
+	problem_timer.wait_time = randf_range(25.0, 45.0)
 	# Randomly 50% chance to break the fuel tank
-	if randi() % 4 == 0:
+	if randi() % 2 == 0:
 		if not fuel_tank.is_broken:
 			fuel_tank.set_broken(true)

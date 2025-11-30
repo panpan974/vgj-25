@@ -27,6 +27,7 @@ script = ExtResource("1_y1dtx")
 [node name="viewport_quad" parent="." instance=ExtResource("2_82go4")]
 unique_name_in_owner = true
 transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 0, 7.701765, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_8v16h")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_wcfjm")

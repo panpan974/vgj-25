@@ -11,5 +11,5 @@ func _process(delta: float) -> void:
         return
     # Zoom based on car speed
     # print_debug("Car speed: ", car.linear_velocity.length())
-    var target_fov = lerp(70.0, 90.0, car.linear_velocity.length() / 60.0)
+    var target_fov = lerp(80.0, 110.0, car.linear_velocity.length() / 60.0)
     fov = lerp(fov, target_fov, 0.1)
