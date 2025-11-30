@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://4r6rc7asagxk"
+path="res://.godot/imported/Cliff_Terrain_Hill_Base_Top_Joined_Sharp.obj-98e7f44fdd7c9e743b8872ee98e609dd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Cliff_Terrain_Hill_Base_Top_Joined_Sharp.obj-98e7f44fdd7c9e743b8872ee98e609dd.mesh"]
+
+source_file="res://scenes/world/models/Cliff_Terrain_Hill_Base_Top_Joined_Sharp.obj"
+dest_files=["res://.godot/imported/Cliff_Terrain_Hill_Base_Top_Joined_Sharp.obj-98e7f44fdd7c9e743b8872ee98e609dd.mesh", "res://.godot/imported/Cliff_Terrain_Hill_Base_Top_Joined_Sharp.obj-98e7f44fdd7c9e743b8872ee98e609dd.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

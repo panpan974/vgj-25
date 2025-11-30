@@ -1,37 +1,213 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqvfo3fhaekdc"]
+[gd_scene load_steps=28 format=3 uid="uid://dqvfo3fhaekdc"]
 
 [ext_resource type="Script" uid="uid://dp8ul8rja7e64" path="res://scenes/world/world.gd" id="1_1fp7r"]
 [ext_resource type="PackedScene" uid="uid://1iv30qlai01d" path="res://scenes/Tree_obstacle/treeObstacle.tscn" id="2_1fp7r"]
 [ext_resource type="PackedScene" uid="uid://tnp18527yq6c" path="res://scenes/EndingArea/ending_area.tscn" id="3_1fp7r"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_dphjl"]
-noise_type = 4
-frequency = 1.0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sl2e5"]
-width = 2048
-height = 2048
-noise = SubResource("FastNoiseLite_dphjl")
+[ext_resource type="PackedScene" uid="uid://o5yjnavsmw2y" path="res://scenes/car/car.tscn" id="4_6m72w"]
+[ext_resource type="ArrayMesh" uid="uid://bu0eqkujxs711" path="res://scenes/world/models/Mountain_1.obj" id="4_t5ptc"]
+[ext_resource type="Texture2D" uid="uid://d22or2jpwickm" path="res://scenes/world/grass.png" id="4_v5dby"]
+[ext_resource type="ArrayMesh" uid="uid://cpoq838crsmca" path="res://scenes/world/models/Mountain_2.obj" id="7_gb53w"]
+[ext_resource type="ArrayMesh" uid="uid://ckeii64li5yg6" path="res://scenes/world/models/Mountain_3.obj" id="8_5qq27"]
+[ext_resource type="ArrayMesh" uid="uid://cx7r8pi6rlv1g" path="res://scenes/world/models/Mountain_4.obj" id="9_dlabj"]
+[ext_resource type="ArrayMesh" uid="uid://bvrg7byh4itir" path="res://scenes/world/models/Hilly_Prop_Tree_Pine_3.obj" id="10_srmg5"]
+[ext_resource type="ArrayMesh" uid="uid://dmr44vus808df" path="res://scenes/world/models/Hilly_Prop_Tree_Pine_2.obj" id="11_dlabj"]
+[ext_resource type="ArrayMesh" uid="uid://bbyl28jh6bjmu" path="res://scenes/world/models/Hilly_Prop_Tree_Pine_1.obj" id="12_srmg5"]
+[ext_resource type="ArrayMesh" uid="uid://bjr5s0dh5dse7" path="res://scenes/world/models/Hilly_Prop_Tree_Cedar_2.obj" id="13_umvgx"]
+[ext_resource type="ArrayMesh" uid="uid://jvttvgc3hhbm" path="res://scenes/world/models/Hilly_Prop_Tree_Cedar_1.obj" id="14_mxkvs"]
+[ext_resource type="ArrayMesh" uid="uid://duck8h75ytgi8" path="res://scenes/world/models/Hilly_Prop_Stump.obj" id="15_tytul"]
+[ext_resource type="ArrayMesh" uid="uid://cetunen5l4t5p" path="res://scenes/world/models/Hilly_Prop_Rock_4.obj" id="16_t634p"]
+[ext_resource type="ArrayMesh" uid="uid://cj2w1a3xoxccl" path="res://scenes/world/models/Hilly_Prop_Rock_3.obj" id="17_6hctx"]
+[ext_resource type="ArrayMesh" uid="uid://dt46amwur3vhc" path="res://scenes/world/models/Hilly_Prop_Rock_2.obj" id="18_ues17"]
+[ext_resource type="ArrayMesh" uid="uid://ckdmv47v0h276" path="res://scenes/world/models/Hilly_Prop_Rock_1.obj" id="19_xq18t"]
+[ext_resource type="ArrayMesh" uid="uid://c08vo744prdvu" path="res://scenes/world/models/Hilly_Prop_Mushroom_2.obj" id="20_x0nq1"]
+[ext_resource type="ArrayMesh" uid="uid://bgcn5ttihdskw" path="res://scenes/world/models/Hilly_Prop_Hollow_Trunk.obj" id="21_ues17"]
+[ext_resource type="ArrayMesh" uid="uid://brttmb6m5sqch" path="res://scenes/world/models/Hilly_Prop_Fence_Gate_2.obj" id="22_xq18t"]
+[ext_resource type="ArrayMesh" uid="uid://dn8ci0q860060" path="res://scenes/world/models/Hilly_Prop_Bush_4.obj" id="23_x0nq1"]
+[ext_resource type="ArrayMesh" uid="uid://dbh6mmfr6gs26" path="res://scenes/world/models/Hilly_Prop_Bush_3.obj" id="24_rwifv"]
+[ext_resource type="ArrayMesh" uid="uid://eqrlahrkutgl" path="res://scenes/world/models/Hilly_Prop_Bush_2.obj" id="25_ckok1"]
+[ext_resource type="ArrayMesh" uid="uid://deq1asv205pds" path="res://scenes/world/models/Hilly_Prop_Bush_1.obj" id="26_2x71e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmu1h"]
-albedo_color = Color(0.24423781, 0.4084502, 0, 1)
-albedo_texture = SubResource("NoiseTexture2D_sl2e5")
+albedo_color = Color(0.40636393, 0.6612435, 5.7756904e-07, 1)
+albedo_texture = ExtResource("4_v5dby")
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_1fp7r")
 
 [node name="EndingArea" parent="." instance=ExtResource("3_1fp7r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.4, -23)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -352, 1.4, 337)
 
 [node name="TreeObstacle2" parent="." instance=ExtResource("2_1fp7r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 2, 9)
-
-[node name="TreeObstacle" parent="." instance=ExtResource("2_1fp7r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 1, -7)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -29, 2, 15)
 
 [node name="Ground" type="CSGBox3D" parent="."]
 material_override = SubResource("StandardMaterial3D_lmu1h")
 use_collision = true
 size = Vector3(1000, 1, 1000)
+
+[node name="Car" parent="." instance=ExtResource("4_6m72w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 427, 3.8, 0)
+
+[node name="Obstacles_Terrain" type="Node3D" parent="."]
+
+[node name="RockObstacle" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -470.5, 1, -67)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("4_t5ptc")
+
+[node name="RockObstacle2" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -470.5, 1, -144)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle2"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("7_gb53w")
+
+[node name="RockObstacle3" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -470.5, 1, -222)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle3"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("8_5qq27")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="RockObstacle4" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -470.5, 1, -302)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle4"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("9_dlabj")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="TreeObstacle" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -445.5, -1, -383)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/TreeObstacle"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("10_srmg5")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="TreeObstacle2" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -445.5, -1, -421.8)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/TreeObstacle2"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("11_dlabj")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="TreeObstacle3" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -445.5, -1, -421.8)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/TreeObstacle3"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 35, 0, 0)
+mesh = ExtResource("12_srmg5")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="TreeObstacle4" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -410.5, -1, -421.8)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/TreeObstacle4"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 35, 0, 0)
+mesh = ExtResource("12_srmg5")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="TreeObstacle5" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -410.5, -1, -374.8)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/TreeObstacle5"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("13_umvgx")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="TreeObstacle6" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -410.5, -1, -407.8)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/TreeObstacle6"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("14_mxkvs")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="TreeObstacle7" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -383.5, -1, -407.8)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/TreeObstacle7"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("15_tytul")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="RockObstacle1" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -383.5, -1, -431.8)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle1"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("16_t634p")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="RockObstacle5" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -341.5, -1, -465.8)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle5"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("17_6hctx")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="RockObstacle6" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -341.5, -1, -419.8)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle6"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("18_ues17")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="RockObstacle7" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -341.5, -1, -419.8)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle7"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 19, 0, 0)
+mesh = ExtResource("19_xq18t")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="RockObstacle8" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -360.5, 1, -419.8)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle8"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("20_x0nq1")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="HollowTrunk1" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -360.5, 1, -344.8)
+
+[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/HollowTrunk1"]
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+mesh = ExtResource("21_ues17")
+skeleton = NodePath("../../RockObstacle3")
+
+[node name="Decoration" type="Node3D" parent="."]
+
+[node name="Mushroom" type="MeshInstance3D" parent="Decoration"]
+transform = Transform3D(4.35, 0, 0, 0, 4.35, 0, 0, 0, 4.35, 0, 0.7, -15)
+mesh = ExtResource("20_x0nq1")
+
+[node name="Mushroom2" type="MeshInstance3D" parent="Decoration"]
+transform = Transform3D(4.35, 0, 0, 0, 4.35, 0, 0, 0, 4.35, 0, 0.7, -20)
+mesh = ExtResource("22_xq18t")
+
+[node name="Mushroom3" type="MeshInstance3D" parent="Decoration"]
+transform = Transform3D(4.35, 0, 0, 0, 4.35, 0, 0, 0, 4.35, 0, 0.7, -26)
+mesh = ExtResource("23_x0nq1")
+
+[node name="Mushroom4" type="MeshInstance3D" parent="Decoration"]
+transform = Transform3D(4.35, 0, 0, 0, 4.35, 0, 0, 0, 4.35, 0, 0.7, -34)
+mesh = ExtResource("24_rwifv")
+
+[node name="Mushroom5" type="MeshInstance3D" parent="Decoration"]
+transform = Transform3D(4.35, 0, 0, 0, 4.35, 0, 0, 0, 4.35, 6, 0.7, -34)
+mesh = ExtResource("25_ckok1")
+
+[node name="Mushroom6" type="MeshInstance3D" parent="Decoration"]
+transform = Transform3D(4.35, 0, 0, 0, 4.35, 0, 0, 0, 4.35, 6, 0.7, -42)
+mesh = ExtResource("26_2x71e")
 
 [editable path="EndingArea"]

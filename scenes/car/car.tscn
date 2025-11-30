@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://o5yjnavsmw2y"]
+[gd_scene load_steps=38 format=4 uid="uid://o5yjnavsmw2y"]
 
 [ext_resource type="Script" uid="uid://dluos0mpkxtsg" path="res://scenes/car/car.gd" id="1_yr3gr"]
 [ext_resource type="Material" uid="uid://d3nmwq28t052x" path="res://scenes/car/materials/Sol.tres" id="3_tcn38"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dxkx67y5wad5u" path="res://scenes/Button_direction/button_direction.tscn" id="4_x7uf8"]
 [ext_resource type="PackedScene" uid="uid://cgkexx5wptg6o" path="res://scenes/main_camera/main_camera.tscn" id="5_b3ski"]
 [ext_resource type="PackedScene" uid="uid://dr3ymollfb7g0" path="res://scenes/interactable/interactable.tscn" id="6_b3ski"]
+[ext_resource type="PackedScene" uid="uid://bop78ynmwoxle" path="res://scenes/interactable/smoke_fx/black_smoke.tscn" id="7_s371w"]
 [ext_resource type="PackedScene" uid="uid://bw4qlac47w5pv" path="res://scenes/music_radio/music_radio.tscn" id="7_u0012"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gb6us"]
@@ -412,6 +413,9 @@ material_override = SubResource("StandardMaterial3D_tcn38")
 
 [node name="Interactable" parent="Tuture/All_Interactables" instance=ExtResource("6_b3ski")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9150229, 1.53179, 0)
+
+[node name="BlackSmoke" parent="Tuture" instance=ExtResource("7_s371w")]
+transform = Transform3D(1, 0, 0, 0, 0.9927217, -0.12043139, 0, 0.12043139, 0.9927217, 3.100831, 0, 7.7363443)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6835756, 2.755127, 0)

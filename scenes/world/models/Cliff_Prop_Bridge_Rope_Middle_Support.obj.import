@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://we014v5o8u5q"
+path="res://.godot/imported/Cliff_Prop_Bridge_Rope_Middle_Support.obj-3928cebbda27815a98cac35a190bae81.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Cliff_Prop_Bridge_Rope_Middle_Support.obj-3928cebbda27815a98cac35a190bae81.mesh"]
+
+source_file="res://scenes/world/models/Cliff_Prop_Bridge_Rope_Middle_Support.obj"
+dest_files=["res://.godot/imported/Cliff_Prop_Bridge_Rope_Middle_Support.obj-3928cebbda27815a98cac35a190bae81.mesh", "res://.godot/imported/Cliff_Prop_Bridge_Rope_Middle_Support.obj-3928cebbda27815a98cac35a190bae81.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
