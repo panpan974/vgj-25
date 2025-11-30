@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://w3oet4esygaw"]
+
+[resource]
+resource_name = "Pine_Leaves"
+albedo_color = Color(0.1255, 0.4039, 0.2039, 1)
+metallic = 1.0
+distance_fade_mode = 2
+distance_fade_max_distance = 20.0
