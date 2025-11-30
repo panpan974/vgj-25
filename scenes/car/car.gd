@@ -8,6 +8,7 @@ class_name Car
 
 @export var sfx_fuel_problem:AudioStream = null
 @export var sfx_repaired:AudioStream = null
+@export var sfx_repair_in_progress:AudioStream = null
 
 @onready var buttonDir_top: Interactable = %TopRotationInteractable
 @onready var buttonDir_bottom: Interactable = %BottomRotationInteractable
@@ -28,6 +29,9 @@ var rotating_backward := false
 var ending_node: Node = null
 var problem_timer: Timer = Timer.new()
 
+signal on_fuel_tank_broken()
+signal on_fuel_tank_repaired()
+
 func _ready():
 	#Register this in GameRecuperator (autoload)
 	GameRecuperator.register_car(self)
@@ -45,6 +49,7 @@ func _ready():
 	PlayerManager.on_player_added.connect(spawn_player)
 	fuel_tank.on_action_realised.connect(_on_fuel_tank_repaired)
 	fuel_tank.set_broken(false)
+	fuel_tank._on_player_button_pressed.connect(_on_player_button_pressed)
 	problem_timer.wait_time = 30.0
 	problem_timer.one_shot = false
 	add_child(problem_timer)
@@ -55,6 +60,9 @@ func _ready():
 	# 	_rotation_node = get_node(rotation_target)
 	# else:
 	# 	_rotation_node = self
+
+func _on_player_button_pressed(action: String, player: Player) -> void:
+	SodaAudioManager.play_sfx(sfx_repair_in_progress.resource_path, true)
 
 func _on_all_systems_ready():
 	ending_node = GameRecuperator.get_ending_node()
@@ -160,6 +168,7 @@ func _on_fuel_tank_repaired(action: String, player: Player) -> void:
 	fuel_tank.set_broken(false)
 	print_debug("Fuel tank repaired by player ", player.id)
 	SodaAudioManager.play_sfx(sfx_repaired.resource_path, false)
+	on_fuel_tank_repaired.emit()
 
 func _on_problem_timer_timeout() -> void:
 	problem_timer.wait_time = randf_range(25.0, 45.0)
@@ -168,3 +177,4 @@ func _on_problem_timer_timeout() -> void:
 		if not fuel_tank.is_broken:
 			fuel_tank.set_broken(true)
 			SodaAudioManager.play_sfx(sfx_fuel_problem.resource_path, true)	
+			on_fuel_tank_broken.emit()

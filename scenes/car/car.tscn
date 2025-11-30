@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://o5yjnavsmw2y"]
+[gd_scene load_steps=40 format=4 uid="uid://o5yjnavsmw2y"]
 
 [ext_resource type="Script" uid="uid://dluos0mpkxtsg" path="res://scenes/car/car.gd" id="1_yr3gr"]
 [ext_resource type="Texture2D" uid="uid://ddtkv70bl6bvx" path="res://scenes/car/Tuture_Pneu.png" id="2_krfcv"]
@@ -12,7 +12,17 @@
 [ext_resource type="PackedScene" uid="uid://b5heevmv432r" path="res://scenes/car/Tuture.glb" id="10_duf8q"]
 [ext_resource type="PackedScene" uid="uid://bop78ynmwoxle" path="res://scenes/interactable/smoke_fx/black_smoke.tscn" id="10_krfcv"]
 [ext_resource type="Script" path="res://scenes/interactable/smoke_fx/black_smoke.gd" id="11_ysjjl"]
-[ext_resource type="AudioStream" uid="uid://clsd0o5dbjqiu" path="res://scenes/music_radio/music_gameplay.mp3" id="13_ysjjl"]
+[ext_resource type="AudioStream" uid="uid://c7a4cn8o536x7" path="res://sounds/Radio/radio_fuel_1.mp3" id="13_6fym5"]
+[ext_resource type="AudioStream" uid="uid://ccfnun64c5sku" path="res://sounds/Radio/radio_fuel_2.mp3" id="14_jl66a"]
+[ext_resource type="AudioStream" uid="uid://c2oic1stwbuxb" path="res://sounds/Radio/radio_fuel_3.mp3" id="15_fe2oh"]
+[ext_resource type="AudioStream" uid="uid://rdfvk2khiss3" path="res://sounds/Radio/radio_fuel_4.mp3" id="16_uk2oh"]
+[ext_resource type="AudioStream" uid="uid://du1oxfj5o24qi" path="res://sounds/Radio/radio_fuel_5.mp3" id="17_5co7x"]
+[ext_resource type="AudioStream" uid="uid://bxhjwnk7doptc" path="res://sounds/Radio/radio_volant_1.mp3" id="18_mauu4"]
+[ext_resource type="AudioStream" uid="uid://uctshx8ecfbl" path="res://sounds/Radio/radio_volant_2.mp3" id="19_tqd3c"]
+[ext_resource type="AudioStream" uid="uid://bvug12yvnc4aq" path="res://sounds/Radio/radio_volant_3.mp3" id="20_1ip7k"]
+[ext_resource type="AudioStream" uid="uid://ynm3qt2qxthn" path="res://sounds/Radio/radio_volant_4.mp3" id="21_gci3k"]
+[ext_resource type="AudioStream" uid="uid://crdw2xwwb2s4n" path="res://sounds/Radio/radio_volant_5.mp3" id="22_7xmkb"]
+[ext_resource type="AudioStream" uid="uid://dd360f3ep0tn8" path="res://sounds/Radio/radio_volant_6.mp3" id="23_n85eu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gb6us"]
 resource_name = "Pneu"
@@ -276,6 +286,8 @@ shape = SubResource("BoxShape3D_xs4xl")
 debug_color = Color(0.60562444, 0.92013264, 1.2283505, 1)
 
 [node name="music_radio" parent="." instance=ExtResource("10_dmhln")]
+radio_fuel = Array[AudioStream]([ExtResource("13_6fym5"), ExtResource("14_jl66a"), ExtResource("15_fe2oh"), ExtResource("16_uk2oh"), ExtResource("17_5co7x")])
+radio_volant = Array[AudioStream]([ExtResource("18_mauu4"), ExtResource("19_tqd3c"), ExtResource("20_1ip7k"), ExtResource("21_gci3k"), ExtResource("22_7xmkb"), ExtResource("23_n85eu")])
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-3.983776e-08, -0.4115621, 0.9113817, -1.798995e-08, 0.9113817, 0.4115621, -1, -1.7763568e-15, -4.3711392e-08, 13.46347, 8.450916, 0)
