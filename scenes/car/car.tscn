@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://o5yjnavsmw2y"]
+[gd_scene load_steps=49 format=4 uid="uid://o5yjnavsmw2y"]
 
 [ext_resource type="Script" uid="uid://dluos0mpkxtsg" path="res://scenes/car/car.gd" id="1_yr3gr"]
 [ext_resource type="Material" uid="uid://d3nmwq28t052x" path="res://scenes/car/materials/Sol.tres" id="3_tcn38"]
@@ -11,7 +11,8 @@
 [ext_resource type="Resource" uid="uid://bs1gvb0a5qi3b" path="res://src/ui/interaction_ui/data/FuelTank.tres" id="8_xs4xl"]
 [ext_resource type="PackedScene" uid="uid://bw4qlac47w5pv" path="res://scenes/music_radio/music_radio.tscn" id="10_dmhln"]
 [ext_resource type="PackedScene" uid="uid://bop78ynmwoxle" path="res://scenes/interactable/smoke_fx/black_smoke.tscn" id="10_krfcv"]
-[ext_resource type="Script" uid="uid://c53j2bk8kquwj" path="res://scenes/interactable/smoke_fx/black_smoke.gd" id="11_ysjjl"]
+[ext_resource type="Script" path="res://scenes/interactable/smoke_fx/black_smoke.gd" id="11_ysjjl"]
+[ext_resource type="AudioStream" uid="uid://clsd0o5dbjqiu" path="res://scenes/music_radio/music_gameplay.mp3" id="13_ysjjl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gb6us"]
 
@@ -482,6 +483,9 @@ required_hold_time = 3.0
 ui_data = ExtResource("8_xs4xl")
 
 [node name="BlackSmoke" parent="Tuture/All_Interactables/FuelTank" instance=ExtResource("10_krfcv")]
+amount = 50
+lifetime = 3.0
+explosiveness = 0.17
 script = ExtResource("11_ysjjl")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
@@ -511,3 +515,4 @@ shape = SubResource("BoxShape3D_xs4xl")
 debug_color = Color(0.60562444, 0.92013264, 1.2283505, 1)
 
 [node name="music_radio" parent="." instance=ExtResource("10_dmhln")]
+bg_music = ExtResource("13_ysjjl")

@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://ceoo8r7s12w0s"]
+[gd_scene load_steps=12 format=3 uid="uid://ceoo8r7s12w0s"]
 
 [ext_resource type="PackedScene" uid="uid://dqvfo3fhaekdc" path="res://scenes/world/world.tscn" id="1_eilo5"]
+[ext_resource type="AudioStream" uid="uid://d1amh3t65e6qr" path="res://sounds/alarm and events/alarm_fuel.mp3" id="3_cjjte"]
 [ext_resource type="PackedScene" uid="uid://o5yjnavsmw2y" path="res://scenes/car/car.tscn" id="3_lmu1h"]
+[ext_resource type="AudioStream" uid="uid://dlvw3ulfmdetl" path="res://sounds/misc/repaired.mp3" id="4_jsxp2"]
 [ext_resource type="PackedScene" uid="uid://ctf642gw4qdne" path="res://scenes/Game_recuperator/game_recuperator.tscn" id="4_rmt7e"]
 [ext_resource type="Texture2D" uid="uid://dakporhdg1nja" path="res://sprites/UI_Direction.png" id="5_buxfd"]
-[ext_resource type="PackedScene" uid="uid://bw4qlac47w5pv" path="res://scenes/music_radio/music_radio.tscn" id="6_owvc3"]
+[ext_resource type="AudioStream" uid="uid://8osjgd3ijrtu" path="res://sounds/ambiance/night_ambiance.mp3" id="6_owvc3"]
 [ext_resource type="Script" uid="uid://dxton6na1mahi" path="res://scenes/testing_player_controller/direction_sprite.gd" id="6_sy4cq"]
+[ext_resource type="AudioStream" uid="uid://dejxlmrg08c6d" path="res://sounds/ambiance/car_idle.mp3" id="7_cjjte"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sy4cq"]
 transparency = 1
@@ -30,6 +33,8 @@ light_specular = 1.045
 [node name="Car" parent="." instance=ExtResource("3_lmu1h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 347.46075, 4.501816, -323.44305)
 move_speed = 4.0
+sfx_fuel_problem = ExtResource("3_cjjte")
+sfx_repaired = ExtResource("4_jsxp2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Car" node_paths=PackedStringArray("car_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -14)
@@ -40,4 +45,14 @@ car_node = NodePath("..")
 
 [node name="GameRecuperator" parent="." instance=ExtResource("4_rmt7e")]
 
-[node name="music_radio" parent="." instance=ExtResource("6_owvc3")]
+[node name="AudioStreamPlayer_Ambiance" type="AudioStreamPlayer" parent="GameRecuperator"]
+stream = ExtResource("6_owvc3")
+volume_db = 8.321
+autoplay = true
+bus = &"Ambiance"
+
+[node name="AudioStreamPlayer_Idle" type="AudioStreamPlayer" parent="GameRecuperator"]
+stream = ExtResource("7_cjjte")
+volume_db = 8.321
+autoplay = true
+bus = &"SFX"

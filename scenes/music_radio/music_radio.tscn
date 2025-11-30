@@ -1,8 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw4qlac47w5pv"]
+[gd_scene load_steps=5 format=3 uid="uid://bw4qlac47w5pv"]
 
 [ext_resource type="Script" uid="uid://c0wcvexrjnnae" path="res://scenes/music_radio/music_radio.gd" id="1_q5a25"]
 [ext_resource type="AudioStream" uid="uid://can8s3lt0xqre" path="res://scenes/music_radio/bg_loop.mp3" id="2_rmeyj"]
+[ext_resource type="AudioStream" uid="uid://dejxlmrg08c6d" path="res://sounds/ambiance/car_idle.mp3" id="3_i3fqa"]
+[ext_resource type="AudioStream" uid="uid://8osjgd3ijrtu" path="res://sounds/ambiance/night_ambiance.mp3" id="4_83ocn"]
 
 [node name="music_radio" type="Node"]
 script = ExtResource("1_q5a25")
 bg_music = ExtResource("2_rmeyj")
+car_idle_sound = ExtResource("3_i3fqa")
+car_night_ambiance = ExtResource("4_83ocn")

@@ -6,6 +6,8 @@ class_name Car
 @export var turn_speed: float = 1.5 # Vitesse de rotation (radians/sec)
 @export var id: int = 1 # Pour l'InputMap
 
+@export var sfx_fuel_problem:AudioStream = null
+@export var sfx_repaired:AudioStream = null
 
 @onready var buttonDir_top: Interactable = %TopRotationInteractable
 @onready var buttonDir_bottom: Interactable = %BottomRotationInteractable
@@ -15,7 +17,6 @@ class_name Car
 
 @onready var fuel_tank: Interactable = %FuelTank
 # @onready var direction_sprite: Sprite3D = %direction_sprite
-
 
 # Node à faire tourner (exporté)
 # @export var rotation_target: NodePath
@@ -138,9 +139,12 @@ func spawn_player(new_player: Player) -> void:
 
 func _on_fuel_tank_repaired(action: String, player: Player) -> void:
 	fuel_tank.set_broken(false)
+	print_debug("Fuel tank repaired by player ", player.id)
+	SodaAudioManager.play_sfx(sfx_repaired.resource_path, false)
 
 func _on_problem_timer_timeout() -> void:
 	# Randomly 50% chance to break the fuel tank
 	if randi() % 4 == 0:
 		if not fuel_tank.is_broken:
 			fuel_tank.set_broken(true)
+			SodaAudioManager.play_sfx(sfx_fuel_problem.resource_path, true)	
