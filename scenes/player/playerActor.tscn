@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://pbwj542hgvtu" path="res://scenes/player/sprite/Roseidle.png" id="6_kwm1a"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7ikxx"]
+height = 2.2996826
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xsgqf"]
 atlas = ExtResource("2_36xgn")
@@ -198,6 +199,7 @@ radius = 0.36279297
 height = 0.065216064
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2754517, 0)
 shape = SubResource("CapsuleShape3D_7ikxx")
 
 [node name="character_sprite" type="AnimatedSprite3D" parent="."]

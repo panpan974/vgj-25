@@ -1,8 +1,12 @@
-[gd_resource type="Resource" script_class="InteractionUIData" load_steps=2 format=3 uid="uid://bs1gvb0a5qi3b"]
+[gd_resource type="Resource" script_class="InteractionUIData" load_steps=3 format=3 uid="uid://bs1gvb0a5qi3b"]
 
 [ext_resource type="Script" uid="uid://byw3ex4ah22wn" path="res://src/ui/interaction_ui/interaction_ui_data.gd" id="1_hltw3"]
+[ext_resource type="Texture2D" uid="uid://drf7toihqetxl" path="res://sprites/ui/Positional_Prompts_Left.png" id="1_tvcf3"]
 
 [resource]
 script = ExtResource("1_hltw3")
 info_text = "Pas de fuites"
+instruction_icon = ExtResource("1_tvcf3")
+instruction_text = "Maintient le boutton"
+has_instruction_slider = true
 metadata/_custom_type_script = "uid://byw3ex4ah22wn"
