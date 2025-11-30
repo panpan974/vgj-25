@@ -1,0 +1,103 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlsi5ij60isjr"]
+
+[ext_resource type="Script" uid="uid://b55id3jhugpcg" path="res://src/ui/interaction_ui/interaction_ui.gd" id="1_je65p"]
+[ext_resource type="Texture2D" uid="uid://drf7toihqetxl" path="res://sprites/ui/Positional_Prompts_Left.png" id="2_4vdol"]
+[ext_resource type="Texture2D" uid="uid://cx25fe465a840" path="res://sprites/ui/Positional_Prompts_Down.png" id="3_4vdol"]
+
+[node name="InteractionUI" type="CanvasLayer"]
+script = ExtResource("1_je65p")
+
+[node name="Info" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(900, 1500)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -450.0
+offset_right = 450.0
+offset_bottom = 1500.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="InfoText" type="RichTextLabel" parent="Info"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 136
+bbcode_enabled = true
+text = "Appuye longtemps !"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="InfoValueSlider" type="HSlider" parent="Info"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Instruction" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -203.5
+offset_right = 203.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="InstructionIcon" type="TextureRect" parent="Instruction"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_4vdol")
+stretch_mode = 3
+
+[node name="InstructionText" type="Label" parent="Instruction"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 46
+text = "Appuye longtemps !"
+horizontal_alignment = 1
+
+[node name="InstructionValueSlider" type="HSlider" parent="Instruction"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="InstructionElementArray" type="HBoxContainer" parent="Instruction"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Repaired" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15330616, 0.4903316, 2.2140146e-06, 1)
+
+[node name="RepairedContainer" type="VBoxContainer" parent="Repaired"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -203.5
+offset_right = 203.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="RepairedIcon" type="TextureRect" parent="Repaired/RepairedContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_4vdol")
+stretch_mode = 3
+
+[node name="RepairedText" type="Label" parent="Repaired/RepairedContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 46
+text = "Bravo c'est réparé !"
+horizontal_alignment = 1

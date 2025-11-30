@@ -1,14 +1,14 @@
 @tool
-class_name Interactable extends Area3D
+extends Area3D
 
 @onready var ui_viewport_buttons: SubViewport = %ui_viewport_buttons
 @onready var ui_viewport_buttonsCanvasLayer: UIViewportButtons = %ui_viewport_buttonsCanvasLayer
-@onready var viewport_quad : MeshInstance3D = %viewport_quad
-var tween : Tween
+@onready var viewport_quad: MeshInstance3D = %viewport_quad
+var tween: Tween
 
 # Durée d'appui requise (en secondes)
 @export var hold_duration: float = 3.0
-@export var current_interactable_action:interactableActions = interactableActions.PressXActionSeconds
+@export var current_interactable_action: interactableActions = interactableActions.PressXActionSeconds
 @export var needs_repair: bool = true
 
 enum interactableActions {
@@ -30,7 +30,6 @@ func _ready() -> void:
 	viewport_quad.visible = false
 
 	
-
 #Player detection
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("players"):
@@ -79,7 +78,7 @@ func remove_player_to_area(player: Node3D) -> void:
 
 #Actions
 
-func _press_x_action(player:Player) ->void:
+func _press_x_action(player: Player) -> void:
 	# Un joueur commence ou continue à appuyer
 	if current_interactable_action == interactableActions.PressXActionSeconds:
 		player_holding[player] = true
@@ -90,7 +89,7 @@ func _press_x_action(player:Player) ->void:
 		ui_viewport_buttonsCanvasLayer.modify_slider(progress * 100)
 
 
-func _release_x_action(player:Player) ->void:
+func _release_x_action(player: Player) -> void:
 	# Un joueur relâche le bouton
 	if current_interactable_action == interactableActions.PressXActionSeconds:
 		player_holding[player] = false

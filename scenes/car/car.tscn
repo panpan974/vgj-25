@@ -1,13 +1,15 @@
-[gd_scene load_steps=38 format=4 uid="uid://o5yjnavsmw2y"]
+[gd_scene load_steps=43 format=4 uid="uid://o5yjnavsmw2y"]
 
 [ext_resource type="Script" uid="uid://dluos0mpkxtsg" path="res://scenes/car/car.gd" id="1_yr3gr"]
 [ext_resource type="Material" uid="uid://d3nmwq28t052x" path="res://scenes/car/materials/Sol.tres" id="3_tcn38"]
 [ext_resource type="Material" uid="uid://bew8f1y5g2es" path="res://scenes/car/materials/MurFond.tres" id="4_b3ski"]
-[ext_resource type="PackedScene" uid="uid://dxkx67y5wad5u" path="res://scenes/Button_direction/button_direction.tscn" id="4_x7uf8"]
 [ext_resource type="PackedScene" uid="uid://cgkexx5wptg6o" path="res://scenes/main_camera/main_camera.tscn" id="5_b3ski"]
-[ext_resource type="PackedScene" uid="uid://dr3ymollfb7g0" path="res://scenes/interactable/interactable.tscn" id="6_b3ski"]
-[ext_resource type="PackedScene" uid="uid://bop78ynmwoxle" path="res://scenes/interactable/smoke_fx/black_smoke.tscn" id="7_s371w"]
-[ext_resource type="PackedScene" uid="uid://bw4qlac47w5pv" path="res://scenes/music_radio/music_radio.tscn" id="7_u0012"]
+[ext_resource type="Resource" uid="uid://buws81381hcuq" path="res://src/ui/interaction_ui/data/Accelerator.tres" id="6_u0012"]
+[ext_resource type="PackedScene" uid="uid://54lrjilh5q88" path="res://src/car/LongButtonPress.tscn" id="7_s371w"]
+[ext_resource type="PackedScene" uid="uid://bke7lmv57wto1" path="res://src/component/interactable/interactable.tscn" id="7_u0012"]
+[ext_resource type="Resource" uid="uid://b0k835kx0eubt" path="res://src/ui/interaction_ui/data/Brake.tres" id="7_xs4xl"]
+[ext_resource type="Resource" uid="uid://bs1gvb0a5qi3b" path="res://src/ui/interaction_ui/data/FuelTank.tres" id="8_xs4xl"]
+[ext_resource type="PackedScene" uid="uid://bw4qlac47w5pv" path="res://scenes/music_radio/music_radio.tscn" id="10_dmhln"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gb6us"]
 
@@ -276,8 +278,16 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_io20y")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0012"]
+albedo_color = Color(4.042983e-06, 0.54045224, 0.35608745, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dmhln"]
+size = Vector3(1.3256836, 1, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tcn38"]
 albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3ski"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tcn38"]
 size = Vector3(1, 4.3999023, 15)
@@ -375,32 +385,63 @@ cast_shadow = 0
 mesh = SubResource("ArrayMesh_q363s")
 skeleton = NodePath("")
 
-[node name="ButtonDirection_RotTop" parent="Tuture" instance=ExtResource("4_x7uf8")]
+[node name="TopRotationInteractable" parent="Tuture" node_paths=PackedStringArray("collision_shape") instance=ExtResource("7_u0012")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7932177, 0.6584039, -5)
-collision_layer = 3
-collision_mask = 2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2042725, 0.62445426, -5)
+collision_shape = NodePath("CollisionShape3D")
 
-[node name="ButtonDirection2_RotBottom" parent="Tuture" instance=ExtResource("4_x7uf8")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2067823, 0.6584039, -5)
-collision_layer = 3
-collision_mask = 2
-currentCarAction = 1
+[node name="CSGBox3D" type="CSGBox3D" parent="Tuture/TopRotationInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.041992188, 0)
+material_override = SubResource("StandardMaterial3D_u0012")
+size = Vector3(1, 1.0839844, 1)
 
-[node name="ButtonAccelerate" parent="Tuture" instance=ExtResource("4_x7uf8")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7932177, 0.6584039, 4)
-collision_layer = 3
-collision_mask = 2
-currentCarAction = 1
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tuture/TopRotationInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_dmhln")
 
-[node name="ButtonBrake" parent="Tuture" instance=ExtResource("4_x7uf8")]
+[node name="BottomRotationInteractable" parent="Tuture" node_paths=PackedStringArray("collision_shape") instance=ExtResource("7_u0012")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2067823, 0.6584039, 5)
-collision_layer = 3
-collision_mask = 2
-currentCarAction = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7957275, 0.62445426, -5)
+collision_shape = NodePath("CollisionShape3D")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tuture/BottomRotationInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.041992188, 0)
+material_override = SubResource("StandardMaterial3D_u0012")
+size = Vector3(1, 1.0839844, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tuture/BottomRotationInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_dmhln")
+
+[node name="AccelerateInteractable" parent="Tuture" node_paths=PackedStringArray("collision_shape") instance=ExtResource("7_u0012")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2042725, 0.62445426, 1)
+ui_data = ExtResource("6_u0012")
+collision_shape = NodePath("CollisionShape3D")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tuture/AccelerateInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.041992188, 0)
+material_override = SubResource("StandardMaterial3D_u0012")
+size = Vector3(1, 1.0839844, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tuture/AccelerateInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_dmhln")
+
+[node name="BrakeInteractable" parent="Tuture" node_paths=PackedStringArray("collision_shape") instance=ExtResource("7_u0012")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7957275, 0.62445426, 4)
+ui_data = ExtResource("7_xs4xl")
+collision_shape = NodePath("CollisionShape3D")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tuture/BrakeInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.041992188, 0)
+material_override = SubResource("StandardMaterial3D_u0012")
+size = Vector3(1, 1.0839844, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tuture/BrakeInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_dmhln")
 
 [node name="top_car" type="Marker3D" parent="Tuture"]
 unique_name_in_owner = true
@@ -411,8 +452,22 @@ material_override = SubResource("StandardMaterial3D_tcn38")
 
 [node name="All_Interactables" type="Node3D" parent="Tuture"]
 
-[node name="Interactable" parent="Tuture/All_Interactables" instance=ExtResource("6_b3ski")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9150229, 1.53179, 0)
+[node name="FuelTank" parent="Tuture/All_Interactables" node_paths=PackedStringArray("collision_shape") instance=ExtResource("7_u0012")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9514732, 1.5138814, 0)
+ui_data = ExtResource("8_xs4xl")
+collision_shape = NodePath("CollisionShape3D")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tuture/All_Interactables/FuelTank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.041992188, 0)
+material_override = SubResource("StandardMaterial3D_b3ski")
+size = Vector3(1, 1.0839844, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tuture/All_Interactables/FuelTank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1628418, 1, 0)
+shape = SubResource("BoxShape3D_dmhln")
+
+[node name="LongButtonPress" parent="Tuture/All_Interactables/FuelTank" instance=ExtResource("7_s371w")]
 
 [node name="BlackSmoke" parent="Tuture" instance=ExtResource("7_s371w")]
 transform = Transform3D(1, 0, 0, 0, 0.9927217, -0.12043139, 0, 0.12043139, 0.9927217, 3.100831, 0, 7.7363443)
@@ -443,4 +498,4 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.7
 shape = SubResource("BoxShape3D_xs4xl")
 debug_color = Color(0.60562444, 0.92013264, 1.2283505, 1)
 
-[node name="music_radio" parent="." instance=ExtResource("7_u0012")]
+[node name="music_radio" parent="." instance=ExtResource("10_dmhln")]
