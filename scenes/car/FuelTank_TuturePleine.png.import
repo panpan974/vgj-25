@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djvw3w5lanl0q"
-path.s3tc="res://.godot/imported/TutureVide.png-9320dfb3a252b04b8dc91198637ca2aa.s3tc.ctex"
+uid="uid://br87fwolptrfs"
+path.s3tc="res://.godot/imported/FuelTank_TuturePleine.png-26e8c052105b900002dd173b107523f2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "0b13de11e7d8cf3202da53a75b6a0206"
+}
 
 [deps]
 
-source_file="res://scenes/car/materials/TutureVide.png"
-dest_files=["res://.godot/imported/TutureVide.png-9320dfb3a252b04b8dc91198637ca2aa.s3tc.ctex"]
+source_file="res://scenes/car/FuelTank_TuturePleine.png"
+dest_files=["res://.godot/imported/FuelTank_TuturePleine.png-26e8c052105b900002dd173b107523f2.s3tc.ctex"]
 
 [params]
 

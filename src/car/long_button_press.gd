@@ -21,6 +21,8 @@ func _on_broken_state_changed(state: bool) -> void:
         player_time_helds.clear()
 
 func _on_button_pressed_time_update(action: String, time_held: float, player: Player) -> void:
+    if not interactable.is_broken:
+        return
     if action == action_name:
         if not player_time_helds.has(player):
             player_time_helds[player] = 0.0

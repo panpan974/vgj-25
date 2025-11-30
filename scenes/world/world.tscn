@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dp8ul8rja7e64" path="res://scenes/world/world.gd" id="1_1fp7r"]
 [ext_resource type="PackedScene" uid="uid://1iv30qlai01d" path="res://scenes/Tree_obstacle/treeObstacle.tscn" id="2_1fp7r"]
 [ext_resource type="PackedScene" uid="uid://tnp18527yq6c" path="res://scenes/EndingArea/ending_area.tscn" id="3_1fp7r"]
+[ext_resource type="Material" uid="uid://2yj2a06brkn2" path="res://scenes/world/materials/grass.tres" id="3_lbnhc"]
 [ext_resource type="ArrayMesh" uid="uid://bu0eqkujxs711" path="res://scenes/world/models/Mountain_1.obj" id="4_t5ptc"]
 [ext_resource type="Texture2D" uid="uid://d22or2jpwickm" path="res://scenes/world/grass.png" id="4_v5dby"]
 [ext_resource type="ArrayMesh" uid="uid://cpoq838crsmca" path="res://scenes/world/models/Mountain_2.obj" id="7_gb53w"]
@@ -34,11 +35,6 @@
 [ext_resource type="Script" uid="uid://0k3aorv8fvw2" path="res://addons/proton_scatter/src/scatter_item.gd" id="32_7mx70"]
 [ext_resource type="Script" uid="uid://b3ujej72lx7jb" path="res://addons/proton_scatter/src/scatter_shape.gd" id="33_1cxds"]
 [ext_resource type="Script" uid="uid://bm7xpy7relxg0" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="34_fymcc"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmu1h"]
-albedo_color = Color(0.40636393, 0.6612435, 5.7756904e-07, 1)
-albedo_texture = ExtResource("4_v5dby")
-metallic_specular = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fymcc"]
 albedo_color = Color(0.206763, 0.35092437, 4.813075e-08, 1)
@@ -135,9 +131,9 @@ size = Vector3(1082.6063, 1, 116.5979)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fymcc"]
 sky_top_color = Color(0.027387038, 0.05015163, 0.09818663, 1)
-sky_horizon_color = Color(0.045214035, 0.1175406, 0.24550301, 1)
+sky_horizon_color = Color(0.05480449, 0.097250186, 0.35466054, 1)
 ground_bottom_color = Color(0.07958121, 0.07561774, 0.06255212, 1)
-ground_horizon_color = Color(0.064994454, 0.10468378, 0.26224646, 1)
+ground_horizon_color = Color(0.048774645, 0.11240593, 0.34726804, 1)
 
 [sub_resource type="Sky" id="Sky_fymcc"]
 sky_material = SubResource("ProceduralSkyMaterial_fymcc")
@@ -146,17 +142,18 @@ sky_material = SubResource("ProceduralSkyMaterial_fymcc")
 background_mode = 2
 sky = SubResource("Sky_fymcc")
 tonemap_mode = 3
+tonemap_exposure = 0.85
 tonemap_white = 1.2
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.237674, 0.26938874, 0.2722068, 1)
-fog_density = 0.5448
-fog_aerial_perspective = 0.15
+fog_density = 0.3106
+fog_aerial_perspective = 0.425
+fog_sky_affect = 0.766
 adjustment_enabled = true
 adjustment_brightness = 1.18
-adjustment_contrast = 1.1
-adjustment_saturation = 1.73
+adjustment_saturation = 1.32
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_1fp7r")
@@ -165,7 +162,7 @@ script = ExtResource("1_1fp7r")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -352, 1.4, 337)
 
 [node name="Ground" type="CSGBox3D" parent="."]
-material_override = SubResource("StandardMaterial3D_lmu1h")
+material_override = ExtResource("3_lbnhc")
 use_collision = true
 size = Vector3(1000, 1, 1000)
 
@@ -641,7 +638,7 @@ environment = SubResource("Environment_sygq6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_color = Color(0.12251391, 0.26521575, 0.4859925, 1)
+light_color = Color(0.28711227, 0.26875716, 0.2427553, 1)
 light_energy = 3.534
 shadow_enabled = true
 directional_shadow_mode = 1

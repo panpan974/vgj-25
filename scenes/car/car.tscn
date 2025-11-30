@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://o5yjnavsmw2y"]
+[gd_scene load_steps=47 format=4 uid="uid://o5yjnavsmw2y"]
 
 [ext_resource type="Script" uid="uid://dluos0mpkxtsg" path="res://scenes/car/car.gd" id="1_yr3gr"]
 [ext_resource type="Material" uid="uid://dq4woh5mb74db" path="res://scenes/car/materials/Pneu.tres" id="2_krfcv"]
@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://cgkexx5wptg6o" path="res://scenes/main_camera/main_camera.tscn" id="5_b3ski"]
 [ext_resource type="Texture2D" uid="uid://citfpp7iaud6x" path="res://src/car/buttons/Arrow_Turn.png" id="6_duf8q"]
 [ext_resource type="Texture2D" uid="uid://nbc3kogvpsu4" path="res://src/car/buttons/Arrow_UP_DOWN.png" id="7_krfcv"]
-[ext_resource type="PackedScene" uid="uid://54lrjilh5q88" path="res://src/car/LongButtonPress.tscn" id="7_s371w"]
+[ext_resource type="PackedScene" uid="uid://c6tr3os6w4rra" path="res://src/car/fuel_tank.tscn" id="7_ton6r"]
 [ext_resource type="PackedScene" uid="uid://bke7lmv57wto1" path="res://src/component/interactable/interactable.tscn" id="7_u0012"]
-[ext_resource type="Resource" uid="uid://bs1gvb0a5qi3b" path="res://src/ui/interaction_ui/data/FuelTank.tres" id="8_xs4xl"]
+[ext_resource type="AudioStream" uid="uid://d1amh3t65e6qr" path="res://sounds/alarm and events/alarm_fuel.mp3" id="8_3dj75"]
 [ext_resource type="PackedScene" uid="uid://bw4qlac47w5pv" path="res://scenes/music_radio/music_radio.tscn" id="10_dmhln"]
 [ext_resource type="PackedScene" uid="uid://b5heevmv432r" path="res://scenes/car/Tuture.glb" id="10_duf8q"]
-[ext_resource type="PackedScene" uid="uid://bop78ynmwoxle" path="res://scenes/interactable/smoke_fx/black_smoke.tscn" id="10_krfcv"]
-[ext_resource type="Script" path="res://scenes/interactable/smoke_fx/black_smoke.gd" id="11_ysjjl"]
+[ext_resource type="Material" uid="uid://de4cqtdybxith" path="res://scenes/car/materials/FuelFull.tres" id="11_fe2oh"]
+[ext_resource type="Material" uid="uid://ducnskonhj415" path="res://scenes/car/materials/FuelLow.tres" id="11_uk2oh"]
 [ext_resource type="AudioStream" uid="uid://c7a4cn8o536x7" path="res://sounds/Radio/radio_fuel_1.mp3" id="13_6fym5"]
 [ext_resource type="AudioStream" uid="uid://ccfnun64c5sku" path="res://sounds/Radio/radio_fuel_2.mp3" id="14_jl66a"]
 [ext_resource type="AudioStream" uid="uid://c2oic1stwbuxb" path="res://sounds/Radio/radio_fuel_3.mp3" id="15_fe2oh"]
@@ -89,8 +89,6 @@ albedo_texture = ExtResource("7_krfcv")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tcn38"]
 albedo_color = Color(1, 1, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3ski"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tcn38"]
 size = Vector3(1, 4.3999023, 15)
@@ -206,6 +204,7 @@ collision_shape = NodePath("CollisionShape3D")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Inside/TopRotationInteractable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.041992188, 0)
+layers = 3
 size = Vector3(2, 1.084, 2)
 material = SubResource("StandardMaterial3D_krfcv")
 
@@ -220,6 +219,7 @@ collision_shape = NodePath("CollisionShape3D")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Inside/BottomRotationInteractable"]
 transform = Transform3D(-1, 8.742278e-08, 0, 3.821371e-15, 4.371139e-08, -1, -8.742278e-08, -1, -4.371139e-08, 0, 0.041992188, 0)
+layers = 3
 size = Vector3(2, 2, 1)
 material = SubResource("StandardMaterial3D_duf8q")
 
@@ -229,11 +229,12 @@ shape = SubResource("BoxShape3D_dmhln")
 
 [node name="AccelerateInteractable" parent="Inside" node_paths=PackedStringArray("collision_shape") instance=ExtResource("7_u0012")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2042725, 0.62445426, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2042725, 0.62445426, 3)
 collision_shape = NodePath("CollisionShape3D")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Inside/AccelerateInteractable"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.041992188, 0)
+layers = 3
 size = Vector3(2, 1.084, 2)
 material = SubResource("StandardMaterial3D_ysjjl")
 
@@ -248,6 +249,7 @@ collision_shape = NodePath("CollisionShape3D")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Inside/BrakeInteractable"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.041992188, 0)
+layers = 3
 size = Vector3(2, 1.084, 2)
 material = SubResource("StandardMaterial3D_8uo2y")
 
@@ -264,43 +266,46 @@ material_override = SubResource("StandardMaterial3D_tcn38")
 
 [node name="All_Interactables" type="Node3D" parent="Inside"]
 
-[node name="FuelTank" parent="Inside/All_Interactables" node_paths=PackedStringArray("collision_shape") instance=ExtResource("7_u0012")]
+[node name="FuelTank" parent="Inside/All_Interactables" instance=ExtResource("7_ton6r")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9514732, 1.5138814, 0)
-ui_data = ExtResource("8_xs4xl")
-collision_shape = NodePath("CollisionShape3D")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Inside/All_Interactables/FuelTank"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.041992188, 0)
-material_override = SubResource("StandardMaterial3D_b3ski")
-size = Vector3(1, 1.0839844, 1)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Inside/All_Interactables/FuelTank"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.274292, 0.52856445, 0)
-shape = SubResource("BoxShape3D_dmhln")
-
-[node name="LongButtonPress" parent="Inside/All_Interactables/FuelTank" instance=ExtResource("7_s371w")]
-action_name = "x"
-required_hold_time = 3.0
-ui_data = ExtResource("8_xs4xl")
-
-[node name="BlackSmoke" parent="Inside/All_Interactables/FuelTank" instance=ExtResource("10_krfcv")]
-script = ExtResource("11_ysjjl")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1124697, 2, 0)
+sfx_fuel_problem = ExtResource("8_3dj75")
+low_fuel_material = ExtResource("11_uk2oh")
+normal_fuel_material = ExtResource("11_fe2oh")
 
 [node name="Shape" parent="." instance=ExtResource("10_duf8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0079017, -0.5860295, 0)
 
+[node name="Sol" parent="Shape" index="0"]
+layers = 3
+
+[node name="MurFond" parent="Shape" index="1"]
+layers = 3
+
+[node name="MurDerriere" parent="Shape" index="2"]
+layers = 3
+
+[node name="MurDevant" parent="Shape" index="3"]
+layers = 3
+
 [node name="RoueDevantDroite" parent="Shape" index="4"]
 visible = false
+layers = 3
 
 [node name="RoueArriereGauche" parent="Shape" index="5"]
 visible = false
+layers = 3
 
 [node name="RoueDevantGauche" parent="Shape" index="6"]
 visible = false
+layers = 3
 
 [node name="RoueArriereDroite" parent="Shape" index="7"]
 visible = false
+layers = 3
+
+[node name="MurDevant_001" parent="Shape" index="8"]
+layers = 3
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6835756, 2.755127, 0)
@@ -334,10 +339,26 @@ radio_volant = Array[AudioStream]([ExtResource("18_mauu4"), ExtResource("19_tqd3
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-3.983776e-08, -0.4115621, 0.9113817, -1.798995e-08, 0.9113817, 0.4115621, -1, -1.7763568e-15, -4.3711392e-08, 13.46347, 8.450916, 0)
+layers = 2
 light_color = Color(1, 1, 0.8117647, 1)
 light_energy = 4.628
+light_cull_mask = 4294967294
 spot_range = 45.152332
 spot_angle = 64.31551
+
+[node name="Phare" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 1.7989947e-08, 3.8736285e-09, -1.837952e-08, 0.9868473, 0.16165552, -9.145049e-10, -0.16165552, 0.9868473, 2.4634705, -1.5490837, -8)
+light_color = Color(1.349815, 1.1888677, 0, 1)
+light_energy = 12.645
+spot_range = 231.414
+spot_angle = 19.80693
+
+[node name="Phare2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 1.7989947e-08, 3.8736285e-09, -1.837952e-08, 0.9868473, 0.16165552, -9.145049e-10, -0.16165552, 0.9868473, -4.5365295, -1.5490837, -8)
+light_color = Color(1.349815, 1.1888677, 0, 1)
+light_energy = 12.645
+spot_range = 231.414
+spot_angle = 19.80693
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
@@ -350,7 +371,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="Lucioles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -24.739887)
 amount = 40
 lifetime = 8.0

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://de4cqtdybxith"]
+
+[ext_resource type="Texture2D" uid="uid://br87fwolptrfs" path="res://scenes/car/FuelTank_TuturePleine.png" id="1_mlrvn"]
+
+[resource]
+resource_name = "Fuel"
+cull_mode = 2
+albedo_texture = ExtResource("1_mlrvn")
+roughness = 0.5

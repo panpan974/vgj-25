@@ -8,7 +8,6 @@ class_name Car
 @export var engine_accel_curve: Curve
 @export var engine_max_force_curve: Curve
 
-@export var sfx_fuel_problem: AudioStream = null
 @export var sfx_repaired: AudioStream = null
 @export var sfx_repair_in_progress: AudioStream = null
 
@@ -18,7 +17,7 @@ class_name Car
 @onready var button_brake: Interactable = %BrakeInteractable
 @onready var top_car: Marker3D = %top_car
 
-@onready var fuel_tank: Interactable = %FuelTank
+@onready var fuel_tank: FuelTank = %FuelTank
 # @onready var direction_sprite: Sprite3D = %direction_sprite
 
 # Node à faire tourner (exporté)
@@ -32,8 +31,6 @@ var ending_node: Node = null
 var problem_timer: Timer = Timer.new()
 
 var time_engine_accel_held: float = 0.0
-signal on_fuel_tank_broken()
-signal on_fuel_tank_repaired()
 
 func _ready():
 	#Register this in GameRecuperator (autoload)
@@ -51,9 +48,7 @@ func _ready():
 	button_accelerate.set_interaction_ui_state.emit(InteractionUI.UIStates.Info)
 	button_brake.set_interaction_ui_state.emit(InteractionUI.UIStates.Info)
 	PlayerManager.on_player_added.connect(spawn_player)
-	fuel_tank.on_action_realised.connect(_on_fuel_tank_repaired)
-	fuel_tank.set_broken(false)
-	fuel_tank._on_player_button_pressed.connect(_on_player_button_pressed)
+	fuel_tank.on_fuel_tank_repaired.connect(_on_fuel_tank_repaired)
 	problem_timer.wait_time = 30.0
 	problem_timer.one_shot = false
 	add_child(problem_timer)
@@ -75,7 +70,7 @@ func _on_all_systems_ready():
 func _process(delta: float) -> void:
 	if not ending_node:
 		return
-	if fuel_tank.is_broken:
+	if fuel_tank.interactable.is_broken:
 		# Reduce speed if fuel tank is broken
 		engine_force *= 0.999
 	# print_debug("Engine force: ", engine_force)
@@ -154,7 +149,7 @@ func end_acceleration():
 	time_engine_accel_held = 0.0
 
 func add_engine_force(delta: float) -> void:
-	if fuel_tank.is_broken:
+	if fuel_tank.interactable.is_broken:
 		return
 	time_engine_accel_held += delta
 	# Use the curve to determine acceleration based on the time held
@@ -163,7 +158,7 @@ func add_engine_force(delta: float) -> void:
 		button_accelerate.ui_data.info_text = "Accelerating...\nForce: " + str(round(-engine_force))
 
 func slow_engine_force(delta: float) -> void:
-	if fuel_tank.is_broken:
+	if fuel_tank.interactable.is_broken:
 		return
 	if engine_force < -1:
 		engine_force *= 0.95
@@ -180,16 +175,13 @@ func spawn_player(new_player: Player) -> void:
 	new_player.global_transform.origin = global_transform.origin + Vector3(0, 1, 0)
 
 func _on_fuel_tank_repaired(action: String, player: Player) -> void:
-	fuel_tank.set_broken(false)
 	print_debug("Fuel tank repaired by player ", player.id)
 	SodaAudioManager.play_sfx(sfx_repaired.resource_path, false)
-	on_fuel_tank_repaired.emit()
 
 func _on_problem_timer_timeout() -> void:
 	problem_timer.wait_time = randf_range(25.0, 45.0)
 	# Randomly 50% chance to break the fuel tank
-	if randi() % 2 == 0:
-		if not fuel_tank.is_broken:
-			fuel_tank.set_broken(true)
-			SodaAudioManager.play_sfx(sfx_fuel_problem.resource_path, true)
-			on_fuel_tank_broken.emit()
+	# if randi() % 2 == 0:
+	# 	if not fuel_tank.is_broken:
+	# 		fuel_tank.set_broken(true)
+	# 		on_fuel_tank_broken.emit()

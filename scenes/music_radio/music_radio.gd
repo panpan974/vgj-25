@@ -10,7 +10,7 @@ extends Node
 @export var radio_volant: Array[AudioStream] = []
 
 
-var tank_broken:bool = false
+var tank_broken: bool = false
 var fuel_timer: Timer = null
 
 func _ready() -> void:
@@ -23,8 +23,8 @@ func _ready() -> void:
 func _on_all_systems_ready():
     var car = GameRecuperator.get_car()
     if car:
-        car.on_fuel_tank_broken.connect(play_sfx_fuel)
-        car.on_fuel_tank_repaired.connect(stop_sfx_fuel)
+        car.fuel_tank.on_fuel_tank_broken.connect(play_sfx_fuel)
+        car.fuel_tank.on_fuel_tank_repaired.connect(stop_sfx_fuel)
 
 # Joue un son aléatoire de la liste radio_fuel
 func play_sfx_fuel():

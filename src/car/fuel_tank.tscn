@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=4 uid="uid://c6tr3os6w4rra"]
+
+[ext_resource type="Script" uid="uid://bsfjhjo4lltd4" path="res://scenes/car/fuel_tank.gd" id="1_xpdru"]
+[ext_resource type="Material" uid="uid://de4cqtdybxith" path="res://scenes/car/materials/FuelFull.tres" id="2_ckgy8"]
+[ext_resource type="PackedScene" uid="uid://bke7lmv57wto1" path="res://src/component/interactable/interactable.tscn" id="3_fu6yd"]
+[ext_resource type="Resource" uid="uid://bs1gvb0a5qi3b" path="res://src/ui/interaction_ui/data/FuelTank.tres" id="4_ojhce"]
+[ext_resource type="PackedScene" uid="uid://54lrjilh5q88" path="res://src/car/LongButtonPress.tscn" id="5_hl2i5"]
+[ext_resource type="PackedScene" uid="uid://bop78ynmwoxle" path="res://scenes/interactable/smoke_fx/black_smoke.tscn" id="6_5ns5o"]
+[ext_resource type="Script" uid="uid://c53j2bk8kquwj" path="res://scenes/interactable/smoke_fx/black_smoke.gd" id="7_lmx0h"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_skmvs"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 4, 2),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
+"name": "Fuel",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD/////AAAAAP//AAD//wAA////////AAD//wAAAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_y6pwu"]
+resource_name = "FuelTank_Cube_005"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 4, 2),
+"attribute_data": PackedByteArray("/1////+f/7//n////1//v/8//3//H/9H/z//R/8f/3//v/9//5//R/+//0f/n/9//1//f/9//0f/f/9//1//R/8f/3//X/8//1//f/8f/z8koAPgF4DlvySg9b8XgN/f"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": ExtResource("2_ckgy8"),
+"name": "Fuel",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAP//VNUAAP//AABU1QAA/////1TVAAAAAAAAVNUAAAAAAAD///////8AAP//AAD//wAA/////wAAAAD/////AAAAAP+//////////7//////AAD/v///AAD///+///8AAP///78AAP//////v/////////+/AAAAAP///78AAAAAAAD/v///AAD///+///8AAAAA/78AAAAA////v/////8AAGfVAAD/////Z9UAAP//AABg1f///////27VVNVU1VTVVNVU1VTVVNVU1f9/////f////3////9/////fwAA/38AAP9/AAD/fwAA/////////////////////wAA/38AAP9/AAD/fwAA/39J1ZMqSdWTKk3VnCpE1Yoq")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_skmvs")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dmhln"]
+size = Vector3(1.7636871, 1.9428711, 1.7861938)
+
+[node name="FuelTank" type="Node3D"]
+script = ExtResource("1_xpdru")
+action_name = "x"
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+layers = 3
+material_override = ExtResource("2_ckgy8")
+mesh = SubResource("ArrayMesh_y6pwu")
+skeleton = NodePath("")
+
+[node name="Interactable" parent="." node_paths=PackedStringArray("collision_shape") instance=ExtResource("3_fu6yd")]
+unique_name_in_owner = true
+ui_data = ExtResource("4_ojhce")
+collision_shape = NodePath("CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.274292, 0.52856445, 0)
+shape = SubResource("BoxShape3D_dmhln")
+
+[node name="LongButtonPress" parent="Interactable" instance=ExtResource("5_hl2i5")]
+action_name = "x"
+required_hold_time = 3.0
+ui_data = ExtResource("4_ojhce")
+
+[node name="BlackSmoke" parent="Interactable" instance=ExtResource("6_5ns5o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3579073, 1.9376078, 0)
+visible = false
+amount = 50
+script = ExtResource("7_lmx0h")

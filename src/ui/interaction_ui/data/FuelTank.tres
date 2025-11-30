@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("1_hltw3")
-info_text = "Pas de fuites"
+info_text = "Pas de fuites (X pour remplir)"
+has_info_value = true
 instruction_icon = ExtResource("1_tvcf3")
 instruction_text = "Maintient le boutton"
 has_instruction_slider = true
