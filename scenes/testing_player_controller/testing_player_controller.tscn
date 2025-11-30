@@ -1,10 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://ceoo8r7s12w0s"]
+[gd_scene load_steps=10 format=3 uid="uid://ceoo8r7s12w0s"]
 
 [ext_resource type="PackedScene" uid="uid://dqvfo3fhaekdc" path="res://scenes/world/world.tscn" id="1_eilo5"]
 [ext_resource type="PackedScene" uid="uid://o5yjnavsmw2y" path="res://scenes/car/car.tscn" id="3_lmu1h"]
-[ext_resource type="AudioStream" uid="uid://dlvw3ulfmdetl" path="res://sounds/misc/repaired.mp3" id="4_jsxp2"]
 [ext_resource type="PackedScene" uid="uid://ctf642gw4qdne" path="res://scenes/Game_recuperator/game_recuperator.tscn" id="4_rmt7e"]
-[ext_resource type="AudioStream" uid="uid://c6y8bu2wce1jx" path="res://sounds/misc/working.mp3" id="5_32f8a"]
 [ext_resource type="Texture2D" uid="uid://dakporhdg1nja" path="res://sprites/UI_Direction.png" id="5_buxfd"]
 [ext_resource type="AudioStream" uid="uid://8osjgd3ijrtu" path="res://sounds/ambiance/night_ambiance.mp3" id="6_owvc3"]
 [ext_resource type="Script" uid="uid://dxton6na1mahi" path="res://scenes/testing_player_controller/direction_sprite.gd" id="6_sy4cq"]
@@ -25,8 +23,6 @@ size = Vector2(10, 10)
 [node name="Car" parent="." instance=ExtResource("3_lmu1h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 347.46075, 4.501816, -323.44305)
 move_speed = 4.0
-sfx_repaired = ExtResource("4_jsxp2")
-sfx_repair_in_progress = ExtResource("5_32f8a")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Car" node_paths=PackedStringArray("car_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -14)
@@ -39,12 +35,39 @@ car_node = NodePath("..")
 
 [node name="AudioStreamPlayer_Ambiance" type="AudioStreamPlayer" parent="GameRecuperator"]
 stream = ExtResource("6_owvc3")
-volume_db = 8.321
+volume_db = 1.0
 autoplay = true
 bus = &"Ambiance"
 
 [node name="AudioStreamPlayer_Idle" type="AudioStreamPlayer" parent="GameRecuperator"]
 stream = ExtResource("7_cjjte")
-volume_db = 8.321
+volume_db = 1.0
 autoplay = true
 bus = &"SFX"
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-4.371139e-08, -0.9848077, 0.17364815, 0, 0.17364815, 0.9848077, -1, 4.304731e-08, -7.590402e-09, 314.65128, 1.2014704, -325.9791)
+text = "Mini-Mechas"
+font_size = 1702
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(-4.371139e-08, -0.99996185, 0.0087265605, 0, 0.0087265605, 0.99996185, -1, 4.370972e-08, -3.814501e-10, 356.57443, 1.2014704, -323.73203)
+text = "Appuyez sur n'importe 
+quel touche de manette pour rejoindre la partie!"
+font_size = 157
+
+[node name="Label3D3" type="Label3D" parent="."]
+transform = Transform3D(-4.371139e-08, -0.99996185, 0.0087265605, 0, 0.0087265605, 0.99996185, -1, 4.370972e-08, -3.814501e-10, 358.0056, 1.2014704, -304.70474)
+text = "Développeur.euses: Florent Ferrere 
+et Alison Abrillet
+Son&Voix: Nathan Combaud
+2D Artist: Ayden Alphys
+Auteur: Simon Michel Badina"
+font_size = 94
+horizontal_alignment = 0
+
+[node name="Label3D4" type="Label3D" parent="."]
+transform = Transform3D(-4.371139e-08, -0.99996185, 0.0087265605, 0, 0.0087265605, 0.99996185, -1, 4.370972e-08, -3.814501e-10, 359.10675, 1.2014704, -317.70474)
+text = "Réalisé pendant la Volcano Game Jam 2025"
+font_size = 119
+horizontal_alignment = 0

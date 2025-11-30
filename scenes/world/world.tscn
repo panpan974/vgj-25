@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dp8ul8rja7e64" path="res://scenes/world/world.gd" id="1_1fp7r"]
 [ext_resource type="PackedScene" uid="uid://1iv30qlai01d" path="res://scenes/Tree_obstacle/treeObstacle.tscn" id="2_1fp7r"]
 [ext_resource type="PackedScene" uid="uid://tnp18527yq6c" path="res://scenes/EndingArea/ending_area.tscn" id="3_1fp7r"]
-[ext_resource type="Material" uid="uid://2yj2a06brkn2" path="res://scenes/world/materials/grass.tres" id="3_lbnhc"]
+[ext_resource type="Material" path="res://scenes/world/materials/grass.tres" id="3_lbnhc"]
 [ext_resource type="ArrayMesh" uid="uid://bu0eqkujxs711" path="res://scenes/world/models/Mountain_1.obj" id="4_t5ptc"]
 [ext_resource type="Texture2D" uid="uid://d22or2jpwickm" path="res://scenes/world/grass.png" id="4_v5dby"]
 [ext_resource type="ArrayMesh" uid="uid://cpoq838crsmca" path="res://scenes/world/models/Mountain_2.obj" id="7_gb53w"]
@@ -160,6 +160,9 @@ script = ExtResource("1_1fp7r")
 
 [node name="EndingArea" parent="." instance=ExtResource("3_1fp7r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -352, 1.4, 337)
+
+[node name="CollisionShape3D" parent="EndingArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.09015, 20.823181, -36.375275)
 
 [node name="Ground" type="CSGBox3D" parent="."]
 material_override = ExtResource("3_lbnhc")

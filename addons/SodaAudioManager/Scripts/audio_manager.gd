@@ -45,6 +45,7 @@ func play_music(soundPath: String, loop: bool, fade: bool = true, fade_duration:
 	if currentMusic != sound:
 		currentMusic = sound
 		musicPlayer.stream = sound
+		musicPlayer.bus = "Music"
 		match fade:
 			true:
 				musicPlayer.volume_db = musicMuteVolume

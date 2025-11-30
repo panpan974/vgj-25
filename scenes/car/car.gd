@@ -46,8 +46,10 @@ var time_engine_accel_held: float = 0.0
 var is_direction_random:bool = false
 
 
-signal on_volant_broken()
+signal on_volant_broken_car()
 signal on_volant_repaired_car()
+# signal on_fuel_tank_broken_car()
+# signal on_fuel_tank_repaired_car()
 
 func _ready():
 	# Enregistrer les positions initiales des boutons directionnels
@@ -72,18 +74,12 @@ func _ready():
 	button_brake.set_interaction_ui_state.emit(InteractionUI.UIStates.Info)
 	PlayerManager.on_player_added.connect(spawn_player)
 	fuel_tank.on_fuel_tank_repaired.connect(_on_fuel_tank_repaired)
+	fuel_tank.on_fuel_tank_broken.connect(_on_fuel_tank_broken)
 
 	#volant setup
 	volant.on_action_realised.connect(_on_volant_repaired)
-	volant.set_broken(true) # FOR DEBUGING
+	volant.set_broken(false) # FOR DEBUGING
 	volant._on_player_button_pressed.connect(_on_player_button_pressed)
-
-	#ITS CASSE SO WE NEED TO FUCK THE DIRECTIONS AND THE SPRITES DIRECTIONS.
-	volant.set_broken(true)
-	SodaAudioManager.play_sfx(sfx_volant_problem.resource_path, true)
-	on_volant_broken.emit()
-	randomize_buttonDir_positions()
-	#end test
 
 
 	problem_timer.wait_time = 30.0
@@ -233,7 +229,11 @@ func spawn_player(new_player: Player) -> void:
 func _on_fuel_tank_repaired(action: String, player: Player) -> void:
 	print_debug("Fuel tank repaired by player ", player.id)
 	SodaAudioManager.play_sfx(sfx_repaired.resource_path, false)
-	# fuel_tank.on_fuel_tank_repaired.emit()
+
+func _on_fuel_tank_broken(action: String, player: Player) -> void:
+	print_debug("Fuel tank broken by player ", player.id)
+	fuel_tank.interactable.set_broken(true)
+	# on_fuel_tank_broken_car.emit()
 
 func _on_volant_repaired(action: String, player: Player) -> void:
 	volant.set_broken(false)
@@ -241,6 +241,7 @@ func _on_volant_repaired(action: String, player: Player) -> void:
 	SodaAudioManager.play_sfx(sfx_repaired.resource_path, false)
 	on_volant_repaired_car.emit()
 	reset_buttonDir_positions()
+	
 
 func _on_problem_timer_timeout() -> void:
 	problem_timer.wait_time = randf_range(25.0, 45.0)
@@ -253,7 +254,8 @@ func _on_problem_timer_timeout() -> void:
 		if not volant.is_broken:
 			volant.set_broken(true)
 			SodaAudioManager.play_sfx(sfx_volant_problem.resource_path, true)
-			on_volant_broken.emit()
+			on_volant_broken_car.emit()
+			# on_volant_broken.emit()
 			#ITS CASSE SO WE NEED TO FUCK THE DIRECTIONS AND THE SPRITES DIRECTIONS.
 			randomize_buttonDir_positions()
 	

@@ -41,6 +41,7 @@ func _process(delta: float) -> void:
 
 func fuel_tank_broken() -> void:
     interactable.set_broken(true)
+    on_fuel_tank_broken.emit()
     SodaAudioManager.play_sfx(sfx_fuel_problem.resource_path, true)
     interactable.on_action_realised.connect(_on_fuel_tank_repaired)
 

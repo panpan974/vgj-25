@@ -11,7 +11,9 @@ extends Node
 
 
 var tank_broken: bool = false
+var volant_broken: bool = false
 var fuel_timer: Timer = null
+var volant_timer: Timer = null
 
 func _ready() -> void:
     GameRecuperator.all_systems_ready.connect(_on_all_systems_ready)
@@ -25,6 +27,8 @@ func _on_all_systems_ready():
     if car:
         car.fuel_tank.on_fuel_tank_broken.connect(play_sfx_fuel)
         car.fuel_tank.on_fuel_tank_repaired.connect(stop_sfx_fuel)
+        car.on_volant_broken_car.connect(play_sfx_volant)
+        car.on_volant_repaired_car.connect(stop_sfx_volant)
 
 # Joue un son aléatoire de la liste radio_fuel
 func play_sfx_fuel():
@@ -58,9 +62,30 @@ func _on_fuel_timer_timeout():
         play_sfx_fuel()
 
 func play_sfx_volant():
+    #joue un son aleatoire de la liste radio_volant
+    volant_broken = true
     if radio_volant.size() == 0:
         return
     var idx = randi() % radio_volant.size()
     var stream = radio_volant[idx]
     if stream:
         SodaAudioManager.play_sfx(stream.resource_path)
+    # Lance ou relance le timer
+    if not volant_timer:
+        volant_timer = Timer.new()
+        volant_timer.wait_time = 10.0
+        volant_timer.one_shot = false
+        add_child(volant_timer)
+        volant_timer.timeout.connect(_on_volant_timer_timeout)
+    if not volant_timer.is_stopped():
+        volant_timer.stop()
+    volant_timer.start()
+
+func stop_sfx_volant():
+    if volant_timer:
+        volant_timer.stop()
+func _on_volant_timer_timeout():
+    if volant_broken:
+        play_sfx_volant()
+
+
