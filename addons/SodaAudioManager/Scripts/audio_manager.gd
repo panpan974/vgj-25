@@ -70,16 +70,18 @@ func stop_music(fade: bool = true, fade_duration: float = 1.0) -> void:
 			currentMusic = null
 	
 #SFX functions
-func play_sfx(soundPath: String) -> void:
-	if soundPath == "":
-		push_error("ERROR: The path to the sound sfx file cannot be an empty string.")
-		return
-		
+func play_sfx(soundPath: String, loop: bool = false) -> void:
+
 	var sound = load(soundPath)
 	if !sound:
 		push_error("ERROR: The sound sfx load is falied. Please verify the path to file.")
 		return
-		
+
+	# Vérifie si le même SFX est déjà en train de jouer
+	for child in containerSfx.get_children():
+		if child is SodaSFX and child.stream == sound and child.playing:
+			return # Ne joue pas le même SFX plusieurs fois
+
 	var sfx: SodaSFX = SodaSFX.new()
 	containerSfx.add_child(sfx)
 	sfx.currentType = sfx.TYPES.GENERAl
