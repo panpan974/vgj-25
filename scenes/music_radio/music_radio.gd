@@ -24,7 +24,7 @@ func _on_all_systems_ready():
     var car = GameRecuperator.get_car()
     if car:
         car.on_fuel_tank_broken.connect(play_sfx_fuel)
-        car.on_fuel_tank_repaired.connect(stop_sfx_fuel)
+        car.on_fuel_tank_repaired_car.connect(stop_sfx_fuel)
 
 # Joue un son aléatoire de la liste radio_fuel
 func play_sfx_fuel():

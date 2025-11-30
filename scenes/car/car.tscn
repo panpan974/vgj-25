@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://o5yjnavsmw2y"]
+[gd_scene load_steps=49 format=4 uid="uid://o5yjnavsmw2y"]
 
 [ext_resource type="Script" uid="uid://dluos0mpkxtsg" path="res://scenes/car/car.gd" id="1_yr3gr"]
 [ext_resource type="Material" uid="uid://dq4woh5mb74db" path="res://scenes/car/materials/Pneu.tres" id="2_krfcv"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bw4qlac47w5pv" path="res://scenes/music_radio/music_radio.tscn" id="10_dmhln"]
 [ext_resource type="PackedScene" uid="uid://b5heevmv432r" path="res://scenes/car/Tuture.glb" id="10_duf8q"]
 [ext_resource type="PackedScene" uid="uid://bop78ynmwoxle" path="res://scenes/interactable/smoke_fx/black_smoke.tscn" id="10_krfcv"]
+[ext_resource type="PackedScene" uid="uid://b8hdmudpqmxk3" path="res://scenes/car/volant.tscn" id="11_fe2oh"]
 [ext_resource type="Script" path="res://scenes/interactable/smoke_fx/black_smoke.gd" id="11_ysjjl"]
 [ext_resource type="AudioStream" uid="uid://c7a4cn8o536x7" path="res://sounds/Radio/radio_fuel_1.mp3" id="13_6fym5"]
 [ext_resource type="AudioStream" uid="uid://ccfnun64c5sku" path="res://sounds/Radio/radio_fuel_2.mp3" id="14_jl66a"]
@@ -286,6 +287,10 @@ ui_data = ExtResource("8_xs4xl")
 
 [node name="BlackSmoke" parent="Inside/All_Interactables/FuelTank" instance=ExtResource("10_krfcv")]
 script = ExtResource("11_ysjjl")
+
+[node name="Volant" parent="Inside/All_Interactables" instance=ExtResource("11_fe2oh")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.5)
 
 [node name="Shape" parent="." instance=ExtResource("10_duf8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0079017, -0.5860295, 0)

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddb1rvmsvsrlv"]
+
+[ext_resource type="Script" uid="uid://ceekfg6pphvc" path="res://scenes/car/spam_button_press.gd" id="1_iyk0q"]
+
+[node name="SpamButtonPress" type="Node"]
+script = ExtResource("1_iyk0q")

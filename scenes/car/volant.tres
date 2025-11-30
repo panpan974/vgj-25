@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InteractionUIData" load_steps=3 format=3 uid="uid://b5aak5yerbhl5"]
+
+[ext_resource type="Script" uid="uid://byw3ex4ah22wn" path="res://src/ui/interaction_ui/interaction_ui_data.gd" id="1_1k7k1"]
+[ext_resource type="Texture2D" uid="uid://ceaj17un1qht6" path="res://sprites/ui/Positional_Prompts_Up.png" id="1_4c5ay"]
+
+[resource]
+script = ExtResource("1_1k7k1")
+info_text = "Directions normales"
+instruction_icon = ExtResource("1_4c5ay")
+instruction_text = "Appuye vite !"
+has_instruction_slider = true
+metadata/_custom_type_script = "uid://byw3ex4ah22wn"
