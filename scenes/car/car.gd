@@ -8,6 +8,7 @@ class_name Car
 @export var engine_accel_curve: Curve
 @export var engine_max_force_curve: Curve
 
+@export var sfx_volant_problem: AudioStream = null
 @export var sfx_repaired: AudioStream = null
 @export var sfx_repair_in_progress: AudioStream = null
 
@@ -18,6 +19,7 @@ class_name Car
 @onready var top_car: Marker3D = %top_car
 
 @onready var fuel_tank: FuelTank = %FuelTank
+@onready var volant: Interactable = %Volant
 # @onready var direction_sprite: Sprite3D = %direction_sprite
 
 # Node à faire tourner (exporté)
@@ -31,6 +33,9 @@ var ending_node: Node = null
 var problem_timer: Timer = Timer.new()
 
 var time_engine_accel_held: float = 0.0
+
+signal on_volant_broken()
+signal on_volant_repaired_car()
 
 func _ready():
 	#Register this in GameRecuperator (autoload)
@@ -49,6 +54,12 @@ func _ready():
 	button_brake.set_interaction_ui_state.emit(InteractionUI.UIStates.Info)
 	PlayerManager.on_player_added.connect(spawn_player)
 	fuel_tank.on_fuel_tank_repaired.connect(_on_fuel_tank_repaired)
+
+	#volant setup
+	volant.on_action_realised.connect(_on_volant_repaired)
+	volant.set_broken(true) # FOR DEBUGING
+	volant._on_player_button_pressed.connect(_on_player_button_pressed)
+
 	problem_timer.wait_time = 30.0
 	problem_timer.one_shot = false
 	add_child(problem_timer)
@@ -177,6 +188,13 @@ func spawn_player(new_player: Player) -> void:
 func _on_fuel_tank_repaired(action: String, player: Player) -> void:
 	print_debug("Fuel tank repaired by player ", player.id)
 	SodaAudioManager.play_sfx(sfx_repaired.resource_path, false)
+	# fuel_tank.on_fuel_tank_repaired.emit()
+
+func _on_volant_repaired(action: String, player: Player) -> void:
+	volant.set_broken(false)
+	print_debug("Volant repaired by player ", player.id)
+	SodaAudioManager.play_sfx(sfx_repaired.resource_path, false)
+	on_volant_repaired_car.emit()
 
 func _on_problem_timer_timeout() -> void:
 	problem_timer.wait_time = randf_range(25.0, 45.0)
@@ -185,3 +203,8 @@ func _on_problem_timer_timeout() -> void:
 	# 	if not fuel_tank.is_broken:
 	# 		fuel_tank.set_broken(true)
 	# 		on_fuel_tank_broken.emit()
+	if randi() % 2 == 0:
+		if not volant.is_broken:
+			volant.set_broken(true)
+			SodaAudioManager.play_sfx(sfx_volant_problem.resource_path, true)
+			on_volant_broken.emit()

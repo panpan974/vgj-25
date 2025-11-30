@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://bvrynbhilrjvv"]
+
+[ext_resource type="PackedScene" uid="uid://cocx4styfesnu" path="res://scenes/player_spawner/player_spawner.tscn" id="1_466po"]
+[ext_resource type="PackedScene" uid="uid://bke7lmv57wto1" path="res://src/component/interactable/interactable.tscn" id="2_i3dk5"]
+[ext_resource type="Resource" uid="uid://bs1gvb0a5qi3b" path="res://src/ui/interaction_ui/data/FuelTank.tres" id="3_4gli4"]
+[ext_resource type="PackedScene" uid="uid://54lrjilh5q88" path="res://src/car/LongButtonPress.tscn" id="4_eh50n"]
+[ext_resource type="Script" uid="uid://ceekfg6pphvc" path="res://scenes/car/spam_button_press.gd" id="5_4gli4"]
+[ext_resource type="PackedScene" uid="uid://bop78ynmwoxle" path="res://scenes/interactable/smoke_fx/black_smoke.tscn" id="5_hkjro"]
+[ext_resource type="Script" path="res://scenes/interactable/smoke_fx/black_smoke.gd" id="6_44nf1"]
+[ext_resource type="Resource" uid="uid://b5aak5yerbhl5" path="res://scenes/car/volant.tres" id="7_gjje1"]
+[ext_resource type="PackedScene" uid="uid://ddb1rvmsvsrlv" path="res://scenes/car/spam_button_press.tscn" id="8_c8h3j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wid84"]
+size = Vector3(4, 1, 14)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ap4a0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7nvjx"]
+size = Vector3(1.7636871, 1.9428711, 1.7861938)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="player_spawner" parent="." instance=ExtResource("1_466po")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13137865, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -0.5, -2.5)
+shape = SubResource("BoxShape3D_wid84")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -2.5)
+size = Vector3(4, 1, 14)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.24615362, -0.40891537, 0.87874717, 0, 0.90664387, 0.4218968, -0.96923083, -0.10385142, 0.22317368, 12.042159, 5.7815814, 3.0583231)
+
+[node name="FuelTank" parent="." node_paths=PackedStringArray("collision_shape") instance=ExtResource("2_i3dk5")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0485268, 0.9647081, 0)
+ui_data = ExtResource("3_4gli4")
+collision_shape = NodePath("CollisionShape3D")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="FuelTank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.041992188, 0)
+material_override = SubResource("StandardMaterial3D_ap4a0")
+size = Vector3(1, 1.0839844, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FuelTank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.274292, 0.52856445, 0)
+shape = SubResource("BoxShape3D_7nvjx")
+
+[node name="LongButtonPress" parent="FuelTank" instance=ExtResource("4_eh50n")]
+script = ExtResource("5_4gli4")
+ui_data = ExtResource("3_4gli4")
+action_name = "x"
+required_duration = 3.0
+min_spam_per_second = 4.0
+reset_delay = 0.5
+
+[node name="BlackSmoke" parent="FuelTank" instance=ExtResource("5_hkjro")]
+script = ExtResource("6_44nf1")
+
+[node name="Volant" parent="." node_paths=PackedStringArray("collision_shape") instance=ExtResource("2_i3dk5")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.54917336, -6.5)
+ui_data = ExtResource("7_gjje1")
+collision_shape = NodePath("CollisionShape3D")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Volant"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6630332, 0)
+material_override = SubResource("StandardMaterial3D_ap4a0")
+size = Vector3(1, 1.0839844, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Volant"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.274292, 2.1496055, 0)
+shape = SubResource("BoxShape3D_7nvjx")
+
+[node name="SpamButtonPress" parent="Volant" instance=ExtResource("8_c8h3j")]
+ui_data = ExtResource("7_gjje1")
+action_name = "y"
+
+[node name="BlackSmoke" parent="Volant" instance=ExtResource("5_hkjro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("6_44nf1")

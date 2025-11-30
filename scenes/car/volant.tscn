@@ -1,0 +1,69 @@
+[gd_scene load_steps=13 format=3 uid="uid://b8hdmudpqmxk3"]
+
+[ext_resource type="Script" uid="uid://bvk8sxeo724g2" path="res://src/component/interactable/interactable.gd" id="1_gosq0"]
+[ext_resource type="Resource" uid="uid://b5aak5yerbhl5" path="res://scenes/car/volant.tres" id="2_w5vdy"]
+[ext_resource type="PackedScene" uid="uid://b3caqbbuauovy" path="res://scenes/ui_viewport_buttons/ui_viewport_buttons.tscn" id="3_s8cn5"]
+[ext_resource type="PackedScene" uid="uid://dlsi5ij60isjr" path="res://src/ui/interaction_ui/InteractionUI.tscn" id="4_amrnc"]
+[ext_resource type="PackedScene" uid="uid://ddb1rvmsvsrlv" path="res://scenes/car/spam_button_press.tscn" id="5_1umv1"]
+[ext_resource type="PackedScene" uid="uid://bop78ynmwoxle" path="res://scenes/interactable/smoke_fx/black_smoke.tscn" id="6_62n6s"]
+[ext_resource type="Script" path="res://scenes/interactable/smoke_fx/black_smoke.gd" id="7_r4of4"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hs172"]
+viewport_path = NodePath("UIViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8v16h"]
+shading_mode = 0
+diffuse_mode = 3
+albedo_texture = SubResource("ViewportTexture_hs172")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wcfjm"]
+lightmap_size_hint = Vector2i(27, 32)
+size = Vector2(3, 4)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3ski"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dmhln"]
+size = Vector3(1.7636871, 1.9428711, 1.7861938)
+
+[node name="Volant" type="Area3D" node_paths=PackedStringArray("collision_shape")]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_gosq0")
+ui_data = ExtResource("2_w5vdy")
+collision_shape = NodePath("CollisionShape3D")
+
+[node name="viewport_quad" parent="." instance=ExtResource("3_s8cn5")]
+unique_name_in_owner = true
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 0, 7.701765, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_8v16h")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_wcfjm")
+
+[node name="UIViewport" type="SubViewport" parent="."]
+unique_name_in_owner = true
+size = Vector2i(1024, 1500)
+render_target_update_mode = 4
+
+[node name="InteractionUI" parent="UIViewport" instance=ExtResource("4_amrnc")]
+unique_name_in_owner = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6630332, 0)
+material_override = SubResource("StandardMaterial3D_b3ski")
+size = Vector3(1, 1.0839844, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.274292, 2.1496055, 0)
+shape = SubResource("BoxShape3D_dmhln")
+
+[node name="SpamButtonPress" parent="." instance=ExtResource("5_1umv1")]
+ui_data = ExtResource("2_w5vdy")
+action_name = "y"
+
+[node name="BlackSmoke" parent="." instance=ExtResource("6_62n6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("7_r4of4")
