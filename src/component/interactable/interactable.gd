@@ -4,7 +4,7 @@ class_name Interactable
 @export var ui_data: InteractionUIData
 @export var collision_shape: CollisionShape3D
 
-var is_interactable: bool = true
+var is_broken: bool = false
 
 var is_active: bool = false
 
@@ -13,10 +13,11 @@ signal on_deactivated()
 signal on_is_active(delta: float)
 signal on_action_realised(action: String, player: Player)
 signal set_interaction_ui_state(state: InteractionUI.UIStates)
+signal on_broken_state_changed(state: bool)
 
-signal _on_player_button_pressed(action: String)
-signal _on_player_button_released(action: String)
-signal _on_player_button_pressed_time_update(action: String, time_held: float)
+signal _on_player_button_pressed(action: String, player: Player)
+signal _on_player_button_released(action: String, player: Player)
+signal _on_player_button_pressed_time_update(action: String, time_held: float, player: Player)
 
 @onready var ui_canvas_layer: InteractionUI = %InteractionUI
 @onready var ui_viewport: SubViewport = %UIViewport
@@ -41,8 +42,8 @@ func _ready():
         ui_canvas_layer.setup_signals(self)
         ui_canvas_layer.interaction_ui_data = ui_data
         ui_canvas_layer.setup_all()
-    on_activated.connect(show_quad)
-    on_deactivated.connect(hide_ui)
+        on_activated.connect(show_quad)
+        on_deactivated.connect(hide_ui)
 
 
 func _process(delta: float) -> void:
@@ -52,12 +53,12 @@ func _process(delta: float) -> void:
             for action in players_buttons_pressed[player].keys():
                 if players_buttons_pressed[player][action] >= 0:
                     players_buttons_pressed[player][action] += delta
-                    _on_player_button_pressed_time_update.emit(action, players_buttons_pressed[player][action])
+                    _on_player_button_pressed_time_update.emit(action, players_buttons_pressed[player][action], player)
 
         
 func show_quad():
     # Apparition élégante
-    viewport_quad.scale = Vector3(0.1, 0.1, 0.1)
+    viewport_quad.scale = Vector3(0.0, 0.0, 0.0)
     viewport_quad.visible = true
     var tween = create_tween()
     tween.tween_property(viewport_quad, "scale", Vector3.ONE, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
@@ -65,6 +66,7 @@ func show_quad():
 func hide_ui():
     var tween = create_tween()
     tween.tween_property(viewport_quad, "scale", Vector3(0.0, 0.0, 0.0), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+    await tween.finished
     viewport_quad.visible = false
     
 
@@ -73,7 +75,6 @@ func _on_body_entered(body: Node3D):
         # print("Un joueur est entré dans la zone !")
         on_activated.emit()
         is_active = true
-        viewport_quad.visible = true
         (body as Player).on_button_pressed.connect(_player_button_pressed.bind(body))
         (body as Player).on_button_released.connect(_player_button_released.bind(body))
         players_buttons_pressed[body] = {}
@@ -92,14 +93,18 @@ func _on_body_exited(body: Node3D):
 
 func _player_button_pressed(action: String, player: Player) -> void:
     players_buttons_pressed[player][action] = 0
-    _on_player_button_pressed.emit(action)
+    _on_player_button_pressed.emit(action, player)
 
 func _player_button_released(action: String, player: Player) -> void:
     players_buttons_pressed[player][action] = -1
-    _on_player_button_released.emit(action)
+    _on_player_button_released.emit(action, player)
 
 func _is_button_pressed(action: String, player: Player) -> bool:
     if players_buttons_pressed.has(player):
         if players_buttons_pressed[player].has(action):
             return players_buttons_pressed[player][action]
     return false
+
+func set_broken(state: bool) -> void:
+    is_broken = state
+    on_broken_state_changed.emit(state)

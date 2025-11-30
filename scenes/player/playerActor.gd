@@ -41,7 +41,7 @@ func play_animation(anim_name: String) -> void:
 func player_input_pressed(action: String) -> void:
 	# Example handling of input actions
 	if action == InputMapper.X_ACTION:
-		if(current_interactable != null):
+		if (current_interactable != null):
 			current_interactable._press_x_action(self)
 		else:
 			# print_debug("Player ", id, " pressed X action")
@@ -54,12 +54,12 @@ func player_input_released(action: String) -> void:
 	# Example handling of input release actions
 	if action == InputMapper.X_ACTION:
 		# print_debug("Player ", id, " released X action")
-		if(current_interactable != null):
+		if (current_interactable != null):
 			current_interactable._release_x_action(self)
 
 	elif action == InputMapper.Y_ACTION:
 		# print_debug("Player ", id, " released Y action")
-		if(current_interactable != null):
+		if (current_interactable != null):
 			current_interactable._release_y_action(self)
 
 func _on_movement_vector(movement: Vector2) -> void:
@@ -79,7 +79,6 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, speed * delta * 10)
 
 
-
 	# Pas de gestion de la gravité ni du saut
 	move_and_slide()
 
@@ -95,10 +94,9 @@ func _process(delta: float) -> void:
 	
 	# # Flip le sprite selon la direction du mouvement (gauche/droite)
 	if movement.y != 0 or movement.x != 0:
-		print_debug("Movement length: ", movement)
-		print_debug("Velocity", velocity)
-		sprite.flip_h = movement.x < 0	
-
+		# print_debug("Movement length: ", movement)
+		# print_debug("Velocity", velocity)
+		sprite.flip_h = movement.x < 0
 
 
 	# Animation idle si le joueur ne bouge pas

@@ -25,7 +25,7 @@ var rotating_forward := false
 var rotating_backward := false
 # var _rotation_node: Node3D = null
 var ending_node: Node = null
-
+var problem_timer: Timer = Timer.new()
 
 func _ready():
 	#Register this in GameRecuperator (autoload)
@@ -33,17 +33,22 @@ func _ready():
 	GameRecuperator.all_systems_ready.connect(_on_all_systems_ready)
 
 	# Connexion des signaux des boutons directionnels
-	buttonDir_top.on_activated.connect(start_rotate_forward)
-	buttonDir_top.on_deactivated.connect(stop_rotate_forward)
-	buttonDir_bottom.on_activated.connect(start_rotate_backward)
-	buttonDir_bottom.on_deactivated.connect(stop_rotate_backward)
+	buttonDir_top.on_activated.connect(start_rotate_backward)
+	buttonDir_top.on_deactivated.connect(stop_rotate_backward)
+	buttonDir_bottom.on_activated.connect(start_rotate_forward)
+	buttonDir_bottom.on_deactivated.connect(stop_rotate_forward)
 	button_accelerate.on_is_active.connect(add_engine_force)
 	button_brake.on_is_active.connect(slow_engine_force)
 	button_accelerate.set_interaction_ui_state.emit(InteractionUI.UIStates.Info)
 	button_brake.set_interaction_ui_state.emit(InteractionUI.UIStates.Info)
 	PlayerManager.on_player_added.connect(spawn_player)
-	# fuel_tank.on_action_realised.connect(_on_fuel_tank_repaired)
-
+	fuel_tank.on_action_realised.connect(_on_fuel_tank_repaired)
+	fuel_tank.set_broken(false)
+	problem_timer.wait_time = 5.0
+	problem_timer.one_shot = false
+	add_child(problem_timer)
+	problem_timer.start()
+	problem_timer.timeout.connect(_on_problem_timer_timeout)
 	# # Récupérer le node à faire tourner
 	# if rotation_target != NodePath(""):
 	# 	_rotation_node = get_node(rotation_target)
@@ -57,6 +62,9 @@ func _on_all_systems_ready():
 func _process(delta: float) -> void:
 	if not ending_node:
 		return
+	if fuel_tank.is_broken:
+		# Reduce speed if fuel tank is broken
+		engine_force *= 0.98
 	# Rotate the y of the direction sprite to always face the ending node
 	# var to_ending = (ending_node.global_transform.origin - global_transform.origin).normalized()
 	# var target_rotation = atan2(to_ending.x, to_ending.z)
@@ -108,12 +116,18 @@ func stop_rotate_backward():
 	rotating_backward = false
 
 func add_engine_force(delta: float) -> void:
+	if fuel_tank.is_broken:
+		return
 	engine_force -= 100 * delta
-	button_accelerate.ui_data.info_text = "Accelerating...\nForce: " + str(round(-engine_force))
+	if button_accelerate.ui_data != null:
+		button_accelerate.ui_data.info_text = "Accelerating...\nForce: " + str(round(-engine_force))
 
 func slow_engine_force(delta: float) -> void:
+	if fuel_tank.is_broken:
+		return
 	engine_force += 100 * delta
-	button_brake.ui_data.info_text = "Braking...\nForce: " + str(round(-engine_force))
+	if button_brake.ui_data != null:
+		button_brake.ui_data.info_text = "Braking...\nForce: " + str(round(-engine_force))
 
 func get_top_car() -> Marker3D:
 	return top_car
@@ -121,3 +135,12 @@ func get_top_car() -> Marker3D:
 func spawn_player(new_player: Player) -> void:
 	add_child(new_player)
 	new_player.global_transform.origin = global_transform.origin + Vector3(0, 1, 0)
+
+func _on_fuel_tank_repaired(action: String, player: Player) -> void:
+	fuel_tank.set_broken(false)
+
+func _on_problem_timer_timeout() -> void:
+	# Randomly 50% chance to break the fuel tank
+	if randi() % 4 == 0:
+		if not fuel_tank.is_broken:
+			fuel_tank.set_broken(true)
