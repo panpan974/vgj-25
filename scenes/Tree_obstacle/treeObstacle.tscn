@@ -1,14 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://1iv30qlai01d"]
+[gd_scene load_steps=4 format=3 uid="uid://1iv30qlai01d"]
 
 [ext_resource type="Texture2D" uid="uid://cpu5mx25xmomh" path="res://sprites/512_test.png" id="1_ju333"]
+[ext_resource type="ArrayMesh" uid="uid://bbyl28jh6bjmu" path="res://scenes/world/models/Hilly_Prop_Tree_Pine_1.obj" id="2_hvw6o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ju333"]
-size = Vector3(19, 50, 6)
+size = Vector3(7.9993896, 50, 6)
 
 [node name="Tree" type="StaticBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 24.5, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44354248, 24.5, -0.5)
 shape = SubResource("BoxShape3D_ju333")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
@@ -17,6 +18,6 @@ visible = false
 texture = ExtResource("1_ju333")
 region_rect = Rect2(0, 0, 47.952103, 48)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1167603, 24.587639, -0.5140686)
-size = Vector3(18.76648, 49, 5.963928)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(14.23, 0, 0, 0, 14.23, 0, 0, 0, 14.23, -0.42076302, 0, 0)
+mesh = ExtResource("2_hvw6o")

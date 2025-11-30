@@ -302,14 +302,6 @@ transform = Transform3D(60.165, 0, 0, 0, 60.165, 0, 0, 0, 60.165, 1.5258789e-05,
 mesh = ExtResource("14_mxkvs")
 skeleton = NodePath("../../RockObstacle3")
 
-[node name="RockObstacle11" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 272.5, 1, 147)
-
-[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle11"]
-transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 144.00002, 0, -288)
-mesh = ExtResource("9_dlabj")
-skeleton = NodePath("../../RockObstacle3")
-
 [node name="RockObstacle12" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
 transform = Transform3D(0.6111126, 0, 0.7915436, 0, 1, 0, -0.7915436, 0, 0.6111126, 418.5, 1, -193)
 
@@ -350,14 +342,6 @@ transform = Transform3D(60.165, 0, 0, 0, 60.165, 0, 0, 0, 60.165, 1.5258789e-05,
 mesh = ExtResource("14_mxkvs")
 skeleton = NodePath("../../RockObstacle3")
 
-[node name="RockObstacle14" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
-transform = Transform3D(0.6111126, 0, 0.7915436, 0, 1, 0, -0.7915436, 0, 0.6111126, -9.084503, 1, 84.49951)
-
-[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle14"]
-transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
-mesh = ExtResource("9_dlabj")
-skeleton = NodePath("../../RockObstacle3")
-
 [node name="RockObstacle15" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
 transform = Transform3D(0.6111126, 0, 0.7915436, 0, 1, 0, -0.7915436, 0, 0.6111126, 392.9155, 1, 84.49951)
 
@@ -366,19 +350,11 @@ transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
 mesh = ExtResource("9_dlabj")
 skeleton = NodePath("../../RockObstacle3")
 
-[node name="RockObstacle17" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 53.5, 1, -163)
-
-[node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle17"]
-transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
-mesh = ExtResource("9_dlabj")
-skeleton = NodePath("../../RockObstacle3")
-
 [node name="RockObstacle18" parent="Obstacles_Terrain" instance=ExtResource("2_1fp7r")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -23.5, 1, -163)
 
 [node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle18"]
-transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, -76, 0, -47.000008)
 mesh = ExtResource("9_dlabj")
 skeleton = NodePath("../../RockObstacle3")
 
@@ -386,7 +362,7 @@ skeleton = NodePath("../../RockObstacle3")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.5, 1, -92.70187)
 
 [node name="Mountain1" type="MeshInstance3D" parent="Obstacles_Terrain/RockObstacle19"]
-transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 0, 0, 0)
+transform = Transform3D(11.485, 0, 0, 0, 11.485, 0, 0, 0, 11.485, 7.6293945e-06, 0, -113)
 mesh = ExtResource("9_dlabj")
 skeleton = NodePath("../../RockObstacle3")
 
@@ -518,4 +494,149 @@ shape = SubResource("BoxShape3D_lbnhc")
 [node name="Tree" parent="." instance=ExtResource("2_1fp7r")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 319.791, 0, -438.011)
 
+[node name="Tree2" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 156.79099, 0, -396.011)
+
+[node name="Tree3" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18.790985, 0, 198.98901)
+
+[node name="Tree4" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18.790985, 0, 241.98901)
+
+[node name="Tree5" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18.790985, 0, 285.989)
+
+[node name="Tree6" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -472.209, 0, -99.01099)
+
+[node name="Tree7" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -420.80902, 0, -99.01099)
+
+[node name="Tree8" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -232.80902, 0, -99.01099)
+
+[node name="Tree9" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -195.50902, 0, -99.01099)
+
+[node name="Tree10" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 431.49097, 0, -457.011)
+
+[node name="Tree11" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 461.49097, 0, -283.011)
+
+[node name="Tree12" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 189.49097, 0, -153.01099)
+
+[node name="Tree13" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 227.49097, 0, -153.01099)
+
+[node name="Tree14" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 201.49097, 0, -182.01099)
+
+[node name="Tree15" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 53.490967, 0, 10.989014)
+
+[node name="Tree16" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 118.79097, 0, 10.989014)
+
+[node name="Tree17" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 201.79097, 0, 10.989014)
+
+[node name="Tree18" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 201.79097, 0, -56.010986)
+
+[node name="Tree19" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 201.79097, 0, -115.01099)
+
+[node name="Tree20" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 201.79097, 0, 143.61026)
+
+[node name="Tree21" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 337.79095, 0, 143.61026)
+
+[node name="Tree22" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 16.055786, 0, 333.21027)
+
+[node name="Tree23" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 16.055786, 0, 379.31027)
+
+[node name="Tree24" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 160.79097, 0, 10.989014)
+
+[node name="Tree25" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 204.79097, 0, -22.010986)
+
+[node name="Tree26" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 86.79097, 0, 10.989014)
+
+[node name="Tree27" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 240.79097, 0, 145.88902)
+
+[node name="Tree28" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 306.79095, 0, 145.88902)
+
+[node name="Tree29" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 381.79095, 0, 145.88902)
+
+[node name="Tree30" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 9.490967, 0, 10.989014)
+
+[node name="Tree31" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 13.790955, 0, 112.88902)
+
+[node name="Tree32" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 13.790955, 0, 78.88902)
+
+[node name="Tree33" parent="." instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 13.790955, 0, 49.889023)
+
+[node name="Tree33" parent="Tree33" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 70.61487, 0, -52.77082)
+
+[node name="Tree34" parent="Tree33" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 101.33909, 0, -71.533066)
+
+[node name="Tree35" parent="Tree33" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 228.5716, 0, -360.1381)
+
+[node name="Tree36" parent="Tree33" instance=ExtResource("2_1fp7r")]
+transform = Transform3D(0.5211734, 0, 0.8534508, 0, 1, 0, -0.8534508, 0, 0.5211734, 186.6683, 0, -367.3571)
+
 [editable path="EndingArea"]
+[editable path="Tree"]
+[editable path="Tree2"]
+[editable path="Tree3"]
+[editable path="Tree4"]
+[editable path="Tree5"]
+[editable path="Tree6"]
+[editable path="Tree7"]
+[editable path="Tree8"]
+[editable path="Tree9"]
+[editable path="Tree10"]
+[editable path="Tree11"]
+[editable path="Tree12"]
+[editable path="Tree13"]
+[editable path="Tree14"]
+[editable path="Tree15"]
+[editable path="Tree16"]
+[editable path="Tree17"]
+[editable path="Tree18"]
+[editable path="Tree19"]
+[editable path="Tree20"]
+[editable path="Tree21"]
+[editable path="Tree22"]
+[editable path="Tree23"]
+[editable path="Tree24"]
+[editable path="Tree25"]
+[editable path="Tree26"]
+[editable path="Tree27"]
+[editable path="Tree28"]
+[editable path="Tree29"]
+[editable path="Tree30"]
+[editable path="Tree31"]
+[editable path="Tree32"]
+[editable path="Tree33"]
+[editable path="Tree33/Tree33"]
+[editable path="Tree33/Tree34"]
+[editable path="Tree33/Tree35"]
+[editable path="Tree33/Tree36"]

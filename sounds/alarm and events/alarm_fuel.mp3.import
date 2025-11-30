@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d1amh3t65e6qr"
+path="res://.godot/imported/alarm_fuel.mp3-ff0963e17d795b048af4eb7ae0d88a3e.mp3str"
+
+[deps]
+
+source_file="res://sounds/alarm and events/alarm_fuel.mp3"
+dest_files=["res://.godot/imported/alarm_fuel.mp3-ff0963e17d795b048af4eb7ae0d88a3e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

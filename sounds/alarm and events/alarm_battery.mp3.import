@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c5rwtsciyr6uv"
+path="res://.godot/imported/alarm_battery.mp3-8e010ad460ad904618ef612498ac984b.mp3str"
+
+[deps]
+
+source_file="res://sounds/alarm and events/alarm_battery.mp3"
+dest_files=["res://.godot/imported/alarm_battery.mp3-8e010ad460ad904618ef612498ac984b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
