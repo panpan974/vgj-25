@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c4aoax5qqxl4k"
+path="res://.godot/imported/Cave_Prop_Railway_Curve_Large.obj-031fd0c31793441e2980bd0d7f140dfd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Cave_Prop_Railway_Curve_Large.obj-031fd0c31793441e2980bd0d7f140dfd.mesh"]
+
+source_file="res://scenes/world/models/Cave_Prop_Railway_Curve_Large.obj"
+dest_files=["res://.godot/imported/Cave_Prop_Railway_Curve_Large.obj-031fd0c31793441e2980bd0d7f140dfd.mesh", "res://.godot/imported/Cave_Prop_Railway_Curve_Large.obj-031fd0c31793441e2980bd0d7f140dfd.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

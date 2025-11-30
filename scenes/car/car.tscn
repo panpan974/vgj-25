@@ -484,6 +484,9 @@ ui_data = ExtResource("8_xs4xl")
 [node name="BlackSmoke" parent="Tuture/All_Interactables/FuelTank" instance=ExtResource("10_krfcv")]
 script = ExtResource("11_ysjjl")
 
+[node name="BlackSmoke" parent="Tuture" instance=ExtResource("7_s371w")]
+transform = Transform3D(1, 0, 0, 0, 0.9927217, -0.12043139, 0, 0.12043139, 0.9927217, 3.100831, 0, 7.7363443)
+
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6835756, 2.755127, 0)
 shape = SubResource("BoxShape3D_tcn38")

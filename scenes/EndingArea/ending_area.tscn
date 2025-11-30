@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dakporhdg1nja" path="res://sprites/UI_Direction.png" id="2_2tkvj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e6ftq"]
-size = Vector3(5, 4, 7)
+size = Vector3(19, 4, 23)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o71pr"]
 albedo_color = Color(0, 1, 0, 1)
@@ -15,13 +15,13 @@ albedo_color = Color(0, 1, 0, 1)
 script = ExtResource("1_o71pr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2)
 shape = SubResource("BoxShape3D_e6ftq")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8323609, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115234375, -1.8323609, 0.5)
 material_override = SubResource("StandardMaterial3D_o71pr")
-size = Vector3(5, 0.5352783, 7)
+size = Vector3(18, 0.5352783, 24)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
