@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dq4woh5mb74db"]
+
+[ext_resource type="Texture2D" uid="uid://ddtkv70bl6bvx" path="res://scenes/car/Tuture_Pneu.png" id="1_7qdks"]
+
+[resource]
+resource_name = "Pneu"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_7qdks")

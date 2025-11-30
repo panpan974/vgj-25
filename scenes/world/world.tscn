@@ -145,13 +145,18 @@ sky_material = SubResource("ProceduralSkyMaterial_fymcc")
 [sub_resource type="Environment" id="Environment_sygq6"]
 background_mode = 2
 sky = SubResource("Sky_fymcc")
-ambient_light_source = 3
 tonemap_mode = 3
+tonemap_white = 1.2
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.15454058, 0.16745526, 0.18754475, 1)
+fog_light_color = Color(0.237674, 0.26938874, 0.2722068, 1)
 fog_density = 0.5448
+fog_aerial_perspective = 0.15
+adjustment_enabled = true
+adjustment_brightness = 1.18
+adjustment_contrast = 1.1
+adjustment_saturation = 1.73
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_1fp7r")
@@ -636,8 +641,8 @@ environment = SubResource("Environment_sygq6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_color = Color(0.19408733, 0.2932556, 0.2767356, 1)
-light_energy = 2.888
+light_color = Color(0.12251391, 0.26521575, 0.4859925, 1)
+light_energy = 3.534
 shadow_enabled = true
 directional_shadow_mode = 1
 

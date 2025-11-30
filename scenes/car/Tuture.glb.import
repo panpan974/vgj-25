@@ -39,10 +39,30 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
+"Material.002": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://scenes/car/materials/Material.002.tres",
+"use_external/path": "uid://drg33twhfmwty"
+},
+"Material.003": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://scenes/car/materials/Material.003.tres",
+"use_external/path": "uid://crgvd2g1qq0ch"
+},
+"Material.004": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://scenes/car/materials/Material.004.tres",
+"use_external/path": "uid://dmapne4bp3l2i"
+},
 "MurFond": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://scenes/car/materials/MurFond.tres",
 "use_external/path": "uid://bew8f1y5g2es"
+},
+"Pneu": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://scenes/car/materials/Pneu.tres",
+"use_external/path": "uid://dq4woh5mb74db"
 },
 "Sol": {
 "use_external/enabled": true,

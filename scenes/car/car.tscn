@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=4 uid="uid://o5yjnavsmw2y"]
+[gd_scene load_steps=37 format=4 uid="uid://o5yjnavsmw2y"]
 
 [ext_resource type="Script" uid="uid://dluos0mpkxtsg" path="res://scenes/car/car.gd" id="1_yr3gr"]
-[ext_resource type="Texture2D" uid="uid://ddtkv70bl6bvx" path="res://scenes/car/Tuture_Pneu.png" id="2_krfcv"]
+[ext_resource type="Material" uid="uid://dq4woh5mb74db" path="res://scenes/car/materials/Pneu.tres" id="2_krfcv"]
+[ext_resource type="Shader" uid="uid://cu4tvtdwbg6ky" path="res://src/shader/rain.gdshader" id="4_ysjjl"]
 [ext_resource type="PackedScene" uid="uid://cgkexx5wptg6o" path="res://scenes/main_camera/main_camera.tscn" id="5_b3ski"]
 [ext_resource type="Texture2D" uid="uid://citfpp7iaud6x" path="res://src/car/buttons/Arrow_Turn.png" id="6_duf8q"]
 [ext_resource type="Texture2D" uid="uid://nbc3kogvpsu4" path="res://src/car/buttons/Arrow_UP_DOWN.png" id="7_krfcv"]
@@ -13,11 +14,15 @@
 [ext_resource type="PackedScene" uid="uid://bop78ynmwoxle" path="res://scenes/interactable/smoke_fx/black_smoke.tscn" id="10_krfcv"]
 [ext_resource type="Script" uid="uid://c53j2bk8kquwj" path="res://scenes/interactable/smoke_fx/black_smoke.gd" id="11_ysjjl"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gb6us"]
-resource_name = "Pneu"
-cull_mode = 2
-albedo_texture = ExtResource("2_krfcv")
-roughness = 0.5
+[sub_resource type="Curve" id="Curve_krfcv"]
+_limits = [0.0, 1.0, 0.0, 8.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(2.9625, 0.93832123), 0.0, 0.0, 0, 0, Vector2(4.8875003, 0.6465329), 0.0, 0.0, 0, 0, Vector2(7.9750004, 0.45437962), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_ysjjl"]
+_limits = [0.0, 600.0, 0.0, 8.0]
+_data = [Vector2(0, 454.8175), 0.0, 0.0, 0, 0, Vector2(1.4124999, 494.6715), 0.0, 0.0, 0, 0, Vector2(4.1375, 396.45984), 0.0, 0.0, 0, 0, Vector2(7.987499, 318.17517), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_rh3fv"]
 _surfaces = [{
@@ -43,7 +48,7 @@ _surfaces = [{
 "index_count": 372,
 "index_data": PackedByteArray("AAA2AAIAAAAgADYANwA4ADkANwA6ADgAOwA8AD0AOwA+ADwAPwASAEAAPwATABIAQQBCAEMAQQBEAEIARQBGAEcARQBIAEYASQAhAEoASQBLACEATABNAE4ATABPAE0AIgBQAAoAIgBRAFAAUgBTAFQAUgBVAFMAAwBWACMAAwBXAFYAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAJABkAAEAJABlAGQAZgBnAGgAZgBpAGcAJQBqACYAJQAEAGoAawAUAGwAawBtABQAbgBvAHAAbgBxAG8AcgBzAHQAcgAVAHMAdQB2AHcAdQB4AHYAeQAWAHoAeQB7ABYAfAB9AH4AfAB/AH0AgAALAIEAgAAnAAsAggCDAIQAggCFAIMADACGABcADACHAIYAiACJAIoAiACLAIkAjACNAI4AjACPAI0AGACQACgAGACRAJAAkgCTAJQAkgCVAJMAKQCWAJcAKQCYAJYAmQAFACoAmQAGAAUAmgArAAcAKwCbAJwAmgCbACsAmwCdABkAmwCeAJ0AnQCeAJ8AmgCeAJsAngCgACwAngChAKAAoAChAAkAngCiAKEAmgCiAJ4AoQCjAKQAoQCiAKMAowCiAC4AogAIAC0AogClAAgACAClAKYAogCaAKcAogCnAKUApQCoABsApQCnAKgAqACnAKkAqgCaADAAqwCaAKoApwCaAKsAqwCqABoApwCrAA0ADQCrAKwApwANAC8ArQA1AA4ANQCuAK8ArQCuADUArgCwABwArgCxALAAsACxALIArQCxAK4AsQA0ABAAsQCzADQANACzALQAsQAdALMArQAdALEAswC1ADMAswAdALUAtQAdALYAHQC3AA8AHQC4ALcAtwC4AB8AHQCtALkAHQC5ALgAuAC6ALsAuAC5ALoAugC5AB4AvACtADIAvQCtALwAuQCtAL0AvQC8AL4AuQC9AL8AvwC9ABEAuQC/ADEA"),
 "lods": [0.10891192, PackedByteArray("AAAgAAIAIAASAAIAIAATABIAEwAhABIAEwAiACEAIgAKACEAIgADAAoAAwAjAAoAAwABACMAAwAkAAEAJAAlAAEAJQAmAAEAJQAEACYABAAUACYABAAVABQAFQAWABQAFQAnABYAJwALABYAJwAXAAsAJwAMABcADAAYABcAGAAoABcAGAApACgAKQAqACgAKQAGACoABgAFACoABwAZACsABwAsABkABwAtACwALAAtAAkACQAtAC4ALQAHAC8ALQAvABsALQAbAAgALwAHABoAGgAHADAALwAaAA0AHQAfAA8AHQAxAB8AHwAxAB4AHQAOADEAMQAOABEAEQAOADIADgAdABAAEAAdADMAEAAzADQADgAQABwADgAcADUA"), 0.34614277, PackedByteArray("AAASAAIAAAATABIAEwADABIAAwAKABIAAwABAAoAAwAEAAEABAAUAAEABAAVABQAFQAWABQAFQAMABYADAAXABYADAAYABcAGAAFABcAGAAGAAUABwAJABkABwAIAAkACAAHAA0ADQAHABoACAANABsADgAQABwADgAdABAAHQAOAB4AHgAOABEAHQAeAB8A"), 0.6855147, PackedByteArray("AAAKAAIAAAADAAoAAwABAAoAAwAEAAEABAALAAEABAAMAAsADAAGAAsABgAFAAsABwAIAAkACAAHAA0ADgAPABAADwAOABEA"), 2.5588334, PackedByteArray("AAABAAIAAAADAAEAAwAEAAEABAAFAAEABAAGAAUABwAIAAkA")],
-"material": SubResource("StandardMaterial3D_gb6us"),
+"material": ExtResource("2_krfcv"),
 "name": "Pneu",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -91,8 +96,46 @@ size = Vector3(1, 4.5166016, 10.526611)
 [sub_resource type="BoxShape3D" id="BoxShape3D_xs4xl"]
 size = Vector3(14.408203, 3.6959152, 9.601196)
 
-[node name="Car" type="VehicleBody3D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ysjjl"]
+shader = ExtResource("4_ysjjl")
+shader_parameter/count = 150
+shader_parameter/slant = -0.01
+shader_parameter/speed = 50.0
+shader_parameter/blur = 0.002
+shader_parameter/colour = Color(1, 1, 1, 1)
+shader_parameter/size = Vector2(0.005, 0.2)
+
+[sub_resource type="Curve" id="Curve_8uo2y"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_aldpo"]
+curve = SubResource("Curve_8uo2y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ysjjl"]
+emission_shape = 3
+emission_box_extents = Vector3(30, 10, 30)
+gravity = Vector3(0, -1, 0)
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_aldpo")
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(1, 1, 0)
+turbulence_influence_max = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbnhc"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(3.6624835, 3.6624835, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8uo2y"]
+material = SubResource("StandardMaterial3D_lbnhc")
+
+[node name="car" type="VehicleBody3D"]
 script = ExtResource("1_yr3gr")
+engine_accel_curve = SubResource("Curve_krfcv")
+engine_max_force_curve = SubResource("Curve_ysjjl")
 
 [node name="VehicleWheel3D" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.217377, -1.8714639, -5.1791515)
@@ -282,5 +325,23 @@ light_color = Color(1, 1, 0.8117647, 1)
 light_energy = 4.628
 spot_range = 45.152332
 spot_angle = 64.31551
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Rain" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_ysjjl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -24.739887)
+amount = 40
+lifetime = 8.0
+process_material = SubResource("ParticleProcessMaterial_ysjjl")
+draw_pass_1 = SubResource("SphereMesh_8uo2y")
 
 [editable path="Shape"]

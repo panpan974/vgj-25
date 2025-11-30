@@ -74,7 +74,7 @@ func disable_all() -> void:
 func switch_to_info() -> void:
     info_container.visible = true
     current_ui_state = UIStates.Info
-    print("Switched to Info UI")
+    # print("Switched to Info UI")
     
 func switch_to_instructions() -> void:
     instruction_container.visible = true

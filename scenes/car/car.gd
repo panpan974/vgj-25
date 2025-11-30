@@ -5,7 +5,8 @@ class_name Car
 @export var move_speed: float = 2.0 # Vitesse constante sur X
 @export var turn_speed: float = 1.5 # Vitesse de rotation (radians/sec)
 @export var id: int = 1 # Pour l'InputMap
-
+@export var engine_accel_curve: Curve
+@export var engine_max_force_curve: Curve
 
 @onready var buttonDir_top: Interactable = %TopRotationInteractable
 @onready var buttonDir_bottom: Interactable = %BottomRotationInteractable
@@ -27,6 +28,8 @@ var rotating_backward := false
 var ending_node: Node = null
 var problem_timer: Timer = Timer.new()
 
+var time_engine_accel_held: float = 0.0
+
 func _ready():
 	#Register this in GameRecuperator (autoload)
 	GameRecuperator.register_car(self)
@@ -38,6 +41,7 @@ func _ready():
 	buttonDir_bottom.on_activated.connect(start_rotate_forward)
 	buttonDir_bottom.on_deactivated.connect(stop_rotate_forward)
 	button_accelerate.on_is_active.connect(add_engine_force)
+	button_accelerate.on_deactivated.connect(end_acceleration)
 	button_brake.on_is_active.connect(slow_engine_force)
 	button_accelerate.set_interaction_ui_state.emit(InteractionUI.UIStates.Info)
 	button_brake.set_interaction_ui_state.emit(InteractionUI.UIStates.Info)
@@ -65,9 +69,11 @@ func _process(delta: float) -> void:
 	if fuel_tank.is_broken:
 		# Reduce speed if fuel tank is broken
 		engine_force *= 0.999
+	# print_debug("Engine force: ", engine_force)
 
 var previous_velocities := []
 var crashed := false
+
 
 func _physics_process(delta):
 	#disable just for testing
@@ -107,7 +113,8 @@ func steering_clamp() -> void:
 
 func engine_clamp() -> void:
 	# Clamp engine force to reasonable values
-	engine_force = clamp(engine_force, -400, 400)
+	var max_force = engine_max_force_curve.sample(time_engine_accel_held)
+	engine_force = clamp(engine_force, -max_force, max_force)
 
 func _rotate_with_inputs(delta):
 	# if _rotation_node == null:
@@ -134,17 +141,25 @@ func start_rotate_backward():
 func stop_rotate_backward():
 	rotating_backward = false
 
+func end_acceleration():
+	time_engine_accel_held = 0.0
+
 func add_engine_force(delta: float) -> void:
 	if fuel_tank.is_broken:
 		return
-	engine_force -= 100 * delta
+	time_engine_accel_held += delta
+	# Use the curve to determine acceleration based on the time held
+	engine_force -= engine_accel_curve.sample(time_engine_accel_held) * 10.0
 	if button_accelerate.ui_data != null:
 		button_accelerate.ui_data.info_text = "Accelerating...\nForce: " + str(round(-engine_force))
 
 func slow_engine_force(delta: float) -> void:
 	if fuel_tank.is_broken:
 		return
-	engine_force += 100 * delta
+	if engine_force < -1:
+		engine_force *= 0.95
+	else:
+		engine_force += 100 * delta
 	if button_brake.ui_data != null:
 		button_brake.ui_data.info_text = "Braking...\nForce: " + str(round(-engine_force))
 

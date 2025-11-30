@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://crgvd2g1qq0ch"]
+
+[ext_resource type="Texture2D" uid="uid://curuxvgx2neu3" path="res://scenes/car/Tuture_Tuture_Devant-coterpng.png" id="1_sxpdy"]
+
+[resource]
+resource_name = "Material.003"
+cull_mode = 2
+albedo_texture = ExtResource("1_sxpdy")
+roughness = 0.5
