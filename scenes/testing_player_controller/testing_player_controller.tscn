@@ -20,14 +20,6 @@ size = Vector2(10, 10)
 
 [node name="TestingPlayerController" type="Node3D"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8781016, 0)
-light_energy = 4.453
-light_indirect_energy = 2.151
-light_volumetric_fog_energy = 3.08
-light_angular_distance = 34.32
-light_specular = 1.045
-
 [node name="world" parent="." instance=ExtResource("1_eilo5")]
 
 [node name="Car" parent="." instance=ExtResource("3_lmu1h")]
